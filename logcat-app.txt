@@ -1,0 +1,143 @@
+10-22 06:41:44.883   288   288 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+10-22 06:41:44.887   288   288 I AndroidRuntime: Using default boot image
+10-22 06:41:44.887   288   288 I AndroidRuntime: Leaving lock profiling enabled
+10-22 06:42:11.685   894   894 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:42:27.831   488   546 V BackupManagerService: [UserID:0] restoreAtInstall pkg=com.alifvisa.app token=1 restoreSet=0
+10-22 06:42:29.914   488   755 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10174, mPackageName='com.alifvisa.app'}
+10-22 06:42:29.915   969   969 D MediaPlayerList: Name of package changed: com.alifvisa.app
+10-22 06:42:29.920   969   969 D MediaPlayerList: Name of package changed: com.alifvisa.app
+10-22 06:42:30.082   488   838 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:42:30.190   488   524 I ActivityManager: Start proc 2346:com.alifvisa.app/u0a174 for next-top-activity {com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:42:30.243  2346  2346 I om.alifvisa.app: Late-enabling -Xcheck:jni
+10-22 06:42:30.291  2346  2346 I om.alifvisa.app: Using CollectorTypeCC GC.
+10-22 06:42:30.292  2346  2346 W om.alifvisa.app: Unexpected CPU variant for x86: x86_64.
+10-22 06:42:30.292  2346  2346 W om.alifvisa.app: Known variants: atom, sandybridge, silvermont, kabylake, default
+10-22 06:42:30.451  2346  2346 W ziparchive: Unable to open '/data/app/~~5m_M-VlCJebdAOTzYo8M7Q==/com.alifvisa.app-iAJZSWmBlnWQRvxQRUkUQQ==/base.dm': No such file or directory
+10-22 06:42:30.451  2346  2346 W ziparchive: Unable to open '/data/app/~~5m_M-VlCJebdAOTzYo8M7Q==/com.alifvisa.app-iAJZSWmBlnWQRvxQRUkUQQ==/base.dm': No such file or directory
+10-22 06:42:30.637  2346  2346 D nativeloader: Configuring classloader-namespace for other apk /data/app/~~5m_M-VlCJebdAOTzYo8M7Q==/com.alifvisa.app-iAJZSWmBlnWQRvxQRUkUQQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~5m_M-VlCJebdAOTzYo8M7Q==/com.alifvisa.app-iAJZSWmBlnWQRvxQRUkUQQ==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.alifvisa.app
+10-22 06:42:30.650  2346  2346 V GraphicsEnvironment: ANGLE Developer option for 'com.alifvisa.app' set to: 'default'
+10-22 06:42:30.650  2346  2346 V GraphicsEnvironment: ANGLE GameManagerService for com.alifvisa.app: false
+10-22 06:42:30.834  2346  2346 W om.alifvisa.app: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+10-22 06:42:30.866  2346  2346 W om.alifvisa.app: Entry not found
+10-22 06:42:30.911  2346  2346 W om.alifvisa.app: Accessing hidden method Landroid/os/Trace;->isTagEnabled(J)Z (unsupported, reflection, allowed)
+10-22 06:42:30.911  2346  2346 W om.alifvisa.app: Accessing hidden method Landroid/os/Trace;->traceBegin(JLjava/lang/String;)V (unsupported, reflection, allowed)
+10-22 06:42:30.911  2346  2346 W om.alifvisa.app: Accessing hidden method Landroid/os/Trace;->traceEnd(J)V (unsupported, reflection, allowed)
+10-22 06:42:30.911  2346  2346 W om.alifvisa.app: Accessing hidden method Landroid/os/Trace;->asyncTraceBegin(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+10-22 06:42:30.911  2346  2346 W om.alifvisa.app: Accessing hidden method Landroid/os/Trace;->asyncTraceEnd(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+10-22 06:42:31.041  2346  2467 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.alifvisa.app/app_webview/variations_seed_new"
+10-22 06:42:31.042  2346  2467 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.alifvisa.app/app_webview/variations_seed"
+10-22 06:42:31.196   488   524 I ActivityManager: Start proc 2500:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {com.alifvisa.app/org.chromium.content.app.SandboxedProcessService0:0}
+10-22 06:42:31.499   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{4bea133 com.google.android.youtube/10140} BLOCKED
+10-22 06:42:31.499   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{aba5cf0 com.google.android.googlequicksearchbox/10119} BLOCKED
+10-22 06:42:31.499   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{b4ae269 com.google.android.as/10117} BLOCKED
+10-22 06:42:31.500   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{61494ee com.google.android.contacts/10121} BLOCKED
+10-22 06:42:31.500   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{a381d8f com.google.android.apps.youtube.music/10122} BLOCKED
+10-22 06:42:31.500   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{e80581c com.google.android.inputmethod.latin/10137} BLOCKED
+10-22 06:42:31.776   488   570 D ConnectivityService: requestNetwork for uid/pid:10174/2346 activeRequest: null callbackRequest: 63 [NetworkRequest [ REQUEST id=64, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10174 RequestorUid: 10174 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+10-22 06:42:31.789   488   709 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=64, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10174 RequestorUid: 10174 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:42:31.789   488   709 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=64, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10174 RequestorUid: 10174 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:42:31.789   488   709 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=64, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10174 RequestorUid: 10174 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:42:31.789   488   709 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=64, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10174 RequestorUid: 10174 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:42:31.790   488  1851 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{b4ae269 com.google.android.as/10117} BLOCKED
+10-22 06:42:31.947  2346  2489 W om.alifvisa.app: Accessing hidden method Landroid/media/AudioManager;->getOutputLatency(I)I (unsupported, reflection, allowed)
+10-22 06:42:32.047   488  1851 D CoreBackPreview: Window{1dbac9b u0 com.alifvisa.app/com.alifvisa.app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@7444d4e, mPriority=0}
+10-22 06:42:32.048   996   996 D CarrierSvcBindHelper: onPackageAdded: com.alifvisa.app
+10-22 06:42:33.155   488   512 W ziparchive: Unable to open '/data/app/~~5m_M-VlCJebdAOTzYo8M7Q==/com.alifvisa.app-iAJZSWmBlnWQRvxQRUkUQQ==/base.dm': No such file or directory
+10-22 06:42:33.186   488   516 I WindowManager: Screen frozen for +4s703ms due to Window{1dbac9b u0 com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:42:33.193   488   512 I ActivityTaskManager: Displayed com.alifvisa.app/.MainActivity: +3s92ms
+10-22 06:42:33.278  1494  1494 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.alifvisa.app fieldId=-1 fieldName=null extras=null}, false)
+10-22 06:42:34.545   996   996 D ImsResolver: maybeAddedImsService, packageName: com.alifvisa.app
+10-22 06:42:34.691  1280  2648 I IntentFilterIntentOp: Verifying IntentFilter. verificationId:2 scheme:"https" hosts:"www.alifvisa.com alifvisa.com" package:"com.alifvisa.app". [CONTEXT service_id=244 ]
+10-22 06:42:37.425  2346  2673 W om.alifvisa.app: Long monitor contention with owner ThreadPoolForeg (2491) at android.content.IContentProvider android.app.ActivityThread.acquireProvider(android.content.Context, java.lang.String, int, boolean)(ActivityThread.java:7079) waiters=0 in android.content.IContentProvider android.app.ActivityThread.acquireProvider(android.content.Context, java.lang.String, int, boolean) for 4.122s
+10-22 06:42:37.960  2346  3158 D ProfileInstaller: Installing profile for com.alifvisa.app
+10-22 06:42:41.290  1280  2648 I IntentFilterIntentOp: Verification 2 complete. Success:false. Failed hosts:www.alifvisa.com,alifvisa.com. [CONTEXT service_id=244 ]
+10-22 06:42:41.514   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{b0fa43b com.google.android.youtube/10140} BLOCKED
+10-22 06:42:41.515   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{637970 com.google.android.googlequicksearchbox/10119} BLOCKED
+10-22 06:42:41.515   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{5fb04e9 com.google.android.apps.messaging/10113} BLOCKED
+10-22 06:42:41.516   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{c96456e com.google.android.as/10117} BLOCKED
+10-22 06:42:41.516   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{637440f com.google.android.contacts/10121} BLOCKED
+10-22 06:42:41.520   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{edebc9c com.google.android.partnersetup/10103} BLOCKED
+10-22 06:42:41.520   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{ef606a5 com.google.android.cellbroadcastreceiver/10164} BLOCKED
+10-22 06:42:42.297  1032  1084 I Launcher.IconCache: Database bulk icon loading failed, using fallback bulk icon loading for: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:42:47.758  1067  3497 I FontLog : Package com.alifvisa.app has no metadata [CONTEXT service_id=132 ]
+10-22 06:42:47.876  1280  3061 I BlockstoreStorage: Clearing Blockstore Data for package com.alifvisa.app [CONTEXT service_id=258 ]
+10-22 06:42:51.994   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{1cc909 com.google.android.googlequicksearchbox/10119} BLOCKED
+10-22 06:42:51.994   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{778870e com.google.android.apps.messaging/10113} BLOCKED
+10-22 06:42:51.995   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{a4bf52f com.google.android.settings.intelligence/10107} BLOCKED
+10-22 06:42:51.995   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{865e73c com.android.remoteprovisioner/10151} BLOCKED
+10-22 06:43:01.180   488  1794 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{fe78ec com.google.android.settings.intelligence/10107} BLOCKED
+10-22 06:43:01.187   488  1794 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{6f8f6bb com.google.android.settings.intelligence/10107} BLOCKED
+10-22 06:43:02.432   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{5965e4b com.google.android.youtube/10140} BLOCKED
+10-22 06:43:02.432   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{ac33028 com.google.android.googlequicksearchbox/10119} BLOCKED
+10-22 06:43:02.433   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{4b7e141 com.google.android.apps.messaging/10113} BLOCKED
+10-22 06:43:02.433   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{dcd5497 com.google.android.apps.maps/10138} BLOCKED
+10-22 06:43:02.433   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{232e6e6 com.google.android.apps.photos/10142} BLOCKED
+10-22 06:43:02.433   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{c437acf com.google.android.projection.gearhead/10108} BLOCKED
+10-22 06:43:02.433   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{dea9427 com.android.remoteprovisioner/10151} BLOCKED
+10-22 06:43:03.315  4764  4764 I HibernationPolicy: Usage stats for user 0: {com.google.android.networkstack.tethering=Thu Oct 22 06:42:11 UTC 2026, com.android.cts.priv.ctsshim=Thu Jan 01 00:00:00 UTC 1970, com.google.android.youtube=Thu Oct 22 06:42:30 UTC 2026, com.android.internal.display.cutout.emulation.corner=Thu Jan 01 00:00:00 UTC 1970, com.google.android.ext.services=Thu Oct 22 06:42:13 UTC 2026, com.android.internal.display.cutout.emulation.double=Thu Jan 01 00:00:00 UTC 1970, com.android.providers.telephony=Thu Jan 01 00:00:00 UTC 1970, com.android.dynsystem=Thu Jan 01 00:00:00 UTC 1970, com.google.android.googlequicksearchbox=Thu Oct 22 06:42:46 UTC 2026, com.google.android.cellbroadcastservice=Thu Oct 22 06:42:13 UTC 2026, com.android.providers.calendar=Thu Oct 22 06:42:43 UTC 2026, com.android.providers.media=Thu Oct 22 06:42:26 UTC 2026, com.google.android.onetimeinitializer=Thu Jan 01 00:00:00 UTC 1970, com.google.android.ext.shared=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.systemui.navbar.gestural_wide_back=Thu Jan 01 00:00:00 UTC 1970, com.android.wallpapercropper=Thu Jan 01 00:00:00 UTC 1970, com.android.managedprovisioning.auto_generated_rro_product__=Thu Jan 01 00:00:00 UTC 1970, com.android.carrierconfig.auto_generated_rro_vendor__=Thu Jan 01 00:00:00 UTC 1970, com.alifvisa.app=Thu Oct 22 06:42:30 UTC 2026, com.android.systemui.emulation.pixel_3_xl=Thu Jan 01 00:00:00 UTC 1970, com.android.systemui.emulation.pixel_4_xl=Thu Jan 01 00:00:00 UTC 1970, com.android.simappdialog.auto_generated_rro_product__=Thu Jan 01 00:00:00 UTC 1970, com.android.externalstorage=Thu Jan 01 00:00:00 UTC 1970, com.android.htmlviewer=Thu Jan 01 00:00:00 UTC 1970, com.android.companiondevicemanager=Thu Jan 01 00:00:00 UTC 1970, com.android.mms.service=Thu Jan 01 00:00:00 UTC 1970, com.android.providers.downloads=Thu Jan 01 00:00:00 UTC 1970, com.android.systemui.auto_generated_rro_product__=Thu Jan 01 00:00:00 UTC 1970, com.google.android.apps.messaging=Thu Oct 22 06:42:52 UTC 2026, com.google.android.soundpicker=Thu Jan 01 00:00:00 UTC 1970, com.breel.wallpapers18=Thu Jan 01 00:00:00 UTC 1970, com.google.android.marvin.talkbackoverlay=Thu Jan 01 00:00:00 UTC 1970, com.google.android.configupdater=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.emulation.pixel_3a_xl=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.emulation.pixel_6_pro=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.emulation.pixel_7_pro=Thu Jan 01 00:00:00 UTC 1970, com.google.android.providers.media.module=Thu Oct 22 06:42:48 UTC 2026, com.android.internal.emulation.pixel_3a=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.emulation.pixel_4a=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.emulation.pixel_6a=Thu Jan 01 00:00:00 UTC 1970, com.google.android.overlay.googlewebview=Thu Jan 01 00:00:00 UTC 1970, com.android.systemui.plugin.globalactions.wallet=Thu Jan 01 00:00:00 UTC 1970, com.android.providers.downloads.ui=Thu Jan 01 00:00:00 UTC 1970, com.google.android.hotspot2.osulogin=Thu Jan 01 00:00:00 UTC 1970, com.android.vending=Thu Jan 01 00:00:00 UTC 1970, com.android.pacprocessor=Thu Jan 01 00:00:00 UTC 1970, com.android.simappdialog=Thu Jan 01 00:00:00 UTC 1970, com.google.android.adservices.api=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.display.cutout.emulation.hole=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.display.cutout.emulation.tall=Thu Jan 01 00:00:00 UTC 1970, com.android.certinstaller=Thu Jan 01 00:00:00 UTC 1970, com.android.carrierconfig=Thu Oct 22 06:42:33 UTC 2026, com.google.android.marvin.talkback=Thu Jan 01 00:00:00 UTC 1970, com.android.internal.systemui.navbar.threebutton=Thu Jan 01 00:00:00 UTC 1970, android=Thu Jan 01 00:00:00 UTC 1970, com.google.android.sdksandbox=Thu Jan 01 00:00:00 UTC 1970, com.android.egg=Thu Jan 01 00:00:00 UTC 1970, com.android.mtp=Thu Jan 01 00:00:00 UTC 1970, com.android.nfc=Thu Jan 01 00:00:00 UTC 1970, com.android.ons=Thu Oct 22 06:42:25 UTC 2026, com.android.stk=Thu Oct 22 06:42:20 UTC 2026, com.android.backupconfirm=Thu Jan 01 00:00
+10-22 06:43:16.556   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{69f2c63 com.google.android.as/10117} BLOCKED
+10-22 06:43:21.252   488  1901 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:43:23.058  4375  4375 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:23.473  5421  5421 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:24.429  5452  5452 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:24.656  5472  5472 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:25.107  5490  5490 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:25.296  5507  5507 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:25.566  5530  5530 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:25.813  5547  5547 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:25.823  2346  2346 I chromium: [INFO:CONSOLE(116)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/visa/search/ (116)
+10-22 06:43:26.137  5565  5565 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:26.487  5585  5585 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:26.667  5602  5602 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:26.829  5619  5619 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:27.028  5636  5636 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:27.986  5653  5653 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:28.134  5670  5670 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:28.256  5689  5689 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:28.349  5706  5706 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:28.435  5723  5723 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:31.279   488   957 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{c893998 com.google.android.settings.intelligence/10107} BLOCKED
+10-22 06:43:31.616   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{e466b9 com.google.android.as/10117} BLOCKED
+10-22 06:43:35.412  5944  5944 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:35.730  5964  5964 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:35.854   488  1068 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:43:35.862  5983  5983 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:36.196  2346  2357 I om.alifvisa.app: Compiler allocated 4355KB to compile void android.view.ViewRootImpl.performTraversals()
+10-22 06:43:36.335  6014  6014 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:36.389  2346  2346 I chromium: [INFO:CONSOLE(94)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/track-application/ (94)
+10-22 06:43:36.607  6058  6058 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:50.549   488  1786 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:43:54.278  2346  2346 I chromium: [INFO:CONSOLE(116)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/contact/ (116)
+10-22 06:43:56.951   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{2b3f10f com.google.android.apps.messaging/10113} BLOCKED
+10-22 06:43:58.223  6565  6565 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:58.355  6604  6604 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:58.456  6622  6622 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:43:58.525  6639  6639 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:00.959   488   546 I AppsFilter: interaction: PackageSetting{18210a2 com.alifvisa.app/10174} -> PackageSetting{321ce5 com.google.android.googlequicksearchbox/10119} BLOCKED
+10-22 06:44:02.944  6718  6718 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:03.017  6735  6735 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:03.093  6753  6753 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:04.979   488   703 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:44:05.947  6784  6784 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:06.041  6801  6801 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:06.130  6820  6820 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:12.841  6913  6913 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:12.954  6937  6937 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:16.512  6971  6971 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:16.587  6990  6990 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:16.657  7007  7007 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:16.731  7024  7024 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:19.491   488   570 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:44:20.067  7077  7077 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:20.368  7101  7101 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:20.515  2346  2346 I chromium: [INFO:CONSOLE(120)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/about/ (120)
+10-22 06:44:21.297  7129  7129 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:21.470  7148  7148 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:44:22.529  2346  2357 I om.alifvisa.app: Compiler allocated 4355KB to compile void android.view.ViewRootImpl.performTraversals()
+10-22 06:44:33.876   488  1904 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:44:34.917  2346  2346 I chromium: [INFO:CONSOLE(194)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/blog/ (194)
+10-22 06:44:39.640  6139  6224 I AppLinksAsyncVerifierV2: Verification result: checking for a statement with source https://www.alifvisa.com, relation delegate_permission/common.handle_all_urls, and target com.alifvisa.app --> false. [CONTEXT service_id=244 ]
+10-22 06:44:39.716  6139  6238 I AppLinksAsyncVerifierV2: Verification result: checking for a statement with source https://alifvisa.com, relation delegate_permission/common.handle_all_urls, and target com.alifvisa.app --> false. [CONTEXT service_id=244 ]
+10-22 06:44:39.716  6139  7230 I AppLinksHostsVerifierV2: Verification com.alifvisa.app complete. Successful hosts: . Failed hosts: www.alifvisa.com,alifvisa.com. Error hosts: . [CONTEXT service_id=244 ]
+10-22 06:44:48.264   488  1081 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:45:04.751  2346  2346 I chromium: [INFO:CONSOLE(194)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/blog/ (194)
