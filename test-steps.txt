@@ -1,0 +1,23 @@
+06:32:07 install
+Performing Streamed Install
+Success
+06:32:11 launch
+Starting: Intent { cmp=com.alifvisa.app/.MainActivity }
+06:33:23 scroll
+06:33:27 open https://alifvisa.com/visa/search/
+adb: device 'emulator-5554' not found
+06:33:41 open https://alifvisa.com/track-application/
+adb: device 'emulator-5554' not found
+06:33:55 open https://alifvisa.com/contact/
+adb: device 'emulator-5554' not found
+06:34:09 open https://alifvisa.com/dashboard/
+adb: device 'emulator-5554' not found
+06:34:23 open https://alifvisa.com/about/
+adb: device 'emulator-5554' not found
+06:34:37 open https://alifvisa.com/blog/
+adb: device 'emulator-5554' not found
+06:34:51 open https://alifvisa.com/apply/?from=PK&to=GB&purpose=tourism&type=visit-visa
+adb: device 'emulator-5554' not found
+06:35:07 back
+06:35:11 logs
+06:37:11 done
