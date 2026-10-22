@@ -1,0 +1,93 @@
+10-22 06:48:53.010   287   287 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+10-22 06:48:53.069   287   287 I AndroidRuntime: Using default boot image
+10-22 06:48:53.069   287   287 I AndroidRuntime: Leaving lock profiling enabled
+10-22 06:48:53.167   288   288 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+10-22 06:48:53.190   288   288 I AndroidRuntime: Using default boot image
+10-22 06:48:53.190   288   288 I AndroidRuntime: Leaving lock profiling enabled
+10-22 06:48:58.308   828   828 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:48:58.329   835   835 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 06:49:04.371  1597  1597 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-22 06:49:04.398  1597  1597 I AndroidRuntime: Using default boot image
+10-22 06:49:04.398  1597  1597 I AndroidRuntime: Leaving lock profiling enabled
+10-22 06:49:05.137  1597  1597 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-22 06:49:06.384  1597  1597 D AndroidRuntime: Shutting down VM
+10-22 06:49:10.579   491   549 V BackupManagerService: [UserID:0] restoreAtInstall pkg=com.alifvisa.app token=1 restoreSet=0
+10-22 06:49:10.635  1361  2261 I IntentFilterIntentOp: Verifying IntentFilter. verificationId:0 scheme:"https" hosts:"www.alifvisa.com alifvisa.com" package:"com.alifvisa.app".
+10-22 06:49:10.751  1654  1654 I MediaProvider: Invalidating LocalCallingIdentity cache for package com.alifvisa.app. Reason: package android.intent.action.PACKAGE_ADDED
+10-22 06:49:10.755  1692  1692 I GsaVoiceInteractionSrv: O received Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) }
+10-22 06:49:10.760   688   688 D AvrcpMediaPlayerList: Name of package changed: com.alifvisa.app
+10-22 06:49:10.797   491   773 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:49:10.941   491   533 I ActivityManager: Start proc 2691:com.alifvisa.app/u0a167 for pre-top-activity {com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:49:10.968  2691  2691 I om.alifvisa.ap: Late-enabling -Xcheck:jni
+10-22 06:49:10.981  2691  2691 I om.alifvisa.ap: Unquickening 12 vdex files!
+10-22 06:49:10.981  2691  2691 W om.alifvisa.ap: Unexpected CPU variant for X86 using defaults: x86_64
+10-22 06:49:11.400  2691  2691 W om.alifvisa.ap: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (greylist, reflection, allowed)
+10-22 06:49:11.408  2691  2691 I om.alifvisa.ap: The ClassLoaderContext is a special shared library.
+10-22 06:49:11.415  2691  2691 I om.alifvisa.ap: The ClassLoaderContext is a special shared library.
+10-22 06:49:11.475  2691  2691 I TetheringManager: registerTetheringEventCallback:com.alifvisa.app
+10-22 06:49:11.509   491   533 I ActivityManager: Start proc 2799:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {com.alifvisa.app/org.chromium.content.app.SandboxedProcessService0:0}
+10-22 06:49:11.514  2691  2691 E chromium: [ERROR:filesystem_posix.cc(62)] mkdir /data/user/0/com.alifvisa.app/cache/WebView/Crashpad: No such file or directory (2)
+10-22 06:49:11.686   491   518 D ConnectivityService: requestNetwork for uid/pid:10167/2691 NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ]
+10-22 06:49:11.686   491   640 D WifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+10-22 06:49:11.686   491   640 D UntrustedWifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+10-22 06:49:11.717  1005  1005 D PhoneSwitcherNetworkRequstListener: got request NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+10-22 06:49:11.755   491   773 D ConnectivityService: requestNetwork for uid/pid:10167/2691 NetworkRequest [ TRACK_DEFAULT id=29, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ]
+10-22 06:49:11.756   491   640 D WifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=29, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+10-22 06:49:11.756   491   640 D UntrustedWifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=29, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+10-22 06:49:11.756  1005  1005 D PhoneSwitcherNetworkRequstListener: got request NetworkRequest [ TRACK_DEFAULT id=29, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+10-22 06:49:11.767  2691  2811 W om.alifvisa.ap: Accessing hidden method Landroid/media/AudioManager;->getOutputLatency(I)I (greylist, reflection, allowed)
+10-22 06:49:12.597  1131  2224 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-22 06:49:12.597  1131  2229 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-22 06:49:12.602  1361  1546 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+10-22 06:49:12.603  1361  2953 I FontsPackageChangeOp: Package com.alifvisa.app has no metadata
+10-22 06:49:12.631  1361  1546 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://26pxIjiHt7auqwwuSfMgnFBpz6kLGLcV1QUlP9IP_dMLKg_9NKY6poE2OkxFXO31i7Z0J4y0QtPwGQ37j8m6xA==@com.alifvisa.app/ was not found. Marking affiliation data as stale...
+10-22 06:49:12.702  1361  2261 I IntentFilterIntentOp: Verification 0 complete. Success:false. Failed hosts:www.alifvisa.com,alifvisa.com.
+10-22 06:49:14.031  2691  2691 I chromium: [INFO:CONSOLE(0)] "An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323", source: https://alifvisa.com/ (0)
+10-22 06:49:14.480   491  1103 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.packageinstaller/com.android.packageinstaller.PackageInstalledReceiver
+10-22 06:49:14.481   491   532 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+10-22 06:49:14.481   491   532 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+10-22 06:49:14.481   491   532 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+10-22 06:49:14.481   491   532 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+10-22 06:49:14.481   491   532 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.ims/.receivers.RcsAutoStartReceiver
+10-22 06:49:14.837  1964  2729 E ACS.ResponseHandler: #onFatalError: com.google.android.apps.gsa.shared.speech.b.o: errorCode: 13, engine: 2
+10-22 06:49:14.837  1964  2729 E ACS.ResponseHandler: com.google.android.apps.gsa.shared.util.b.e: ACS.ResponseHandler: #onFatalError: com.google.android.apps.gsa.shared.speech.b.o: errorCode: 13, engine: 2
+10-22 06:49:18.268   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{81dc8a6 com.google.android.youtube/10147} BLOCKED
+10-22 06:49:18.268   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{e3532e7 com.google.android.apps.messaging/10145} BLOCKED
+10-22 06:49:18.268   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{7d33e94 com.google.android.partnersetup/10115} BLOCKED
+10-22 06:49:18.268   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{c7aed3d com.google.android.apps.youtube.music/10142} BLOCKED
+10-22 06:49:19.146   491   531 D ArtManagerInternalImpl: /data/misc/iorapd/com.alifvisa.app/6/com.alifvisa.app.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+10-22 06:49:19.147   491   531 I ActivityTaskManager: Displayed com.alifvisa.app/.MainActivity: +4s353ms
+10-22 06:49:21.095  2691  3848 D ProfileInstaller: Installing profile for com.alifvisa.app
+10-22 06:49:26.436  2691  2691 I chromium: [INFO:CONSOLE(0)] "The resource https://alifvisa.com/wp-content/themes/alif-visa/assets/images/hero/travellers.png?ver=2.20.4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source:  (0)
+10-22 06:49:28.585   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{e3532e7 com.google.android.apps.messaging/10145} BLOCKED
+10-22 06:49:28.585   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{cc0420c com.google.android.apps.maps/10135} BLOCKED
+10-22 06:49:40.141   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{81dc8a6 com.google.android.youtube/10147} BLOCKED
+10-22 06:49:40.141   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{1e444e1 com.google.android.apps.wellbeing/10113} BLOCKED
+10-22 06:49:40.141   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{cc0420c com.google.android.apps.maps/10135} BLOCKED
+10-22 06:49:40.141   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{2341206 com.google.android.videos/10139} BLOCKED
+10-22 06:49:40.141   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{44db0c7 com.google.android.apps.photos/10133} BLOCKED
+10-22 06:49:40.141   491   549 I AppsFilter: interaction: PackageSetting{b5e3201 com.alifvisa.app/10167} -> PackageSetting{d407bf4 com.google.android.projection.gearhead/10117} BLOCKED
+10-22 06:49:57.925   491  5788 I PackageDexOptimizer: Running dexopt (dexoptNeeded=1) on: /data/app/~~Pp14wF2gsRhlIzg9KK6qAA==/com.alifvisa.app-166hcksXuZyWs_rrCDmdMA==/base.apk pkg=com.alifvisa.app isa=x86_64 dexoptFlags=boot_complete,debuggable,public,enable_hidden_api_checks targetFilter=verify oatDir=/data/app/~~Pp14wF2gsRhlIzg9KK6qAA==/com.alifvisa.app-166hcksXuZyWs_rrCDmdMA==/oat classLoaderContext=PCL[]{}
+10-22 06:49:57.926   421   421 V installd: DexInv: --- BEGIN '/data/app/~~Pp14wF2gsRhlIzg9KK6qAA==/com.alifvisa.app-166hcksXuZyWs_rrCDmdMA==/base.apk' ---
+10-22 06:49:58.214  5789  5789 I dex2oat32: /apex/com.android.art/bin/dex2oat32 --input-vdex-fd=-1 --output-vdex-fd=9 --updatable-bcp-packages-file=/system/etc/updatable-bcp-packages.txt --resolve-startup-const-strings=true --max-image-block-size=524288 --compiler-filter=verify --debuggable --classpath-dir=/data/app/~~Pp14wF2gsRhlIzg9KK6qAA==/com.alifvisa.app-166hcksXuZyWs_rrCDmdMA== --class-loader-context=PCL[]{} --generate-mini-debug-info --compact-dex-level=none --compilation-reason=boot
+10-22 06:50:00.841  5842  5842 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-22 06:50:00.842  5842  5842 I AndroidRuntime: Using default boot image
+10-22 06:50:00.842  5842  5842 I AndroidRuntime: Leaving lock profiling enabled
+10-22 06:50:01.156  5842  5842 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-22 06:50:01.630  5842  5842 D AndroidRuntime: Shutting down VM
+10-22 06:50:02.800   421   421 V installd: DexInv: --- END '/data/app/~~Pp14wF2gsRhlIzg9KK6qAA==/com.alifvisa.app-166hcksXuZyWs_rrCDmdMA==/base.apk' (success) ---
+10-22 06:50:03.120   491  5788 I BackgroundDexOptService: Pinning optimized code {com.alifvisa.app, android}
+10-22 06:50:03.120   491  5788 D IorapForwardingService: onPackagesUpdated: com.alifvisa.app
+10-22 06:50:06.761   491   775 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:50:21.157   491  2498 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:50:35.759   491  1691 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:50:50.185   491  1143 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:51:04.421   491  2038 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:51:05.045  2691  2691 I chromium: [INFO:CONSOLE(0)] "An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323", source: https://alifvisa.com/about/ (0)
+10-22 06:51:18.879   491  2038 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:51:33.114   491  2060 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+10-22 06:51:49.540  6152  6152 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-22 06:51:49.552  6152  6152 I AndroidRuntime: Using default boot image
+10-22 06:51:49.552  6152  6152 I AndroidRuntime: Leaving lock profiling enabled
+10-22 06:51:49.661  6152  6152 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-22 06:51:49.737  6152  6152 D AndroidRuntime: Shutting down VM

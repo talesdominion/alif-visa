@@ -1,0 +1,30 @@
+06:49:08 install
+Performing Streamed Install
+Success
+06:49:10 launch
+Starting: Intent { cmp=com.alifvisa.app/.MainActivity }
+06:50:00 scroll
+06:50:06 open https://alifvisa.com/visa/search/
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:50:21 open https://alifvisa.com/track-application/
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:50:35 open https://alifvisa.com/contact/
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:50:50 open https://alifvisa.com/dashboard/
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:51:04 open https://alifvisa.com/about/
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:51:18 open https://alifvisa.com/blog/
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:51:33 open https://alifvisa.com/apply/?from=PK&to=GB&purpose=tourism&type=visit-visa
+Starting: Intent { act=android.intent.action.VIEW dat=https://alifvisa.com/... pkg=com.alifvisa.app }
+Warning: Activity not started, intent has been delivered to currently running top-most instance.
+06:51:49 back
+06:51:54 logs
+06:51:55 done
