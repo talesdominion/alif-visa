@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         refresh.setColorSchemeResources(R.color.brand_green_dark, R.color.brand_green);
+        refresh.setOnChildScrollUpCallback((parent, child) -> web.canScrollVertically(-1) || web.getScrollY() > 0);
         refresh.setOnRefreshListener(() -> {
             if (offline.getVisibility() == View.VISIBLE) retry();
             else web.reload();
@@ -226,6 +227,16 @@ public class MainActivity extends AppCompatActivity {
             public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
                 syncNav(url);
             }
+
+            @androidx.annotation.RequiresApi(26)
+            @Override
+            public boolean onRenderProcessGone(WebView view, android.webkit.RenderProcessGoneDetail detail) {
+                // The page's renderer was stopped by the system (usually low memory). Rebuild the
+                // WebView instead of letting the whole app close.
+                String last = view.getUrl();
+                recreateWebView(last != null ? last : HOME);
+                return true;
+            }
         });
 
         web.setWebChromeClient(new WebChromeClient() {
@@ -266,6 +277,20 @@ public class MainActivity extends AppCompatActivity {
                 openExternal(uri);
             }
         });
+    }
+
+    private void recreateWebView(String url) {
+        android.view.ViewGroup parent = (android.view.ViewGroup) web.getParent();
+        int index = parent.indexOfChild(web);
+        android.view.ViewGroup.LayoutParams lp = web.getLayoutParams();
+        parent.removeView(web);
+        web.destroy();
+        web = new WebView(this);
+        web.setId(R.id.web);
+        web.setBackgroundColor(0xFFFFFFFF);
+        parent.addView(web, index, lp);
+        setupWebView();
+        web.loadUrl(url);
     }
 
     static boolean isOwnSite(Uri u) {

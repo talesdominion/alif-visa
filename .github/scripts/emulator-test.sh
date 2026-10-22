@@ -13,7 +13,7 @@ adb shell input swipe 540 1700 540 600 300
 sleep 3
 adb exec-out screencap -p > "$OUT/02-home-scrolled.png"
 shot() {
-  adb shell am start -W -a android.intent.action.VIEW -d "$2" com.alifvisa.app
+  adb shell "am start -W -a android.intent.action.VIEW -d '$2' com.alifvisa.app"
   sleep "${3:-14}"
   adb exec-out screencap -p > "$OUT/$1.png"
 }
@@ -27,6 +27,7 @@ shot 09-apply-form "https://alifvisa.com/apply/?from=PK&to=GB&purpose=tourism&ty
 adb shell input keyevent KEYCODE_BACK
 sleep 4
 adb exec-out screencap -p > "$OUT/10-after-back.png"
-adb logcat -d -s AndroidRuntime:E chromium:E > out/logcat-errors.txt 2>&1 || true
+adb logcat -d -b crash > out/logcat-crash.txt 2>&1 || true
+adb logcat -d | grep -iE "alifvisa|render process|libc|DEBUG|ActivityTaskManager|lowmemorykiller|AndroidRuntime" | tail -300 > out/logcat-app.txt 2>&1 || true
 adb shell dumpsys package com.alifvisa.app | grep -E "versionCode|versionName|targetSdk" > out/package-info.txt || true
 exit 0
