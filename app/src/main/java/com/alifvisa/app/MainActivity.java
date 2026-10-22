@@ -74,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
     /** CSS added to every page inside the app: hides "get the app" promos and the desktop top strip. */
     static final String APP_CSS =
-            ".alif-app-banner,[data-alif-app-banner],.avp-cta__play,.avft__app,.avft__play,"
-            + ".alif-utility-bar,#wpadminbar{display:none!important}"
+            "html.in-app .alif-app-banner,html.in-app body .alif-app-banner,html.in-app [data-alif-app-banner],"
+            + "html.in-app .avp-cta__play,html.in-app .avft__app,html.in-app .avft__play,"
+            + "html.in-app .alif-utility-bar,html.in-app #wpadminbar{display:none!important}"
             + "html{margin-top:0!important}"
             + "*{-webkit-tap-highlight-color:transparent}";
 
     static final String APP_JS =
             "(function(){try{document.documentElement.classList.add('in-app');"
+            + "try{sessionStorage.setItem('alif-app-banner-dismissed-v2','1');}catch(e){}"
             + "var id='alif-app-css';function add(){if(document.getElementById(id))return;"
             + "var s=document.createElement('style');s.id=id;s.textContent=" + jsString(APP_CSS) + ";"
             + "(document.head||document.documentElement).appendChild(s);}add();"
@@ -485,12 +487,16 @@ public class MainActivity extends AppCompatActivity {
         else if (p.startsWith("/contact") || p.startsWith("/faq")) id = R.id.nav_help;
         else if (p.startsWith("/dashboard") || p.startsWith("/login") || p.startsWith("/signup")
                 || p.startsWith("/my-account") || p.startsWith("/account")) id = R.id.nav_account;
-        else return;
-        if (nav.getSelectedItemId() != id) {
-            syncingNav = true;
-            nav.setSelectedItemId(id);
-            syncingNav = false;
+        else id = 0;
+        syncingNav = true;
+        if (id == 0) {
+            nav.getMenu().setGroupCheckable(0, true, false);
+            for (int i = 0; i < nav.getMenu().size(); i++) nav.getMenu().getItem(i).setChecked(false);
+            nav.getMenu().setGroupCheckable(0, true, true);
+        } else if (nav.getSelectedItemId() != id || !nav.getMenu().findItem(id).isChecked()) {
+            nav.getMenu().findItem(id).setChecked(true);
         }
+        syncingNav = false;
     }
 
     private void setupBack() {
