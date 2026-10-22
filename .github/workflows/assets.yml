@@ -1,0 +1,37 @@
+name: fetch-assets
+on:
+  push:
+    branches: [android-app]
+    paths: ['.github/workflows/assets.yml']
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download
+        run: |
+          mkdir -p out && cd out
+          P=https://play-lh.googleusercontent.com
+          curl -sfL "$P/aHZ8OLV8U6ZcguMIPHOJFammKqEK3KxHFijINNgtRprYholbmOOJWfZHtTCQZ1i0CUmRYAv9GTPwFXAPSPPI0Q=s1024" -o old-icon.png
+          i=1
+          for id in i_tpueCbebi2iyytFwRN4InzfP7GT_rSdvevP3mys6r5zQNEmbS2FmtJSWq7aBWOPGRr9H2npd6PfwmSnqaM N6VT6KP_FO197SPWK5VbybMMcQ7k3GHVIYL-xxpuNJBk716uWec4lYNtJjyChQK7L0MluDi93WRNH-Um52lCPeo Rl706Tc8izC0c_ZkvK8K0kmcqFn1cnUdOmSAagoX_id97F-bj4WV5R1HCZzduzM7q57kp1ue8knMw7GXIvUA8w rnMqK9yhz6BexQmWiNdmxr7z6XUzqyeG_xlN_SXu5bPWQcBi9mGYmkbdyfXxkCfWKdWEYHixxLgZ51_qJsm73w UHOXTJvDdy8rn2zTUZEtbc2Pn-yOawERJEvzHDbaIIBVUWuMZ032KXip9yWH-IHFPEOlE4AbnJizsHxaRwQbItE 0NcYKp-QqUi6nJmFcGOYmySkZkKL2MMBRCy5WOAqeUCT136bydsIF2zyhQFrmQrS1RWlf1TIdnPhL6euT-zNWTI; do
+            curl -sfL "$P/$id=h900" -o old-shot-$i.png || true
+            i=$((i+1))
+          done
+          S=https://alifvisa.com/wp-content
+          curl -sfL "$S/themes/alif-visa/assets/images/mobile-app-mark.png" -o site-app-mark.png || true
+          curl -sfL "$S/uploads/2026/10/alifvisa-logo-dark.png" -o site-logo-dark.png || true
+          curl -sfL "$S/uploads/2026/10/alifvisa-logo-light.png" -o site-logo-light.png || true
+          curl -sfL "$S/themes/alif-visa/assets/images/favicon.png" -o site-favicon.png || true
+          (file * ; identify * 2>/dev/null) > info.txt || true
+      - name: Push
+        run: |
+          cd out
+          git init -q
+          git config user.name build-bot
+          git config user.email build-bot@users.noreply.github.com
+          git checkout -q -b assets-output
+          git add -A
+          git commit -qm assets
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" assets-output
