@@ -1,0 +1,25 @@
+name: probe
+on:
+  push:
+    branches: [android-app]
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Env
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME" > probe.txt
+          ls $ANDROID_HOME/build-tools >> probe.txt
+          ls $ANDROID_HOME/platforms >> probe.txt
+          java -version 2>> probe.txt
+      - name: Push result
+        run: |
+          git config user.name "build-bot"; git config user.email "build-bot@users.noreply.github.com"
+          git checkout --orphan build-output
+          git rm -rf --cached . >/dev/null
+          git add probe.txt
+          git commit -m "probe result"
+          git push -f origin build-output
