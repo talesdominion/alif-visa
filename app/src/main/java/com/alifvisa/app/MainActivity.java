@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.retry).setOnClickListener(v -> retry());
 
         setupWebView();
+        watchNetwork();
         setupFilePicker();
         setupNavigation();
         setupBack();
@@ -213,7 +214,10 @@ public class MainActivity extends AppCompatActivity {
                 refresh.setRefreshing(false);
                 Uri u = Uri.parse(url);
                 if (isOwnSite(u)) view.evaluateJavascript(APP_JS, null);
-                if (failedUrl == null) offline.setVisibility(View.GONE);
+                if (failedUrl == null) {
+                    offline.setVisibility(View.GONE);
+                    autoRetries = 0;
+                }
                 CookieManager.getInstance().flush();
             }
 
@@ -528,7 +532,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private int autoRetries = 0;
+
+    /** Reloads the page by itself as soon as the phone is back online. */
+    private void watchNetwork() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm == null) return;
+        try {
+            cm.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onAvailable(@NonNull android.net.Network network) {
+                    runOnUiThread(() -> {
+                        if (offline.getVisibility() == View.VISIBLE) web.postDelayed(MainActivity.this::retry, 800);
+                    });
+                }
+            });
+        } catch (Exception ignored) {
+        }
+    }
+
     private void showOffline() {
+        if (autoRetries < 2 && isOnline()) {
+            // A brief network hiccup: try again quietly before showing the offline screen.
+            autoRetries++;
+            web.postDelayed(this::retry, 1500);
+            return;
+        }
         ready = true;
         progress.setVisibility(View.GONE);
         refresh.setRefreshing(false);
