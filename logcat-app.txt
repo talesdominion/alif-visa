@@ -1,0 +1,300 @@
+10-22 06:49:41.303   553  1104 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-22 06:49:41.315   553  1481 D CoreBackPreview: Window{53e3665 u0 Splash Screen com.alifvisa.app}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@d0327eb, mPriority=0, mIsAnimationCallback=false}
+10-22 06:49:41.534   553   586 I ActivityManager: Start proc 2005:com.alifvisa.app/u0a209 for next-top-activity {com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:49:41.536  2005  2005 I om.alifvisa.app: Late-enabling -Xcheck:jni
+10-22 06:49:41.561  2005  2005 I om.alifvisa.app: Using CollectorTypeCMC GC.
+10-22 06:49:41.564  2005  2005 W om.alifvisa.app: Unexpected CPU variant for x86: x86_64.
+10-22 06:49:41.564  2005  2005 W om.alifvisa.app: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+10-22 06:49:41.691   553   873 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10209, mPackageName='com.alifvisa.app, mAppProcessToken='null'}
+10-22 06:49:41.806   553   578 I AppsFilter: interaction: PackageSetting{90cf879 com.android.microdroid.empty_payload/10199} -> PackageSetting{4d0d9be com.alifvisa.app/10209} BLOCKED
+10-22 06:49:41.822  2005  2005 W ziparchive: Unable to open '/data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.dm': No such file or directory
+10-22 06:49:41.822  2005  2005 W ziparchive: Unable to open '/data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.dm': No such file or directory
+10-22 06:49:41.970  2005  2005 D nativeloader: Configuring clns-7 for other apk /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.alifvisa.app
+10-22 06:49:42.684   553   575 V WindowManager:         {WCT{RemoteToken{97d36cb Task{e805994 #8 type=standard A=10209:com.alifvisa.app}}} m=OPEN f=MOVE_TO_TOP leash=Surface(name=Task=8)/@0xa5886da sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},
+10-22 06:49:42.690   553   553 I AppsFilter: interaction: PackageSetting{90cf879 com.android.microdroid.empty_payload/10199} -> PackageSetting{4d0d9be com.alifvisa.app/10209} BLOCKED
+10-22 06:49:42.727   553   852 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10209 package com.alifvisa.app isStopped false
+10-22 06:49:43.019  1381  1579 I IntentFilterIntentOp: Verifying IntentFilter. verificationId:3 scheme:"https" hosts:"www.alifvisa.com alifvisa.com" package:"com.alifvisa.app". [CONTEXT service_id=244 ]
+10-22 06:49:43.207  2005  2005 I ActivityThread: ApplicationInfo updating for com.alifvisa.app, new timestamp: 34542
+10-22 06:49:43.380  2005  2005 W om.alifvisa.app: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+10-22 06:49:43.399  2005  2005 W om.alifvisa.app: Entry not found
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{64fde5d com.android.cts.priv.ctsshim/10186} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{eb033d2 com.google.android.youtube/10167} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{73c3ca3 com.android.internal.display.cutout.emulation.corner/10012} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{831aba0 com.android.internal.display.cutout.emulation.double/10082} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d310359 com.google.android.googlequicksearchbox/10144} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{cb9bb1e com.google.android.onetimeinitializer/10128} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{94bffff com.google.android.ext.shared/10117} BLOCKED
+10-22 06:49:43.401   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{b95e1cc com.android.virtualmachine.res/10200} BLOCKED
+10-22 06:49:43.402   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9657c15 com.android.managedprovisioning.auto_generated_rro_product__/10021} BLOCKED
+10-22 06:49:43.402   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9426b2a com.android.carrierconfig.auto_generated_rro_vendor__/10090} BLOCKED
+10-22 06:49:43.402   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a6a9d1b com.google.android.server.deviceconfig.resources/10191} BLOCKED
+10-22 06:49:43.402   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9254eb8 com.android.systemui.emulation.pixel_3_xl/10046} BLOCKED
+10-22 06:49:43.402   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d2ec491 com.android.systemui.emulation.pixel_4_xl/10068} BLOCKED
+10-22 06:49:43.402   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{5f40ff6 com.android.systemui.emulation.pixel_fold/10019} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c3c9e64 com.android.providers.telephony.auto_generated_characteristics_rro/10017} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{36a18cd com.android.simappdialog.auto_generated_rro_product__/10023} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{3493582 com.android.htmlviewer/10116} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9059493 com.google.android.health.connect.backuprestore/10193} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7573cd0 com.android.systemui.auto_generated_rro_product__/10040} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d8c74c9 com.google.android.apps.messaging/10135} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{cd927ce com.google.android.soundpicker/10163} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9eae6ef com.google.android.marvin.talkbackoverlay/10085} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{73b55fc com.google.android.configupdater/10136} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{55e9485 com.android.internal.emulation.pixel_3a_xl/10020} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e63f2da com.android.internal.emulation.pixel_6_pro/10067} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{329030b com.android.internal.emulation.pixel_7_pro/10074} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{ce5d5e8 com.android.internal.emulation.pixel_8_pro/10050} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e78f401 com.android.internal.emulation.pixel_9_pro/10011} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d9e62a6 com.android.internal.emulation.pixel_3a/10007} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e2c4e7 com.android.internal.emulation.pixel_4a/10039} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a366894 com.android.internal.emulation.pixel_6a/10078} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{37fcf3d com.android.internal.emulation.pixel_7a/10077} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{4be0332 com.android.internal.emulation.pixel_8a/10006} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{48cc883 com.google.android.overlay.googlewebview/10048} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d5b7a00 com.google.android.apps.safetyhub/10129} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{b1f2239 com.google.android.hotspot2.osulogin/10206} BLOCKED
+10-22 06:49:43.403   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9c5207e com.android.simappdialog/10122} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{84969df com.android.internal.display.cutout.emulation.hole/10052} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6fe362c com.android.internal.display.cutout.emulation.tall/10005} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c6a8f5 com.android.internal.systemui.navbar.threebutton/10064} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e8ec68a com.android.internal.ranchu.commonoverlay/10054} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c04c4fb com.android.systemui.auto_generated_rro_vendor__/10088} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{72e8918 com.google.android.deskclock/10148} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d25df71 com.android.internal.systemui.navbar.twobutton/10001} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{59ac156 com.google.android.as/10137} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{850b5d7 com.android.compos.payload/10203} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d0f1ec4 com.android.systemui.emulation.pixel_3/10024} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a6801ad com.android.systemui.emulation.pixel_4/10031} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7999ce2 com.android.systemui.emulation.pixel_5/10071} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{300d873 com.android.systemui.emulation.pixel_6/10045} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{5416330 com.android.systemui.emulation.pixel_7/10032} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{300ba9 com.android.systemui.emulation.pixel_8/10055} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{5b8a52e com.android.systemui.emulation.pixel_9/10034} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{18688cf com.android.printspooler/10127} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{311825c com.google.android.connectivity.resources.goldfish.overlay/10086} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{354b965 com.android.dreams.basic/10113} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{4ade63a com.google.android.networkstack.tethering.emulator/10035} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{50ce2eb com.android.providers.settings.auto_generated_rro_product__/10080} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{626848 com.google.android.as.oss/10131} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{55c86e1 com.android.traceur.auto_generated_rro_product__/10028} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c842c06 com.android.internal.emulation.pixel_9_pro_fold/10056} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c54c2c7 com.google.android.devicelockcontroller/10185} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{59c0f4 com.android.internal.emulation.pixel_3/10016} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{fb9b01d com.android.internal.emulation.pixel_4/10058} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9270292 com.android.internal.emulation.pixel_5/10061} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{750c463 com.android.internal.emulation.pixel_6/10041} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{cbf860 com.android.internal.emulation.pixel_7/10015} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6c63119 com.android.internal.emulation.pixel_8/10030} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7aeb5de com.android.internal.emulation.pixel_9/10059} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{88143bf com.google.android.captiveportallogin/10120} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6683a8c android.auto_generated_characteristics_rro/10053} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7fc5d5 com.google.android.appsearch.apk/10204} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c6c51ea com.android.musicfx/10095} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a5c7a44 com.google.android.apps.maps/10153} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{105cdb com.google.android.markup/10150} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{fa47378 com.google.android.rkpdapp/10208} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{b03ea51 com.google.android.contacts/10158} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{db5a2b6 com.android.server.telecom.auto_generated_rro_product__/10037} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{cadebb7 com.android.phone.auto_generated_characteristics_rro/10025} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a694f24 com.google.android.overlay.googleconfig/10079} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{ecbda8d com.android.bips.auto_generated_rro_product__/10049} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{f713442 com.google.android.apps.customization.pixel/10149} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e2b8c53 com.google.android.tag/10098} BLOCKED
+10-22 06:49:43.404   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{87e3990 com.google.android.overlay.permissioncontroller/10060} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{8a89289 com.google.android.partnersetup/10133} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{b62528e com.google.android.apps.wallpaper.nexus/10160} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{5d89aaf com.google.android.apps.nexuslauncher/10179} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{eb55ebc com.android.theme.font.notoserifsource/10044} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{77ece45 com.google.android.safetycenter.resources/10188} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{235099a com.android.internal.display.cutout.emulation.waterfall/10033} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9e32cb com.android.internal.systemui.navbar.transparent/10069} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{ad7aaa8 com.google.android.connectivity.resources/10190} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{9c309c1 com.android.providers.contacts.auto_generated_rro_product__/10008} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{14a2566 com.google.android.feedback/10172} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6db30a7 com.google.android.printservice.recommendation/10119} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c50c954 com.google.android.apps.photos/10168} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6b580fd com.google.android.documentsui/10096} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{94331f2 com.android.systemui.emulation.pixel_3a_xl/10081} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e003043 com.android.systemui.emulation.pixel_6_pro/10047} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{b9b26c0 com.android.systemui.emulation.pixel_7_pro/10063} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{f5e2ff9 com.android.systemui.emulation.pixel_8_pro/10073} BLOCKED
+10-22 06:49:43.405   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{14e7b3e com.android.systemui.emulation.pixel_9_pro/10022} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7eb8d9f com.android.carrierconfig.auto_generated_rro_product__/10018} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c6beeec com.android.devicediagnostics.auto_generated_rro_product__/10065} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{348d2b5 com.android.providers.partnerbookmarks/10114} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{3330d4a com.android.wallpaper.livepicker/10097} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c0564bb com.android.providers.telephony.auto_generated_rro_product__/10038} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{69f0dd8 com.android.phone.auto_generated_rro_vendor__/10089} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{500e531 com.android.imsserviceentitlement/10138} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c1cb416 com.android.internal.emulation.pixel_9_pro_xl/10010} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{61b9197 com.google.android.healthconnect.controller/10192} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{1e32f84 com.android.internal.emulation.pixel_2_xl/10000} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a4da36d com.android.internal.emulation.pixel_3_xl/10083} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e27fba2 com.android.internal.emulation.pixel_4_xl/10036} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6fdb033 com.android.internal.emulation.pixel_fold/10013} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{25bff0 com.android.bookmarkprovider/10112} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{42e0969 com.google.android.overlay.pixelconfigcommon/10003} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{eae2fee com.android.systemui.accessibility.accessibilitymenu.auto_generated_rro_product__/10043} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{2d91c8f com.android.systemui.emulation.pixel_3a/10075} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{2beeb1c com.android.systemui.emulation.pixel_4a/10042} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a94d325 com.android.systemui.emulation.pixel_6a/10076} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d515cfa com.android.systemui.emulation.pixel_7a/10084} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{954f2ab com.android.systemui.emulation.pixel_8a/10072} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{65d9d08 com.google.android.settings.intelligence/10140} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{982d6f8 com.google.android.projection.gearhead/10134} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7e47ca1 com.google.android.uwb.resources/10184} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{60547d1 com.android.cts.ctsshim/10187} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{fc84ec6 com.google.android.wifi.resources/10205} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{36e0e87 com.google.android.wifi.dialog/10207} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{1b381b4 com.android.wallpaper/10177} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{2b41dd com.android.microdroid.empty_payload/10199} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e6a9152 com.google.android.apps.wallpaper/10176} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{3130c23 com.google.android.odad/10132} BLOCKED
+10-22 06:49:43.406   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{2e10520 com.android.settings.auto_generated_rro_product__/10062} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{1f1ed9 com.android.systemui.emulation.pixel_9_pro_xl/10029} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d7c709e com.android.companiondevicemanager.auto_generated_characteristics_rro/10057} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{80477f com.android.internal.systemui.navbar.gestural/10014} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{7a1534c com.google.android.apps.youtube.music/10155} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{fd9cf95 com.android.bluetoothmidiservice/10115} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{f3af8aa com.android.storagemanager.auto_generated_rro_product__/10027} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{15bdc9b com.google.android.cellbroadcastreceiver/10198} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{c365838 com.android.phone.auto_generated_rro_product__/10009} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{554d011 com.android.systemui.emulation.pixel_9_pro_fold/10026} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{aa7f576 android.auto_generated_rro_product__/10002} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{591a777 com.google.android.inputmethod.latin/10152} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d14bfe4 android.auto_generated_rro_vendor__/10087} BLOCKED
+10-22 06:49:43.410   553  1024 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{2a55c4d com.google.android.apps.restore/10139} BLOCKED
+10-22 06:49:43.480  2005  2263 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.alifvisa.app/app_webview/variations_seed_new"
+10-22 06:49:43.480  2005  2263 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.alifvisa.app/app_webview/variations_seed"
+10-22 06:49:43.899   553   586 I ActivityManager: Start proc 2313:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {com.alifvisa.app/org.chromium.content.app.SandboxedProcessService0:0}
+10-22 06:49:44.015   553  1481 D ConnectivityService: requestNetwork for uid/pid:10209/2005 activeRequest: null callbackRequest: 57 [NetworkRequest [ REQUEST id=58, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-22 06:49:44.016   553   820 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=58, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.016   553   820 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=58, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.016   553   820 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=58, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.016   553   820 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=58, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.171  1442  1442 I AiAiEcho: AppFetcherImpl onPackageChanged com.alifvisa.app.
+10-22 06:49:44.174  1442  2113 I AiAiEcho: AppIndexer Package:[com.alifvisa.app] UserProfile:[0] Enabled:[true].
+10-22 06:49:44.174  1442  2113 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.alifvisa.app], userId:[0], reason:[package is updated.].
+10-22 06:49:44.196  2005  2009 I om.alifvisa.app: Compiler allocated 4219KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+10-22 06:49:44.207   553  1885 D ConnectivityService: requestNetwork for uid/pid:10209/2005 activeRequest: null callbackRequest: 61 [NetworkRequest [ REQUEST id=62, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-22 06:49:44.223   553   820 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=62, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.223   553   820 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=62, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.223   553   820 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=62, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.223   553   820 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=62, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.274  1075  1075 D CarrierSvcBindHelper: onPackageAdded: com.alifvisa.app
+10-22 06:49:44.306   553   866 D ShortcutService: adding package: com.alifvisa.app userId0
+10-22 06:49:44.306   553   866 D ShortcutService: handlePackageAdded: com.alifvisa.app user=0
+10-22 06:49:44.307   553   866 D ShortcutService: rescanPackageIfNeeded 0@com.alifvisa.app, forceRescan=true , isNewApp=true
+10-22 06:49:44.307   553   866 D ShortcutService: Package com.alifvisa.app has 0 manifest shortcut(s), and 0 share target(s)
+10-22 06:49:44.315   553  1885 D CoreBackPreview: Window{8b67dc3 u0 com.alifvisa.app/com.alifvisa.app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@e03a256, mPriority=0, mIsAnimationCallback=false}
+10-22 06:49:44.328   553   866 D ShortcutService: changing package: com.alifvisa.app userId0
+10-22 06:49:44.328   553   866 D ShortcutService: handlePackageChanged: com.alifvisa.app user=0
+10-22 06:49:44.328   553   866 D ShortcutService: rescanPackageIfNeeded 0@com.alifvisa.app, forceRescan=true , isNewApp=true
+10-22 06:49:44.328   553   866 D ShortcutService: Package com.alifvisa.app has 0 manifest shortcut(s), and 0 share target(s)
+10-22 06:49:44.437  1075  1277 D ImsResolver: maybeAddedImsService, packageName: com.alifvisa.app
+10-22 06:49:44.447  1075  1075 D CarrierSvcBindHelper: onPackageModified: com.alifvisa.app
+10-22 06:49:44.484   553  1883 D CoreBackPreview: Window{8b67dc3 u0 com.alifvisa.app/com.alifvisa.app.MainActivity}: Setting back callback null
+10-22 06:49:44.490  1075  1277 D ImsResolver: maybeAddedImsService, packageName: com.alifvisa.app
+10-22 06:49:44.490   553  1883 W InputManager-JNI: Input channel object '8b67dc3 com.alifvisa.app/com.alifvisa.app.MainActivity (client)' was disposed without first being removed with the input manager!
+10-22 06:49:44.566   553  1098 D ConnectivityService: requestNetwork for uid/pid:10209/2005 activeRequest: null callbackRequest: 65 [NetworkRequest [ REQUEST id=66, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-22 06:49:44.611   553   820 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=66, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.611   553   820 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=66, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.611   553   820 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=66, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.611   553   820 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=66, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10209 RequestorUid: 10209 RequestorPkg: com.alifvisa.app UnderlyingNetworks: Null] ]
+10-22 06:49:44.611   553  1098 D CoreBackPreview: Window{87ec495 u0 com.alifvisa.app/com.alifvisa.app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@3de5676, mPriority=0, mIsAnimationCallback=false}
+10-22 06:49:44.811  2005  2009 I om.alifvisa.app: Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+10-22 06:49:45.110   553   578 I BLASTSyncEngine: Unfinished container: Task{e805994 #8 type=standard A=10209:com.alifvisa.app}
+10-22 06:49:45.110   553   578 I BLASTSyncEngine:   Window{53e3665 u0 Splash Screen com.alifvisa.app} DRAW_PENDING
+10-22 06:49:45.110   553   578 I BLASTSyncEngine:   Window{87ec495 u0 com.alifvisa.app/com.alifvisa.app.MainActivity} DRAW_PENDING
+10-22 06:49:45.256   553  1639 I WindowManager: finishDrawing of relaunch: Window{87ec495 u0 com.alifvisa.app/com.alifvisa.app.MainActivity} 2142ms
+10-22 06:49:45.260   553   575 W ziparchive: Unable to open '/data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.dm': No such file or directory
+10-22 06:49:45.312   553   575 I ActivityTaskManager: Displayed com.alifvisa.app/.MainActivity for user 0: +4s8ms
+10-22 06:49:45.469  1213  1213 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=8, baseIntent=Intent { flg=0x10000000 cmp=com.alifvisa.app/.MainActivity }
+10-22 06:49:45.482   553   674 I ImeTracker: com.alifvisa.app:8b9b8319: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-22 06:49:45.482   553   674 I ImeTracker: com.alifvisa.app:8b9b8319: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-22 06:49:45.495  1336  1336 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=com.alifvisa.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-22 06:49:45.501   553  1639 W PackageConfigPersister: App-specific configuration not found for packageName: com.alifvisa.app and userId: 0
+10-22 06:49:46.040   553   641 D CoreBackPreview: Window{53e3665 u0 Splash Screen com.alifvisa.app}: Setting back callback null
+10-22 06:49:46.041   553  1883 W InputManager-JNI: Input channel object '53e3665 Splash Screen com.alifvisa.app (client)' was disposed without first being removed with the input manager!
+10-22 06:49:48.654   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{411bed6 com.google.android.googlequicksearchbox/10144} BLOCKED
+10-22 06:49:48.654   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{59ac156 com.google.android.as/10137} BLOCKED
+10-22 06:49:48.654   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{337a557 com.google.android.cellbroadcastreceiver/10198} BLOCKED
+10-22 06:49:48.654   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{591a777 com.google.android.inputmethod.latin/10152} BLOCKED
+10-22 06:49:48.994   553   569 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:49.128  1213  1254 I Launcher.IconCache: Database bulk icon loading failed, using fallback bulk icon loading for: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:49:49.274  1442  1451 W ogle.android.as: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:49.415  2005  2459 W om.alifvisa.app: Long monitor contention with owner ThreadPoolForeg (2279) at android.content.IContentProvider android.app.ActivityThread.acquireProvider(android.content.Context, java.lang.String, int, boolean)(ActivityThread.java:7861) waiters=0 in android.content.IContentProvider android.app.ActivityThread.acquireProvider(android.content.Context, java.lang.String, int, boolean) for 4.034s
+10-22 06:49:49.882  1184  2624 W FontLog : No resolver, short-circuit {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} for com.alifvisa.app to failure [CONTEXT service_id=132 ]
+10-22 06:49:50.128  1213  1225 W s.nexuslauncher: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:50.257  2005  2677 D ProfileInstaller: Installing profile for com.alifvisa.app
+10-22 06:49:50.530  1184  2624 W FontLog : No resolver, short-circuit {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} for com.alifvisa.app to failure [CONTEXT service_id=132 ]
+10-22 06:49:51.113   905   905 I SafetyLabelChangedBroadcastReceiver: received broadcast packageName: com.alifvisa.app, current user: UserHandle{0}, packageChangeEvent: NEW_INSTALL, intent user: UserHandle{0}
+10-22 06:49:51.919  2005  2010 I om.alifvisa.app: Background concurrent mark compact GC freed 4082KB AllocSpace bytes, 8(352KB) LOS objects, 49% free, 4168KB/8337KB, paused 44us,2.017ms total 188.331ms
+10-22 06:49:51.922  2005  2012 W om.alifvisa.app: ApkAssets: Deleting an ApkAssets object '/data/resource-cache/com.android.systemui-neutral-4Iu2.frro' with 2 weak references
+10-22 06:49:51.923  2005  2012 W om.alifvisa.app: ApkAssets: Deleting an ApkAssets object '/data/resource-cache/com.android.systemui-accent-9VNA.frro' with 2 weak references
+10-22 06:49:51.923  2005  2012 W om.alifvisa.app: ApkAssets: Deleting an ApkAssets object '/data/resource-cache/com.android.systemui-dynamic-fHoe.frro' with 2 weak references
+10-22 06:49:51.923  2005  2012 W om.alifvisa.app: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~PZ7IfQ9E-TsUHaREEzQQMw==/com.google.android.webview-8FKIlxs292xXh1YVr3oPow==/WebViewGoogle.apk' with 2 weak references
+10-22 06:49:51.972  1336  1336 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=com.alifvisa.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, true)
+10-22 06:49:51.973   553  1573 W PackageConfigPersister: App-specific configuration not found for packageName: com.alifvisa.app and userId: 0
+10-22 06:49:53.942  1381  1579 I IntentFilterIntentOp: Verification 3 complete. Success:false. Failed hosts:www.alifvisa.com,alifvisa.com. [CONTEXT service_id=244 ]
+10-22 06:49:54.005   553  1481 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{dcf8ecf com.google.android.documentsui/10096} BLOCKED
+10-22 06:49:54.835  1381  2661 I Blockstore: [DataStoreImpl] Clearing Blockstore Data for package com.alifvisa.app [CONTEXT service_id=258 ]
+10-22 06:49:54.974  1184  1575 I FontLog : Package com.alifvisa.app has no metadata [CONTEXT service_id=132 ]
+10-22 06:49:55.459   553   642 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{fd50ff9 com.google.android.devicelockcontroller/10185} BLOCKED
+10-22 06:49:56.063  1213  1225 W s.nexuslauncher: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:56.087  1381  1393 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:56.146   553   642 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{35ba572 com.google.android.settings.intelligence/10140} BLOCKED
+10-22 06:49:56.677   553  1482 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{4ac3e4a com.google.android.healthconnect.controller/10192} BLOCKED
+10-22 06:49:57.593  1360  1369 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:58.808  1077  1094 W ndroid.settings: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:49:59.101   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{6516f5b com.google.android.googlequicksearchbox/10144} BLOCKED
+10-22 06:49:59.101   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{5d580d1 com.google.android.devicelockcontroller/10185} BLOCKED
+10-22 06:49:59.101   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{bcdb736 com.google.android.rkpdapp/10208} BLOCKED
+10-22 06:49:59.101   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{e2da637 com.google.android.partnersetup/10133} BLOCKED
+10-22 06:49:59.101   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{79eb7a4 com.google.android.settings.intelligence/10140} BLOCKED
+10-22 06:49:59.666  1077  1094 W ndroid.settings: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:50:00.145   553  1836 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{3ae159e com.google.android.apps.messaging/10135} BLOCKED
+10-22 06:50:00.170   553  1883 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{555325f com.google.android.apps.safetyhub/10129} BLOCKED
+10-22 06:50:00.730  1381  1393 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:50:05.013  1381  1393 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:50:06.280  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/ (0)
+10-22 06:50:09.851  2005  2005 I chromium: [INFO:CONSOLE(0)] "The resource https://alifvisa.com/wp-content/themes/alif-visa/assets/images/hero/travellers.png?ver=2.20.4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source: https://alifvisa.com/ (0)
+10-22 06:50:11.596   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{51ebe84 com.google.android.youtube/10167} BLOCKED
+10-22 06:50:11.596   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{a3b866d com.google.android.googlequicksearchbox/10144} BLOCKED
+10-22 06:50:11.596   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{39ba2a2 com.google.android.apps.messaging/10135} BLOCKED
+10-22 06:50:11.596   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{1dcb33 com.google.android.apps.safetyhub/10129} BLOCKED
+10-22 06:50:11.596   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{d0b3ef0 com.google.android.as/10137} BLOCKED
+10-22 06:50:11.596   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{346cffc com.google.android.apps.maps/10153} BLOCKED
+10-22 06:50:11.995   904   912 W ndroid.systemui: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:50:14.850   553  1836 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{ae23d1f com.google.android.settings.intelligence/10140} BLOCKED
+10-22 06:50:15.013  1077  1094 W ndroid.settings: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:50:23.032   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{db80b4e com.google.android.apps.messaging/10135} BLOCKED
+10-22 06:50:23.033   553   609 I AppsFilter: interaction: PackageSetting{24ec034 com.alifvisa.app/10209} -> PackageSetting{722c46f com.google.android.settings.intelligence/10140} BLOCKED
+10-22 06:50:32.520   553  1573 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:50:32.523   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:50:33.822  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/visa/search/ (0)
+10-22 06:50:33.822  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/visa/search/ (0)
+10-22 06:50:33.822  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/visa/search/ (0)
+10-22 06:50:46.781   553  1235 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:50:46.784   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:50:46.824  1077  1094 W ndroid.settings: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~LO5l0fbaX-LV3Cf_Hw9zZw==/com.alifvisa.app-GacU3ppcir8vKEyhlg1O0w==/base.apk' with 1 weak references
+10-22 06:50:47.581  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/track-application/ (0)
+10-22 06:51:01.134   553   572 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:51:01.136   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:51:01.830  2005  2005 I chromium: [INFO:CONSOLE(1620)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/contact/ (1620)
+10-22 06:51:03.257  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/contact/ (0)
+10-22 06:51:03.260  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/contact/ (0)
+10-22 06:51:15.404   553   572 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:51:15.405   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:51:17.450  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/login/?redirect_to=https%3A%2F%2Falifvisa.com%2Fdashboard%2F (0)
+10-22 06:51:29.658   553  1098 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:51:29.660   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:51:30.289  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/about/ (0)
+10-22 06:51:43.933   553   641 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:51:43.935   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:51:44.718  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/blog/ (0)
+10-22 06:51:58.181   553   641 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=3
+10-22 06:51:58.182   904   940 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{com.alifvisa.app/com.alifvisa.app.MainActivity}
+10-22 06:51:59.198  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/apply/?from=PK&to=GB&purpose=tourism&type=visit-visa (0)
+10-22 06:52:15.060  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/blog/ (0)
+10-22 06:52:15.060  2005  2005 I chromium: [INFO:CONSOLE(0)] "Third-party cookie will be blocked. Learn more in the Issues tab.", source: https://alifvisa.com/blog/ (0)

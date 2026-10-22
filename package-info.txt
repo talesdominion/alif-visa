@@ -1,0 +1,2 @@
+    versionCode=6 minSdk=24 targetSdk=36
+    versionName=3.0.0
