@@ -1,0 +1,12 @@
+info.txt:            empty
+old-icon.png:        PNG image data, 512 x 512, 8-bit/color RGB, non-interlaced
+old-shot-1.png:      JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 506x900, components 3
+old-shot-2.png:      JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 506x900, components 3
+old-shot-3.png:      JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 506x900, components 3
+old-shot-4.png:      JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 506x900, components 3
+old-shot-5.png:      JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 562x900, components 3
+old-shot-6.png:      JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 562x900, components 3
+site-app-mark.png:   PNG image data, 500 x 500, 8-bit/color RGBA, non-interlaced
+site-favicon.png:    PNG image data, 500 x 500, 8-bit/color RGBA, non-interlaced
+site-logo-dark.png:  PNG image data, 843 x 225, 8-bit/color RGBA, non-interlaced
+site-logo-light.png: PNG image data, 843 x 225, 8-bit/color RGBA, non-interlaced
