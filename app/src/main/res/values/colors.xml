@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_green">#1FCE7C</color>
+    <color name="brand_green_dark">#0B7A52</color>
+    <color name="brand_ink">#0B1913</color>
+    <color name="brand_navy">#022046</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="muted">#5B6B64</color>
+    <color name="line">#E6ECE9</color>
+    <color name="nav_indicator">#E7F8EF</color>
+</resources>

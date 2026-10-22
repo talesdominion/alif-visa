@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alif Visa</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_apply">Apply</string>
+    <string name="nav_track">Track</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_account">Account</string>
+    <string name="offline_title">You\'re offline</string>
+    <string name="offline_body">Check your internet connection and try again. Your application progress is saved on your Alif Visa account.</string>
+    <string name="offline_retry">Try again</string>
+    <string name="choose_file">Choose a file</string>
+    <string name="download_started">Download started</string>
+    <string name="exit_hint">Press back again to exit</string>
+    <string name="no_app">No app found to open this link</string>
+</resources>
