@@ -7,7 +7,7 @@ T() { timeout "${T_LIMIT:-60}" "$@"; }
 log install; T adb install -r out/app-debug.apk >> out/test-steps.txt 2>&1
 log launch; T adb shell am start -n com.alifvisa.app/.MainActivity >> out/test-steps.txt 2>&1
 sleep 5; T adb exec-out screencap -p > "$OUT/00-launch.png"
-sleep 25; T adb exec-out screencap -p > "$OUT/01-home.png"
+sleep 40; T adb exec-out screencap -p > "$OUT/01-home.png"
 log scroll; T adb shell input swipe 540 1700 540 700 400
 sleep 4; T adb exec-out screencap -p > "$OUT/02-home-scrolled.png"
 shot() {
