@@ -76,13 +76,17 @@ public class MainActivity extends AppCompatActivity {
     static final String APP_CSS =
             "html.in-app .alif-app-banner,html.in-app body .alif-app-banner,html.in-app [data-alif-app-banner],"
             + "html.in-app .avp-cta__play,html.in-app .avft__app,html.in-app .avft__play,"
-            + "html.in-app .alif-utility-bar,html.in-app #wpadminbar{display:none!important}"
+            + "html.in-app .alif-utility-bar,html.in-app #wpadminbar,"
+            + "html.in-app body .alif-header .alif-app-banner[data-alif-app-banner],"
+            + "html.in-app body.alif-app-banner-on .alif-header .alif-app-banner{display:none!important}"
             + "html{margin-top:0!important}"
             + "*{-webkit-tap-highlight-color:transparent}";
 
     static final String APP_JS =
             "(function(){try{document.documentElement.classList.add('in-app');"
             + "try{sessionStorage.setItem('alif-app-banner-dismissed-v2','1');}catch(e){}"
+            + "function off(){var b=document.body;if(b){b.classList.remove('alif-app-banner-on');b.classList.add('alif-app-banner-off');}}"
+            + "off();document.addEventListener('DOMContentLoaded',off);"
             + "var id='alif-app-css';function add(){if(document.getElementById(id))return;"
             + "var s=document.createElement('style');s.id=id;s.textContent=" + jsString(APP_CSS) + ";"
             + "(document.head||document.documentElement).appendChild(s);}add();"
@@ -486,9 +490,10 @@ public class MainActivity extends AppCompatActivity {
         String p = u.getPath() == null ? "/" : u.getPath();
         int id;
         if (p.equals("/") || p.isEmpty()) id = R.id.nav_home;
-        else if (p.startsWith("/visa/search") || p.startsWith("/apply") || p.startsWith("/pay")) id = R.id.nav_apply;
+        else if (p.startsWith("/visa/") || p.startsWith("/visa-services") || p.startsWith("/apply")
+                || p.startsWith("/pay")) id = R.id.nav_apply;
         else if (p.startsWith("/track-application")) id = R.id.nav_track;
-        else if (p.startsWith("/contact") || p.startsWith("/faq")) id = R.id.nav_help;
+        else if (p.startsWith("/contact") || p.startsWith("/faq") || p.startsWith("/about")) id = R.id.nav_help;
         else if (p.startsWith("/dashboard") || p.startsWith("/login") || p.startsWith("/signup")
                 || p.startsWith("/my-account") || p.startsWith("/account")) id = R.id.nav_account;
         else id = 0;
