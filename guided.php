@@ -1,6 +1,6 @@
 
 
-/* ===== Alif guided application form (4 Nov 2026, v4.1). Old form stays underneath; add ?classic=1 to see it. ===== */
+/* ===== Alif guided application form (4 Nov 2026, v4.2). Old form stays underneath; add ?classic=1 to see it. ===== */
 function alif_gx_css() {
     return <<<'GXCSS'
 /* Alif application form v4: iVisa-style layout on top of #alif-apply-wizard */
@@ -165,7 +165,7 @@ function alif_gx_js() {
   if (window.ALIF_GX_FLAGS) CFG = { flagBase: window.ALIF_GX_FLAGS };
   if (!COUNTRIES.length) return;
   var NAME = {}; COUNTRIES.forEach(function (c) { NAME[c[0]] = c[1]; });
-  var POP_FROM = ["PK", "IN", "BD", "NG", "PH", "AE", "SA", "GB"];
+  var POP_FROM = ["GB", "IN", "NG", "PH", "PK", "BD", "AE", "SA"];
   var POP_TO = ["GB", "US", "CA", "AU", "FR", "DE", "IT", "ES", "AE", "TR", "SA", "MY"];
   var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var NOW = new Date(), YEAR = NOW.getFullYear(), TODAY = new Date(YEAR, NOW.getMonth(), NOW.getDate());
@@ -477,6 +477,7 @@ function alif_gx_js() {
   form.insertBefore(root, form.firstChild);
   form.appendChild(holder);
   form.classList.add("gx-on");
+  document.documentElement.classList.remove("gx-wait");
   document.documentElement.classList.add("iv-page");
   var scanNode = form.querySelector(".alif-passport-scan");
   var extraNode = form.querySelector(".alif-extra-travellers");
@@ -680,6 +681,12 @@ add_action('wp_head', function () {
         return;
     }
     echo '<style id="alif-gx-css">' . alif_gx_css() . '</style>';
+    if (isset($_GET['submitted']) || isset($_GET['ref'])) {
+        return;
+    }
+    /* Hide the old form until the new one is ready, so slow phones never see it flash. Falls back after 8 s. */
+    echo '<style id="alif-gx-wait">.gx-wait #alif-apply-wizard:not(.gx-on)>[data-wizard-step],.gx-wait #alif-apply-wizard:not(.gx-on)>.avx-steps,.gx-wait #main .avf__help{display:none!important}.gx-wait #alif-apply-wizard:not(.gx-on){min-height:420px;background:linear-gradient(90deg,#f1f6f3 25%,#e6efea 50%,#f1f6f3 75%) 0 0/200% 100%;border-radius:18px;animation:gxw 1.4s linear infinite}@keyframes gxw{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){.gx-wait #alif-apply-wizard:not(.gx-on){animation:none}}</style>';
+    echo '<script data-no-optimize="1" data-no-defer="1" data-cfasync="false">document.documentElement.classList.add("gx-wait");setTimeout(function(){document.documentElement.classList.remove("gx-wait")},8000);</script>';
 }, 60);
 add_action('wp_footer', function () {
     if (!is_page('apply') || isset($_GET['classic']) || isset($_GET['submitted']) || isset($_GET['ref'])) {

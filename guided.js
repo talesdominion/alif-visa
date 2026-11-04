@@ -10,7 +10,7 @@
   if (window.ALIF_GX_FLAGS) CFG = { flagBase: window.ALIF_GX_FLAGS };
   if (!COUNTRIES.length) return;
   var NAME = {}; COUNTRIES.forEach(function (c) { NAME[c[0]] = c[1]; });
-  var POP_FROM = ["PK", "IN", "BD", "NG", "PH", "AE", "SA", "GB"];
+  var POP_FROM = ["GB", "IN", "NG", "PH", "PK", "BD", "AE", "SA"];
   var POP_TO = ["GB", "US", "CA", "AU", "FR", "DE", "IT", "ES", "AE", "TR", "SA", "MY"];
   var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var NOW = new Date(), YEAR = NOW.getFullYear(), TODAY = new Date(YEAR, NOW.getMonth(), NOW.getDate());
@@ -322,6 +322,7 @@
   form.insertBefore(root, form.firstChild);
   form.appendChild(holder);
   form.classList.add("gx-on");
+  document.documentElement.classList.remove("gx-wait");
   document.documentElement.classList.add("iv-page");
   var scanNode = form.querySelector(".alif-passport-scan");
   var extraNode = form.querySelector(".alif-extra-travellers");
