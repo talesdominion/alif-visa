@@ -22,7 +22,15 @@ shot 05-help "https://alifvisa.com/contact/"
 shot 06-account "https://alifvisa.com/dashboard/"
 shot 07-about "https://alifvisa.com/about/"
 shot 08-blog "https://alifvisa.com/blog/"
-shot 09-apply-form "https://alifvisa.com/apply/?from=PK&to=GB&purpose=tourism&type=visit-visa" 16
+shot 09-apply-form "https://alifvisa.com/apply/?to=FR&purpose=tourism&type=visit-visa" 16
+log "apply: scroll"; T adb shell input swipe 540 1700 540 900 400
+sleep 3; T adb exec-out screencap -p > "$OUT/09b-apply-form-scrolled.png"
+log "apply: tap continue (empty, shows errors)"; T adb shell input swipe 540 1700 540 600 400
+sleep 2; T adb exec-out screencap -p > "$OUT/09c-apply-form-bottom.png"
+shot 11-login "https://alifvisa.com/login/?redirect=%2Fapply%2F%3Fto%3DFR" 12
+shot 12-signup "https://alifvisa.com/signup/" 12
+shot 13-visa-services "https://alifvisa.com/visa-services/" 12
+shot 14-faq "https://alifvisa.com/faq/" 12
 log back; T adb shell input keyevent KEYCODE_BACK
 sleep 4; T adb exec-out screencap -p > "$OUT/10-after-back.png"
 log logs
