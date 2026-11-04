@@ -1,6 +1,6 @@
 
 
-/* ===== Alif guided application form (4 Nov 2026, v4). Old form stays underneath; add ?classic=1 to see it. ===== */
+/* ===== Alif guided application form (4 Nov 2026, v4.1). Old form stays underneath; add ?classic=1 to see it. ===== */
 function alif_gx_css() {
     return <<<'GXCSS'
 /* Alif application form v4: iVisa-style layout on top of #alif-apply-wizard */
@@ -286,6 +286,11 @@ function alif_gx_js() {
     var MAP = { flights: { "Yes": "yes", "Not yet": "no" }, wa: { "Yes": "yes", "No": "no" }, sponsor: { "Sponsor": "yes", "Applicant": "no" }, refused: { "Yes": "yes", "No": "no" } };
     ["res", "region", "flights", "wa", "sponsor", "refused", "refused_where", "purpose_other"].forEach(function (k) { if (n[k] != null && S[k] == null) S[k] = MAP[k] ? (MAP[k][n[k]] || "") : n[k]; });
     S._rest = n._rest || "";
+    if (n.pp_issue_txt && !(S.pp_issue && S.pp_issue.y)) {
+      var mm = /^(\d{1,2})\s+([A-Za-z]+)\.?\s+(\d{4})$/.exec(String(n.pp_issue_txt).trim());
+      var mi = mm ? MONTHS.map(function (x) { return x.slice(0, 3).toLowerCase(); }).indexOf(mm[2].slice(0, 3).toLowerCase()) : -1;
+      if (mi > -1) S.pp_issue = { y: mm[3], m: String(mi + 1), d: String(+mm[1]) };
+    }
     if (S.res && NAME[S.res] == null) { var hit = COUNTRIES.filter(function (c) { return c[1] === S.res; })[0]; S.res = hit ? hit[0] : ""; }
   }
   function notes() {
@@ -482,7 +487,7 @@ function alif_gx_js() {
   var heroP = document.querySelector(".avx-hero p"); if (heroP) heroP.textContent = "A few short steps. Your answers save as you go.";
   root.addEventListener("click", function (e) { var g = e.target.closest("[data-goto]"); if (g) { S.ret = true; go(IDX[g.getAttribute("data-goto")]); } });
 
-  function visaName() { var el = document.querySelector("[data-avr-vname]"); var v = el ? el.textContent.trim() : ""; return v || "visa"; }
+  function visaName() { var el = document.querySelector("[data-avr-vname]"); var v = el ? el.textContent.trim() : ""; if (!v) { var vt = form.querySelector('[name="visa_type"]'); v = vt && vt.value ? String(vt.selectedOptions && vt.selectedOptions[0] ? vt.selectedOptions[0].text : vt.value) : ""; } if (/invitation/i.test(v) || S.purpose === "visa-invitation") return "invitation letter"; v = v.replace(/^required\s+/i, ""); return v || "visa"; }
   function sumHtml() {
     var extra = [].map.call(form.querySelectorAll("[data-extra-list] li[data-saved='1']"), function (li) { var b = li.querySelector("strong,b,h4,p"); return b ? b.textContent.trim() : ""; }).filter(Boolean);
     var names = [[S.first, S.last].filter(Boolean).join(" ")].concat(extra).filter(Boolean).join(", ");
@@ -502,7 +507,7 @@ function alif_gx_js() {
   function render(focusErr, keep) {
     var y = window.scrollY; park();
     var s = SC[S.step];
-    root.innerHTML = progHtml(s) + '<div class="iv-cols">' + sumHtml() + '<div class="iv-card"><h2 id="gx-h" tabindex="-1">' + s.h + '</h2><p class="iv-lede">' + s.lede + '</p><div class="iv-fields">' + s.body() + "</div>" +
+    root.innerHTML = progHtml(s) + '<div class="iv-cols">' + sumHtml() + '<div class="iv-card"><h2 id="gx-h" tabindex="-1">' + s.h + '</h2><p class="iv-lede">' + s.lede + '</p>' + (S.back ? '<div role="status" style="margin:0 0 18px;padding:12px 16px;border-radius:12px;background:#e7f8ef;color:#10241c;font-weight:600">' + (s.id === "review" ? "Welcome back! Your answers are saved. Check them below, then continue to payment." : "Welcome back! Your answers are saved. Please add the missing details below.") + "</div>" : "") + '<div class="iv-fields">' + s.body() + "</div>" +
       '<div class="iv-foot">' + (S.step > 0 ? '<button type="button" class="iv-back" id="gx-back">Back</button>' : "") + '<button type="button" class="iv-go" id="gx-next">' + (S.ret && s.id !== "review" ? "Save and review" : (s.go || "Continue")) + "</button></div></div></div>";
     root.querySelectorAll("[data-slot]").forEach(function (slot) { (MOVE[slot.getAttribute("data-slot")] || []).forEach(function (n) { if (n) slot.appendChild(n); }); });
     bind();
@@ -511,7 +516,7 @@ function alif_gx_js() {
   }
   function renderSum() { var a = root.querySelector(".iv-sum"); if (a) { var t = document.createElement("div"); t.innerHTML = sumHtml(); a.parentNode.replaceChild(t.firstChild, a); } }
   function go(i) {
-    S.step = Math.max(0, Math.min(TOTAL, i)); S.errs = {};
+    S.step = Math.max(0, Math.min(TOTAL, i)); S.errs = {}; S.back = false;
     try { sessionStorage.setItem("alifGxStep", String(S.step)); } catch (e) {}
     render();
     var top = root.getBoundingClientRect().top + window.scrollY - 90;
@@ -637,9 +642,28 @@ function alif_gx_js() {
   form.addEventListener("input", function (e) { if (writing || root.contains(e.target)) return; if (e.target.closest && e.target.closest("[data-extra-list]")) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); renderSum(); }, 300); });
   if (extraNode) new MutationObserver(function () { renderSum(); }).observe(extraNode, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-saved"] });
 
+  var BACK = false;
+  (function restoreSaved() {
+    if (!LOGGED_IN) return;
+    var raw; try { raw = localStorage.getItem("alifApplyResume"); } catch (e) { return; }
+    if (!raw) return; var data; try { data = JSON.parse(raw); } catch (e) { return; }
+    if (!data || Date.now() - data.t > 3 * 3600 * 1000) return;
+    try { localStorage.removeItem("alifApplyResume"); } catch (e) {}
+    writing = true;
+    (data.fields || []).forEach(function (f) {
+      form.querySelectorAll('[name="' + String(f[0]).replace(/"/g, '\\"') + '"]').forEach(function (el) {
+        if (f[3]) { if (el.value === f[1]) el.checked = !!f[2]; } else if (el.type !== "file") el.value = f[1];
+        el.dispatchEvent(new Event("input", { bubbles: true })); el.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+    var list = form.querySelector("[data-extra-list]");
+    if (list && data.extra) { list.innerHTML = data.extra; var cnt = form.querySelector("[data-traveller-count],[name='traveller_count']"); if (cnt) { cnt.value = String(1 + list.querySelectorAll("li[data-saved='1']").length); cnt.dispatchEvent(new Event("change", { bubbles: true })); } }
+    writing = false; BACK = true;
+  })();
   pull();
   (function () {
     var start = 0, gap = firstGap();
+    if (BACK) { S.step = gap < 0 ? IDX.review : gap; S.back = true; return; }
     if (/alif_error=1/.test(location.search) || gap < 0) start = IDX.review;
     else { try { var saved = +sessionStorage.getItem("alifGxStep") || 0; if (saved > 0) start = Math.min(saved, gap); } catch (e) {} }
     S.step = start;
@@ -647,7 +671,6 @@ function alif_gx_js() {
   render();
   setTimeout(function () { pull(); if (firstGap() < 0 && S.step !== IDX.review) { S.step = IDX.review; render(); } else renderSum(); }, 600);
 })();
-
 GXJS;
 }
 add_action('wp_head', function () {
