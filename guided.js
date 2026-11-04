@@ -430,6 +430,7 @@
   }
   function submit() {
     push(); rset("agree_terms", "1");
+    if (!LOGGED_IN) { try { sessionStorage.setItem("alifGxAuth", "1"); } catch (e) {} }
     var real = form.querySelector("[data-wizard-step='review'] [data-go-stripe]"), btn = document.getElementById("gx-next");
     if (LOGGED_IN && btn) { btn.disabled = true; btn.textContent = "Opening secure payment…"; }
     if (real) real.click(); else HTMLFormElement.prototype.submit.call(form);
@@ -505,6 +506,7 @@
     if (list && data.extra) { list.innerHTML = data.extra; var cnt = form.querySelector("[data-traveller-count],[name='traveller_count']"); if (cnt) { cnt.value = String(1 + list.querySelectorAll("li[data-saved='1']").length); cnt.dispatchEvent(new Event("change", { bubbles: true })); } }
     writing = false; BACK = true;
   })();
+  if (LOGGED_IN) { try { if (sessionStorage.getItem("alifGxAuth") === "1") { sessionStorage.removeItem("alifGxAuth"); BACK = true; } } catch (e) {} }
   pull();
   (function () {
     var start = 0, gap = firstGap();
