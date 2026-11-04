@@ -44,6 +44,7 @@
     retire: '<circle cx="12" cy="7" r="3"/><path d="M6 21v-3.5A5.5 5.5 0 0 1 11.5 12h1a5.5 5.5 0 0 1 5.5 5.5V21"/>',
     pause: '<circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/>',
     chat: '<path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/>',
+    user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-6 7-6s6.2 2.4 7 6"/>',
     cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
     check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
     left: '<path d="m15 6-6 6 6 6"/>', right: '<path d="m9 6 6 6-6 6"/>',
@@ -142,6 +143,7 @@
     if (S.refused) L.push("Refused a visa before: " + (S.refused === "yes" ? "Yes" : "No"));
     if (S.refused === "yes" && S.refused_where) L.push("Refusal details: " + S.refused_where);
     if (S.purpose === "other" && S.purpose_other) L.push("Trip details: " + S.purpose_other);
+    var pi = fmt("pp_issue"); if (pi) L.push("Passport issued: " + pi);
     if (S._rest) L.push(S._rest);
     return L.join("\n");
   }
@@ -171,446 +173,264 @@
   function fmt(k) { var d = dateOf(k); return d && d !== "bad" ? d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : ""; }
   function label(list, v) { var o = list.filter(function (x) { return x.v === v; })[0]; return o ? o.t : (v || ""); }
 
-  /* ---------- field builders ---------- */
+  /* ---------- small builders (iVisa-style layout) ---------- */
   function err(k) { return S.errs[k] ? '<p class="gx-err" id="gx-' + k + '-err">' + ic("warn") + esc(S.errs[k]) + "</p>" : ""; }
-  function bad(k) { return S.errs[k] ? " gx-bad" : ""; }
-  function why(t) { return '<details class="gx-why"><summary>' + ic("info") + "Why we ask</summary><p>" + t + "</p></details>"; }
-  function note(type, t) { return '<div class="gx-note ' + type + '">' + ic(type === "warn" ? "warn" : "info") + "<span>" + t + "</span></div>"; }
+  function bad(k) { return S.errs[k] ? " iv-bad" : ""; }
+  function note(type, t) { return '<div class="iv-note ' + type + '">' + ic(type === "warn" ? "warn" : "info") + "<span>" + t + "</span></div>"; }
+  function pad(n) { return ("0" + n).slice(-2); }
   function text(k, lbl, o) {
     o = o || {};
-    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + (o.opt ? ' <span class="gx-opt">(optional)</span>' : "") + "</label>" +
-      '<input class="gx-inp" id="gx-' + k + '" data-k="' + k + '" type="' + (o.type || "text") + '" value="' + esc(S[k] || "") + '" placeholder="' + esc(o.ph || "") + '"' + (o.auto ? ' autocomplete="' + o.auto + '"' : "") + (o.mode ? ' inputmode="' + o.mode + '"' : "") + (o.upper ? ' data-upper="1" autocapitalize="characters"' : "") + ">" +
-      (o.hint ? '<p class="gx-hint">' + o.hint + "</p>" : "") + err(k) + "</div>";
+    return '<div class="iv-f' + bad(k) + '"><label for="gx-' + k + '">' + lbl + (o.opt ? ' <span class="iv-opt">(optional)</span>' : "") + "</label>" +
+      '<input class="iv-in" id="gx-' + k + '" data-k="' + k + '" type="' + (o.type || "text") + '" value="' + esc(S[k] || "") + '" placeholder="' + esc(o.ph || "") + '"' + (o.auto ? ' autocomplete="' + o.auto + '"' : "") + (o.mode ? ' inputmode="' + o.mode + '"' : "") + (o.upper ? ' data-upper="1" autocapitalize="characters"' : "") + ">" +
+      (o.help ? '<p class="iv-help">' + o.help + "</p>" : "") + err(k) + "</div>";
   }
-  function country(k, lbl, o) {
-    o = o || {}; var v = S[k];
-    var inner = v && NAME[v] ? flag(v) + "<span>" + esc(NAME[v]) + "</span>" : '<span class="gx-ph">' + esc(o.ph || "Search or select a country") + "</span>";
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
-      '<div class="gx-cs" data-cs="' + k + '" data-pop="' + (o.pop || "from") + '"><button type="button" class="gx-csb" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' + inner + ic("chev", "gx-chev") + "</button></div>" +
-      (o.suggest || "") + (o.hint ? '<p class="gx-hint">' + o.hint + "</p>" : "") + err(k) + "</div>";
+  function select(k, lbl, list, ph, help) {
+    return '<div class="iv-f' + bad(k) + '"><label for="gx-' + k + '">' + lbl + '</label><select class="iv-in iv-sel' + (S[k] ? "" : " ph") + '" id="gx-' + k + '" data-k="' + k + '"><option value="">' + ph + "</option>" +
+      list.map(function (o) { var v = o.v || o, t = o.t || o; return '<option value="' + esc(v) + '"' + (S[k] === v ? " selected" : "") + ">" + esc(t) + "</option>"; }).join("") + "</select>" + (help ? '<p class="iv-help">' + help + "</p>" : "") + err(k) + "</div>";
   }
-  function pad(n) { return ("0" + n).slice(-2); }
-  function dkey(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
-  function toObj(d) { return { y: String(d.getFullYear()), m: String(d.getMonth() + 1), d: String(d.getDate()) }; }
-  function long(k) { var d = dateOf(k); return d && d !== "bad" ? d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : ""; }
-  /* typed date: DD / MM / YYYY in one box */
-  function typed(k, lbl, hint) {
-    var v = S[k] || {};
-    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + "</label>" +
-      '<div class="gx-dt" data-dt="' + k + '"><span class="gx-dt-ic">' + ic("cal") + "</span>" +
-      '<input id="gx-' + k + '" data-seg="d" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="DD" aria-label="Day" value="' + esc(v.d ? pad(v.d) : "") + '">' +
-      '<i>/</i><input data-seg="m" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="MM" aria-label="Month" value="' + esc(v.m ? pad(v.m) : "") + '">' +
-      '<i>/</i><input data-seg="y" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="YYYY" aria-label="Year" value="' + esc(v.y || "") + '">' +
-      '<span class="gx-dt-out" data-dt-out="' + k + '">' + esc(dtOut(k)) + "</span></div>" +
-      (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + err(k) + "</div>";
-  }
-  function dtOut(k) {
-    var d = dateOf(k); if (!d || d === "bad") return "";
-    var txt = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-    if (k === "dob") { var age = TODAY.getFullYear() - d.getFullYear() - ((TODAY.getMonth() < d.getMonth() || (TODAY.getMonth() === d.getMonth() && TODAY.getDate() < d.getDate())) ? 1 : 0); return age >= 0 && age < 130 ? txt + " \u00b7 age " + age : txt; }
-    return txt;
-  }
-  /* travel dates: one range field with a calendar */
-  function range() {
-    var a = long("arrive"), l = long("leave"), nights = "";
-    var A = dateOf("arrive"), L = dateOf("leave");
-    if (A && L && A !== "bad" && L !== "bad" && L > A) { var n = Math.round((L - A) / 864e5); nights = n + (n === 1 ? " night" : " nights"); }
-    return '<div class="gx-f' + bad("arrive") + bad("leave") + '"><span class="gx-lbl">Travel dates</span>' +
-      '<div class="gx-range" id="gx-arrive">' +
-      '<button type="button" class="gx-rb" data-rfocus="arrive"><span class="gx-rb-ic">' + ic("cal") + '</span><span class="gx-rb-t"><small>Arrival</small><b>' + (a || '<em>Add date</em>') + "</b></span></button>" +
-      '<span class="gx-rsep">' + (nights ? '<span class="gx-nights">' + ic("moon") + nights + "</span>" : ic("arrowR")) + "</span>" +
-      '<button type="button" class="gx-rb" id="gx-leave" data-rfocus="leave"><span class="gx-rb-ic">' + ic("cal") + '</span><span class="gx-rb-t"><small>Return</small><b>' + (l || '<em>Add date</em>') + "</b></span></button>" +
-      "</div>" + '<p class="gx-hint">Not fixed yet? Pick your best guess. You can change dates later.</p>' + err("arrive") + err("leave") + "</div>";
-  }
-  function seg(k, opts) {
-    return '<div class="gx-seg" role="radiogroup" id="gx-' + k + '">' + opts.map(function (o) { return '<button type="button" role="radio" data-pick="' + k + '" data-v="' + esc(o[0]) + '" aria-checked="' + (S[k] === o[0]) + '">' + (S[k] === o[0] ? ic("check") : "") + esc(o[1]) + "</button>"; }).join("") + "</div>";
-  }
-  function yn(k, lbl, opts, hint) {
-    opts = opts || [["yes", "Yes"], ["no", "No"]];
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + seg(k, opts) + err(k) + "</div>";
-  }
-  /* question list: one row per yes/no question */
-  function qlist(rows) {
-    return '<div class="gx-qlist">' + rows.map(function (r) {
-      return '<div class="gx-q' + bad(r[0]) + '"><div class="gx-q-t"><b>' + r[1] + "</b>" + (r[2] ? "<small>" + r[2] + "</small>" : "") + err(r[0]) + "</div>" + seg(r[0], r[3] || [["Yes", "Yes"], ["No", "No"]]) + "</div>" + (r[4] || "");
-    }).join("") + "</div>";
-  }
-  function chips(k, lbl, list) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl">' + lbl + '</span><div class="gx-chips" role="radiogroup" id="gx-' + k + '">' +
-      list.map(function (o) { return '<button type="button" role="radio" class="gx-chipo" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-checked="' + (S[k] === o.v) + '"><span class="gx-chipo-ic">' + ic(S[k] === o.v ? "check" : o.icon) + "</span><span><b>" + esc(o.t) + "</b><small>" + esc(o.d) + "</small></span></button>"; }).join("") + "</div>" + err(k) + "</div>";
-  }
-  function scale(k, lbl, hint) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + '<div class="gx-scale" role="radiogroup" id="gx-' + k + '">' +
-      BALANCES.map(function (v, i) { var bars = ""; for (var j = 0; j < 4; j++) bars += "<i" + (j <= i ? ' class="on"' : "") + "></i>"; return '<button type="button" role="radio" data-pick="' + k + '" data-v="' + esc(v) + '" aria-checked="' + (S[k] === v) + '" aria-label="' + esc(v) + '"><span class="gx-bars">' + bars + "</span><b>" + BAL_SHORT[i] + "</b></button>"; }).join("") + "</div>" + err(k) + "</div>";
-  }
-  function choices(k, lbl, list, cls) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
-      '<div class="gx-choices ' + (cls || "") + '" role="radiogroup" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
-      list.map(function (o) { return '<button type="button" class="gx-choice" role="radio" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-checked="' + (S[k] === o.v) + '"><span class="gx-ic">' + ic(o.icon) + '</span><span class="gx-ct"><b>' + esc(o.t) + "</b>" + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + '</span><span class="gx-tick">' + ic("check") + "</span></button>"; }).join("") +
+  function radios(k, lbl, list, cls, help) {
+    return '<div class="iv-f' + bad(k) + '"><span class="iv-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" + (help ? '<p class="iv-help">' + help + "</p>" : "") +
+      '<div class="iv-rb ' + (cls || "") + '" role="radiogroup" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
+      list.map(function (o) { var on = S[k] === o.v; return '<button type="button" class="iv-r' + (on ? " on" : "") + '" role="radio" aria-checked="' + on + '" data-pick="' + k + '" data-v="' + esc(o.v) + '"><i></i><span>' + esc(o.t) + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + "</span></button>"; }).join("") +
       "</div>" + err(k) + "</div>";
   }
-  function select(k, lbl, list, ph) {
-    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + '</label><select class="gx-sel" id="gx-' + k + '" data-k="' + k + '"><option value="">' + ph + "</option>" +
-      list.map(function (v) { return "<option" + (S[k] === v ? " selected" : "") + ">" + esc(v) + "</option>"; }).join("") + "</select>" + err(k) + "</div>";
+  function yn(k, lbl, vals, help) { vals = vals || ["Yes", "No"]; return radios(k, lbl, [{ v: vals[0], t: "Yes" }, { v: vals[1], t: "No" }], "", help); }
+  function country(k, lbl, o) {
+    o = o || {}; var v = S[k];
+    var inner = v && NAME[v] ? flag(v) + "<span>" + esc(NAME[v]) + "</span>" : '<span class="iv-ph">' + esc(o.ph || "Select country") + "</span>";
+    return '<div class="iv-f' + bad(k) + '"><span class="iv-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
+      '<div class="gx-cs" data-cs="' + k + '" data-pop="' + (o.pop || "from") + '"><button type="button" class="gx-csb iv-in" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' + inner + ic("chev", "gx-chev") + "</button></div>" +
+      (o.help ? '<p class="iv-help">' + o.help + "</p>" : "") + err(k) + "</div>";
+  }
+  function date3(k, lbl, from, to, desc, help) {
+    var v = S[k] || {}, years = [], y;
+    if (desc) for (y = to; y >= from; y--) years.push(y); else for (y = from; y <= to; y++) years.push(y);
+    var mo = MONTHS.map(function (m, i) { return '<option value="' + (i + 1) + '"' + (+v.m === i + 1 ? " selected" : "") + ">" + m + "</option>"; }).join("");
+    var da = ""; for (var d = 1; d <= 31; d++) da += '<option value="' + d + '"' + (+v.d === d ? " selected" : "") + ">" + d + "</option>";
+    var ye = years.map(function (yy) { return '<option value="' + yy + '"' + (+v.y === yy ? " selected" : "") + ">" + yy + "</option>"; }).join("");
+    return '<div class="iv-f' + bad(k) + '"><span class="iv-lbl" id="gx-' + k + '-lbl">' + lbl + '</span><div class="iv-three" role="group" aria-labelledby="gx-' + k + '-lbl">' +
+      '<select class="iv-in iv-sel' + (v.m ? "" : " ph") + '" id="gx-' + k + '" data-d3="' + k + '" data-part="m" aria-label="Month"><option value="">Month</option>' + mo + "</select>" +
+      '<select class="iv-in iv-sel' + (v.d ? "" : " ph") + '" data-d3="' + k + '" data-part="d" aria-label="Day"><option value="">Day</option>' + da + "</select>" +
+      '<select class="iv-in iv-sel' + (v.y ? "" : " ph") + '" data-d3="' + k + '" data-part="y" aria-label="Year"><option value="">Year</option>' + ye + "</select>" +
+      "</div>" + (help ? '<p class="iv-help">' + help + "</p>" : "") + err(k) + "</div>";
+  }
+  function ymdStr(k) { var v = S[k]; return v && v.y && v.m && v.d ? v.y + "-" + pad(v.m) + "-" + pad(v.d) : ""; }
+  function dateIn(k, lbl, min) {
+    return '<div class="iv-f' + bad(k) + '"><label for="gx-' + k + '">' + lbl + '</label><input class="iv-in iv-date" type="date" id="gx-' + k + '" data-dn="' + k + '" value="' + ymdStr(k) + '" min="' + min + '">' + err(k) + "</div>";
   }
   function phone() {
     var c = S.code;
-    return '<div class="gx-f' + bad("phone") + bad("code") + '"><label class="gx-lbl" for="gx-phone">Mobile number</label>' +
-      '<div class="gx-phone"><div class="gx-cs" data-cs="code" data-dial="1"><button type="button" class="gx-csb" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code" id="gx-code">' +
-      (c ? flag(c) + "<span>" + esc(DIAL[c] || "") + "</span>" : '<span class="gx-ph">Code</span>') + ic("chev", "gx-chev") + "</button></div>" +
-      '<input class="gx-inp" id="gx-phone" data-k="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="3001234567" value="' + esc(S.phone || "") + '"></div>' +
-      '<p class="gx-hint">Search the code by country name or number, for example "Pakistan" or "92". Leave out the first 0.</p>' + err("code") + err("phone") + "</div>";
+    return '<div class="iv-f' + bad("phone") + bad("code") + '"><label for="gx-phone">Mobile number</label>' +
+      '<div class="iv-phone"><div class="gx-cs" data-cs="code" data-dial="1"><button type="button" class="gx-csb iv-in" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code" id="gx-code">' +
+      (c ? flag(c) + "<span>" + esc(DIAL[c] || "") + "</span>" : '<span class="iv-ph">Code</span>') + ic("chev", "gx-chev") + "</button></div>" +
+      '<input class="iv-in" id="gx-phone" data-k="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="300 1234567" value="' + esc(S.phone || "") + '"></div>' +
+      '<p class="iv-help">Leave out the first 0.</p>' + err("code") + err("phone") + "</div>";
   }
+  function isoToday(d) { d = d || TODAY; return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
 
   /* ---------- screens ---------- */
-  var SCREENS = [
-    { id: "start", stage: 0, title: "Apply for your visa in about 6 minutes", lead: "We ask one short group of questions at a time. Have these ready and you won't need to stop halfway.",
+  var REASONS = [{ v: "tourism", t: "Visit & tourism" }, { v: "family-visit", t: "Family & friends" }, { v: "business", t: "Business" }, { v: "transit", t: "Transit" }, { v: "visa-invitation", t: "Invitation letter" }, { v: "other", t: "Something else" }];
+  var WORK = [{ v: "employed", t: "Employed" }, { v: "business", t: "Self-employed" }, { v: "student", t: "Student" }, { v: "retired", t: "Retired" }, { v: "unemployed", t: "Not working" }];
+  var STAYOPT = [{ v: "Hotel", t: "Hotel" }, { v: "Staying with family or friends", t: "With family or friends" }, { v: "Rented apartment", t: "Rented flat or apartment" }, { v: "Not booked yet", t: "Not booked yet" }];
+  var SC = [
+    { id: "trip", stage: 1, pct: 12, h: "Your trip", lede: "Tell us where you're going and why.",
+      body: function () { var minLeave = dateOf("arrive"); minLeave = minLeave && minLeave !== "bad" ? isoToday(new Date(minLeave.getFullYear(), minLeave.getMonth(), minLeave.getDate() + 1)) : isoToday();
+        return country("to", "Where are you going?", { pop: "to", ph: "Select country" }) +
+          radios("purpose", "Main reason for your trip", REASONS) +
+          (S.purpose === "other" ? text("purpose_other", "Tell us about your trip", { ph: "For example: a wedding or medical treatment" }) : "") +
+          '<div class="iv-two">' + dateIn("arrive", "Arrival date", isoToday()) + dateIn("leave", "Return date", minLeave) + "</div>" +
+          select("stay", "Where will you stay?", STAYOPT, "Select an option"); },
+      check: function () { var a = dateOf("arrive"), l = dateOf("leave");
+        return { to: !S.to && "Select the country you're going to.", purpose: !S.purpose && "Select the main reason for your trip.", purpose_other: S.purpose === "other" && !S.purpose_other && "Tell us briefly what the trip is for.",
+          arrive: !a || a === "bad" ? "Enter your arrival date." : a < TODAY ? "Your arrival date can't be in the past." : "",
+          leave: !l || l === "bad" ? "Enter your return date." : (a && a !== "bad" && l <= a) ? "Your return date must be after your arrival date." : "",
+          stay: !S.stay && "Select where you'll stay." }; } },
+    { id: "you", stage: 1, pct: 26, h: "Personal details", lede: "Enter the details as they appear on your passport.",
+      body: function () { return '<div class="gx-slot iv-scan" data-slot="scan"></div>' + (scanNode ? '<div class="iv-or">Or fill in manually</div>' : "") +
+          country("from", "Passport", { ph: "Select country" }) +
+          '<div class="iv-two">' + text("first", "First and middle name", { ph: "Muhammad Ali", auto: "given-name" }) + text("last", "Last name", { ph: "Khan", auto: "family-name" }) + "</div>" +
+          date3("dob", "Date of birth", YEAR - 100, YEAR, true) +
+          '<div class="iv-two">' + radios("gender", "Gender", [{ v: "Male", t: "Male" }, { v: "Female", t: "Female" }]) + select("marital", "Marital status", ["Single", "Married", "Divorced", "Widowed"], "Select") + "</div>"; },
+      check: function () { var d = dateOf("dob");
+        return { from: !S.from ? "Select the country that issued your passport." : S.from === S.to ? "Your passport country and destination are the same. Please check." : "", first: !S.first && "Enter your first name.", last: !S.last && "Enter your last name.",
+          dob: !d ? "Enter your date of birth." : d === "bad" ? "That date doesn't exist." : d > TODAY ? "Date of birth can't be in the future." : "", gender: !S.gender && "Select your gender.", marital: !S.marital && "Select your marital status." }; } },
+    { id: "passport", stage: 1, pct: 40, h: "Passport details", lede: "You'll find these on the photo page of your passport.",
+      body: function () { return text("pp_no", "Passport number", { ph: "AB1234567", upper: true }) +
+          date3("pp_issue", "Issue date", YEAR - 15, YEAR, true) +
+          date3("pp_exp", "Expiry date", YEAR, YEAR + 15, false, "Your passport should be valid for at least 6 months after you return.") +
+          '<div data-warn>' + (S.warn ? note("warn", S.warn) : "") + "</div>"; },
+      check: function () { var i = dateOf("pp_issue"), e = dateOf("pp_exp");
+        return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces." : "",
+          pp_issue: !i ? "Enter the issue date." : i === "bad" ? "That date doesn't exist." : i > TODAY ? "The issue date can't be in the future." : "",
+          pp_exp: !e ? "Enter the expiry date." : e === "bad" ? "That date doesn't exist." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : "" }; } },
+    { id: "contact", stage: 1, pct: 54, h: "Contact details", lede: "We'll send your visa and any updates here.",
+      body: function () { return text("email", "Email address", { type: "email", ph: "name@example.com", auto: "email", mode: "email", help: "Your visa will be sent to this email address." }) + phone() +
+          '<label class="iv-chk"><input type="checkbox" id="gx-wa" data-wa="1"' + (S.wa === "yes" ? " checked" : "") + "><span>You can contact me on WhatsApp about my application</span></label>"; },
+      check: function () { var p = (S.phone || "").replace(/[\s-]/g, "").replace(/^0+/, "");
+        return { email: !S.email ? "Enter your email address." : !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(S.email) ? "Enter an email address like name@example.com." : "", code: !S.code && "Select your country code.", phone: !p ? "Enter your mobile number." : !/^\d{6,14}$/.test(p) ? "Use numbers only, without the country code." : "" }; } },
+    { id: "address", stage: 1, pct: 66, h: "Address details", lede: "Your home address in the country where you live.",
+      body: function () { return country("res", "Country of residence", { ph: "Select country", help: "The country where you live permanently." }) +
+          '<div class="iv-two">' + text("addr", "Home address", { ph: "House 12, Street 4", auto: "street-address" }) + text("city", "City or town", { auto: "address-level2" }) + "</div>" +
+          '<div class="iv-two">' + text("region", "State or province", { auto: "address-level1", opt: true }) + text("zip", "Postcode", { auto: "postal-code", opt: true }) + "</div>"; },
+      check: function () { return { res: !S.res && "Select the country where you live.", addr: !S.addr && "Enter your home address.", city: !S.city && "Enter your city or town." }; } },
+    { id: "money", stage: 1, pct: 80, h: "Work and finances", lede: "A few quick questions about your job and savings.",
+      body: function () { return radios("emp", "What do you do?", WORK, "iv-c3") +
+          select("bal", "Roughly how much is in your bank account?", BALANCES, "Select an amount", "In US dollars. A rough figure is fine.") +
+          yn("stmt", "Can you get a bank statement for the last 6 months?") +
+          yn("prop", "Do you own property in your home country?"); },
+      check: function () { return { emp: !S.emp && "Select what you do.", bal: !S.bal && "Select an amount.", stmt: !S.stmt && "Select Yes or No.", prop: !S.prop && "Select Yes or No." }; } },
+    { id: "history", stage: 1, pct: 94, h: "Additional information", lede: "Please answer honestly. Embassies check this.",
+      body: function () { return yn("travelled", "Have you travelled abroad in the last 10 years?") +
+          (S.travelled === "Yes" ? text("travelled_where", "Which countries?", { ph: "UAE, Saudi Arabia" }) : "") +
+          yn("refused", "Have you ever been refused a visa?", ["yes", "no"]) +
+          (S.refused === "yes" ? text("refused_where", "Which country, and when?", { ph: "United Kingdom, 2023" }) : "") +
+          yn("crim", "Have you ever been convicted of a criminal offence?"); },
+      check: function () { return { travelled: !S.travelled && "Select Yes or No.", travelled_where: S.travelled === "Yes" && !S.travelled_where && "List the countries you visited.", refused: !S.refused && "Select Yes or No.", refused_where: S.refused === "yes" && !S.refused_where && "Tell us which country and when.", crim: !S.crim && "Select Yes or No." }; } },
+    { id: "people", stage: 2, pct: 50, h: "Add travellers", lede: "Is anyone else travelling with you on this trip? If not, continue.",
+      body: function () { return '<div class="iv-trav"><span class="iv-av">' + esc(((S.first || "Y")[0] + ((S.last || "")[0] || "")).toUpperCase()) + "</span><div><b>" + esc([S.first, S.last].filter(Boolean).join(" ") || "You") + "</b><small>Main applicant</small></div></div>" + '<div class="gx-slot" data-slot="extra"></div>'; } },
+    { id: "review", stage: 3, pct: 50, h: "Review your order", lede: "Check your details, then continue to payment.",
       body: function () {
-        return '<ul class="gx-ready">' +
-          '<li><span class="gx-ic">' + ic("passport") + "</span><span><b>Your passport</b><small>Passport number and expiry date</small></span></li>" +
-          '<li><span class="gx-ic">' + ic("plane") + "</span><span><b>Your travel plans</b><small>Rough arrival and return dates are fine</small></span></li>" +
-          '<li><span class="gx-ic">' + ic("pin") + "</span><span><b>Your home address</b><small>Where you live now, with postcode</small></span></li>" +
-          '<li><span class="gx-ic">' + ic("bank") + "</span><span><b>Work and money</b><small>Your job and an idea of your bank balance</small></span></li></ul>" +
-          '<div class="gx-facts"><span>' + ic("save") + "Answers save as you go</span><span>" + ic("lock") + "256-bit encrypted</span><span>" + ic("shield") + "Nothing to pay until you review everything</span></div>";
-      }, next: "Start my application" },
-    { id: "trip", stage: 0, title: "Where are you going, and why?", lead: "This decides which visa you need and which documents we ask for.",
-      body: function () {
-        return country("to", "Destination country", { ph: "Where are you travelling to?", pop: "to" }) +
-          country("from", "Passport country", { ph: "Which country issued your passport?", hint: "Choose the country printed on your passport, even if you live somewhere else." }) +
-          choices("purpose", "Main reason for your trip", PURPOSES) +
-          (S.purpose === "other" ? text("purpose_other", "Tell us about your trip", { ph: "For example: medical treatment, a wedding, a sports event" }) : "") +
-          why("Visa rules depend on your passport, not where you live. A Pakistani passport holder living in Dubai still applies as a Pakistani citizen.");
-      },
-      check: function () { return { to: !S.to && "Choose the country you are travelling to.", from: !S.from && "Choose the country that issued your passport.", same: S.to && S.to === S.from && "Your destination and passport country are the same. Check both.", purpose: !S.purpose && "Pick the main reason for your trip.", purpose_other: S.purpose === "other" && !S.purpose_other && "Tell us briefly what the trip is for." }; } },
-    { id: "dates", stage: 0, title: "When are you travelling?", lead: "Pick your arrival and return dates. Your best estimate is fine.",
-      body: function () {
-        return range() + choices("stay", "Where will you stay?", STAYS, "c2") +
-          yn("flights", "Have you booked your flights?", [["yes", "Yes, booked"], ["no", "Not yet"]]) +
-          (S.flights === "no" ? note("info", "You don't need to buy tickets before your visa is approved. If the embassy asks for a flight plan, we can arrange a flight reservation for you.") : "") +
-          why("Embassies check that your trip has a clear start and end date and that the length of stay matches the visa.");
-      },
-      check: function () {
-        var a = dateOf("arrive"), l = dateOf("leave");
-        return { arrive: !a ? "Choose your arrival date." : a === "bad" ? "Choose a valid arrival date." : a < TODAY ? "Your arrival date can't be in the past." : "",
-          leave: !l ? "Choose your return date." : l === "bad" ? "Choose a valid return date." : (a && a !== "bad" && l <= a) ? "Your return date must be after your arrival date." : "",
-          stay: !S.stay && "Choose where you will stay.", flights: !S.flights && "Tell us if your flights are booked." };
-      } },
-    { id: "you", stage: 1, title: "Tell us about yourself", lead: "Type your name exactly as it appears on your passport, including middle names.",
-      body: function () {
-        return '<div class="gx-slot" data-slot="scan"></div>' +
-          '<div class="gx-row2">' + text("first", "First and middle names", { ph: "Muhammad Ali", auto: "given-name" }) + text("last", "Last name (surname)", { ph: "Khan", auto: "family-name" }) + "</div>" +
-          typed("dob", "Date of birth", "Type it as day, month, year. For example 20 05 1990.") +
-          yn("gender", "Gender as shown on your passport", [["Male", "Male"], ["Female", "Female"], ["Other", "Other"]]) +
-          select("marital", "Marital status", ["Single", "Married", "Divorced", "Widowed"], "Choose your status") +
-          why("Your visa is checked against your passport at the border. A single wrong letter in your name can mean a refused or invalid visa.");
-      },
-      check: function () {
-        var d = dateOf("dob");
-        return { first: !S.first && "Enter your first name exactly as on your passport.", last: !S.last && "Enter your last name (surname) as on your passport.",
-          dob: !d ? "Enter your full date of birth." : d === "bad" ? "That date doesn't exist. Check the day and month." : d > TODAY ? "Your date of birth can't be in the future." : d.getFullYear() < YEAR - 120 ? "Check the year of birth." : "",
-          gender: !S.gender && "Choose the gender shown on your passport.", marital: !S.marital && "Choose your marital status." };
-      } },
-    { id: "contact", stage: 1, title: "How can we reach you?", lead: "We send updates about your application here, and your adviser may message you if a document is missing.",
-      body: function () {
-        return text("email", "Email address", { type: "email", ph: "you@example.com", auto: "email", mode: "email", hint: "Your confirmation and visa documents are sent to this address." }) +
-          phone() + yn("wa", "Can we message you on WhatsApp on this number?", [["yes", "Yes"], ["no", "No, phone and email only"]]) +
-          why("Embassies sometimes ask for a document at short notice. A WhatsApp message is the fastest way for your adviser to reach you.");
-      },
-      check: function () {
-        var p = (S.phone || "").replace(/[\s-]/g, "").replace(/^0+/, "");
-        return { email: !S.email ? "Enter your email address." : !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(S.email) ? "Check your email address. It should look like name@example.com." : "",
-          code: !S.code && "Choose your country code.", phone: !p ? "Enter your mobile number." : !/^\d{6,14}$/.test(p) ? "Use numbers only, without the country code." : "", wa: !S.wa && "Choose Yes or No." };
-      } },
-    { id: "address", stage: 1, title: "Where do you live?", lead: "Your home address now. It must be in the country where you live.",
-      body: function () {
-        return country("res", "Country of residence", { ph: "Search or select a country", hint: "The country where you live permanently." }) +
-          text("addr", "Home address", { ph: "House 12, Street 4, Block B", auto: "street-address" }) +
-          '<div class="gx-row2">' + text("city", "City or town", { ph: "Lahore", auto: "address-level2" }) + text("region", "State or province", { ph: "Punjab", auto: "address-level1", opt: true }) + "</div>" +
-          text("zip", "Postcode or ZIP", { ph: "54000", auto: "postal-code", opt: true }) +
-          why("You usually apply from the country where you live. Your address also tells us which visa centre or embassy handles your file.");
-      },
-      check: function () { return { res: !S.res && "Choose the country where you live.", addr: !S.addr && "Enter your home address.", city: !S.city && "Enter your city or town." }; } },
-    { id: "passport", stage: 1, title: "Your passport", lead: "Open your passport at the photo page. Everything we need is printed there.",
-      body: function () {
-        return text("pp_no", "Passport number", { ph: "AB1234567", upper: true, hint: "Usually 7 to 9 letters and numbers, top right of the photo page. No spaces." }) +
-          typed("pp_exp", "Expiry date", "Printed under \u201cDate of expiry\u201d on the photo page.") +
-          warnHtml() +
-          why("Most countries need your passport to be valid for at least 6 months after you return, with two blank pages. We check this now so there are no surprises later.");
-      },
-      check: function () {
-        var e = dateOf("pp_exp");
-        return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces or dashes." : "",
-          pp_exp: !e ? "Enter your passport's expiry date." : e === "bad" ? "That date doesn't exist. Check the day and month." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : e.getFullYear() > YEAR + 20 ? "Check the year. Passports are valid for 10 years at most." : "" };
-      } },
-    { id: "money", stage: 1, title: "Work & finances", lead: "Quick questions so your adviser knows which documents to prepare. Pick the closest answers.",
-      body: function () {
-        return chips("emp", "Your work", JOBS) +
-          scale("bal", "Money in your bank account", "Roughly, in US dollars. An estimate is fine.") +
-          '<div class="gx-f"><span class="gx-lbl">A few quick checks</span>' + qlist([
-            ["stmt", "Can you get a 6-month bank statement?", "Most embassies ask for the last 3 to 6 months."],
-            ["prop", "Do you own property at home?", "A house, flat or land in your name."],
-            ["sponsor", "Is someone else paying for this trip?", "For example a family member or your employer.", [["yes", "Yes"], ["no", "No"]], S.sponsor === "yes" ? note("info", "We'll ask for your sponsor's details and a support letter later.") : ""]
-          ]) + "</div>" +
-          why("These answers build your personal document checklist. They are only used for your application.");
-      },
-      check: function () { return { emp: !S.emp && "Choose your work situation.", bal: !S.bal && "Choose the closest amount.", stmt: !S.stmt && "Choose Yes or No.", prop: !S.prop && "Choose Yes or No.", sponsor: !S.sponsor && "Choose Yes or No." }; } },
-    { id: "history", stage: 1, title: "Travel history", lead: "Answer honestly. Embassies can see past applications, and a wrong answer can lead to a refusal.",
-      body: function () {
-        return qlist([
-          ["travelled", "Have you travelled abroad in the last 10 years?", "", null, S.travelled === "Yes" ? text("travelled_where", "Which countries?", { ph: "UAE, Saudi Arabia, Türkiye", hint: "Any order. Dates are not needed now." }) : ""],
-          ["refused", "Have you ever been refused a visa?", "For any country.", [["yes", "Yes"], ["no", "No"]], S.refused === "yes" ? text("refused_where", "Which country, and roughly when?", { ph: "United Kingdom, 2023" }) + note("info", "A past refusal doesn't stop you applying. Your adviser will help you address it.") : ""],
-          ["crim", "Have you ever been convicted of a criminal offence?", "In any country. Many visa forms ask this."]
-        ]);
-      },
-      check: function () { return { travelled: !S.travelled && "Choose Yes or No.", travelled_where: S.travelled === "Yes" && !S.travelled_where && "List the countries you visited.", refused: !S.refused && "Choose Yes or No.", refused_where: S.refused === "yes" && !S.refused_where && "Tell us which country and roughly when.", crim: !S.crim && "Choose Yes or No." }; } },
-    { id: "people", stage: 1, title: "Is anyone travelling with you?", lead: "Add family members or colleagues who need a visa for the same trip. If it's just you, press Continue.",
-      body: function () { return '<div class="gx-slot" data-slot="extra"></div>'; } },
-    { id: "review", stage: 2, title: "Check your answers", lead: "Make sure everything matches your passport. Use Edit to change anything.",
-      body: function () {
-        function row(k, v) { return "<dt>" + k + "</dt><dd>" + (v ? esc(v) : '<span class="gx-miss">Missing</span>') + "</dd>"; }
-        function sec(t, id, rows) { return '<section class="gx-sec"><div class="gx-sech"><h3>' + t + '</h3><button type="button" class="gx-link" data-goto="' + id + '">Edit</button></div><dl>' + rows + "</dl></section>"; }
+        function row(k, v) { return "<dt>" + k + "</dt><dd>" + (v ? esc(v) : '<span class="iv-miss">Missing</span>') + "</dd>"; }
+        function sec(t, id, rows) { return '<div class="iv-rv"><div class="iv-rvh"><b>' + t + '</b><button type="button" class="iv-link" data-goto="' + id + '">Edit</button></div><dl>' + rows + "</dl></div>"; }
+        var yesno = function (v) { return /^yes$/i.test(v || "") ? "Yes" : /^no$/i.test(v || "") ? "No" : ""; };
         var extra = [].map.call(form.querySelectorAll("[data-extra-list] li[data-saved='1']"), function (li) { var b = li.querySelector("strong,b,h4,p"); return b ? b.textContent.trim() : ""; }).filter(Boolean);
-        var yesno = function (v) { return v === "yes" || v === "Yes" ? "Yes" : v === "no" || v === "No" ? "No" : ""; };
-        return '<div class="gx-rv">' +
-          sec("Trip", "trip", row("Destination", NAME[S.to]) + row("Passport country", NAME[S.from]) + row("Reason", S.purpose === "other" ? (S.purpose_other || "Other") : label(PURPOSES, S.purpose))) +
-          sec("Dates and stay", "dates", row("Arrival", fmt("arrive")) + row("Return", fmt("leave")) + row("Staying at", label(STAYS, S.stay)) + row("Flights", S.flights === "yes" ? "Booked" : S.flights === "no" ? "Not booked yet" : "")) +
-          sec("About you", "you", row("Name", [S.first, S.last].filter(Boolean).join(" ")) + row("Date of birth", fmt("dob")) + row("Gender", S.gender) + row("Marital status", S.marital)) +
-          sec("Passport", "passport", row("Number", S.pp_no) + row("Expires", fmt("pp_exp"))) +
-          sec("Contact", "contact", row("Email", S.email) + row("Mobile", S.code && S.phone ? (DIAL[S.code] || "") + " " + S.phone : "") + row("WhatsApp", yesno(S.wa))) +
-          sec("Address", "address", row("Country", NAME[S.res]) + row("Address", [S.addr, S.city, S.region, S.zip].filter(Boolean).join(", "))) +
-          sec("Work and money", "money", row("Work", label(JOBS, S.emp)) + row("Bank balance", S.bal) + row("Bank statement", yesno(S.stmt)) + row("Owns property", yesno(S.prop)) + row("Paid by", S.sponsor === "yes" ? "Sponsor" : S.sponsor === "no" ? "Applicant" : "")) +
-          sec("Travel history", "history", row("Travelled abroad", S.travelled === "Yes" ? "Yes" + (S.travelled_where ? ", " + S.travelled_where : "") : yesno(S.travelled)) + row("Visa refused before", S.refused === "yes" ? "Yes" + (S.refused_where ? ", " + S.refused_where : "") : yesno(S.refused)) + row("Criminal conviction", yesno(S.crim))) +
+        return sec("Trip", "trip", row("Destination", NAME[S.to]) + row("Reason", S.purpose === "other" ? (S.purpose_other || "Something else") : label(REASONS, S.purpose)) + row("Dates", fmt("arrive") && fmt("leave") ? fmt("arrive") + " – " + fmt("leave") : "") + row("Staying at", label(STAYOPT, S.stay))) +
+          sec("Personal details", "you", row("Name", [S.first, S.last].filter(Boolean).join(" ")) + row("Passport", NAME[S.from]) + row("Date of birth", fmt("dob")) + row("Gender", S.gender) + row("Marital status", S.marital)) +
+          sec("Passport", "passport", row("Number", S.pp_no) + row("Issued", fmt("pp_issue")) + row("Expires", fmt("pp_exp"))) +
+          sec("Contact and address", "contact", row("Email", S.email) + row("Mobile", S.code && S.phone ? (DIAL[S.code] || "") + " " + S.phone : "") + row("Lives in", NAME[S.res]) + row("Address", [S.addr, S.city, S.region, S.zip].filter(Boolean).join(", "))) +
+          sec("Work and history", "money", row("Work", label(WORK, S.emp)) + row("Bank balance", S.bal) + row("Bank statement", yesno(S.stmt)) + row("Owns property", yesno(S.prop)) + row("Travelled abroad", S.travelled === "Yes" ? "Yes" + (S.travelled_where ? ", " + S.travelled_where : "") : yesno(S.travelled)) + row("Refused a visa", S.refused === "yes" ? "Yes" + (S.refused_where ? ", " + S.refused_where : "") : yesno(S.refused)) + row("Criminal conviction", yesno(S.crim))) +
           sec("Travellers", "people", row("Main applicant", [S.first, S.last].filter(Boolean).join(" ")) + "<dt>Also travelling</dt><dd>" + (extra.length ? esc(extra.join(", ")) : "No one else") + "</dd>") +
-          "</div>" +
-          '<label class="gx-check' + bad("agree") + '"><input type="checkbox" id="gx-agree" data-agree="1"' + (rget("agree_terms") ? " checked" : "") + '><span>I confirm the information is correct and complete, and I agree to the Alif Visa <a href="/terms/" target="_blank" rel="noopener">Terms and Conditions</a> and <a href="/refund-policy/" target="_blank" rel="noopener">Refund Policy</a>. False information may lead to my application being refused.</span></label>' +
-          err("agree") +
-          '<div style="margin-top:16px">' + note("info", (LOGGED_IN ? "" : "You'll sign in or create a free account next, so you can track your application. ") + "Your Alif Visa service fee is shown before you pay. Card payments are handled securely by Stripe. Government or visa-centre fees are separate where they apply.") + "</div>";
-      },
-      check: function () {
-        var miss = SCREENS.slice(1, 10).filter(function (s) { return s.check && hasErr(s.check()); })[0];
-        return { agree: miss ? "Some answers are missing in “" + miss.title + "”. Press Edit to complete them." : !rget("agree_terms") && "Tick the box to confirm your details and accept the Terms." };
-      }, next: LOGGED_IN ? "Continue to payment" : "Continue" }
+          '<div class="iv-total"><span>Alif Visa service fee</span><b>Shown before you pay</b></div>' +
+          '<label class="iv-chk' + bad("agree") + '"><input type="checkbox" id="gx-agree" data-agree="1"' + (rget("agree_terms") ? " checked" : "") + '><span>I confirm my details are correct and I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms and Conditions</a> and <a href="/refund-policy/" target="_blank" rel="noopener">Refund Policy</a>.</span></label>' + err("agree") +
+          (LOGGED_IN ? "" : '<p class="iv-help" style="margin-top:-8px!important">You\'ll sign in or create a free account before paying, so you can track your application.</p>'); },
+      go: LOGGED_IN ? "Continue to payment" : "Continue" }
   ];
-  var IDX = {}; SCREENS.forEach(function (s, i) { IDX[s.id] = i; });
-  var TOTAL = SCREENS.length - 1;
+  var IDX = {}; SC.forEach(function (s, i) { IDX[s.id] = i; });
+  var TOTAL = SC.length - 1;
   function hasErr(e) { for (var k in e) if (e[k]) return true; return false; }
+  function firstGap() { for (var i = 0; i < TOTAL; i++) if (SC[i].check && hasErr(SC[i].check())) return i; return -1; }
 
   /* ---------- mount ---------- */
-  var root = document.createElement("div"); root.className = "gx"; root.id = "gx";
+  var root = document.createElement("div"); root.className = "iv"; root.id = "gx";
   var holder = document.createElement("div"); holder.hidden = true; holder.className = "gx-holder";
   var steps = form.querySelector(".avx-steps");
-  if (steps && steps.nextSibling) form.insertBefore(root, steps.nextSibling); else form.insertBefore(root, form.firstChild);
+  form.insertBefore(root, form.firstChild);
   form.appendChild(holder);
   form.classList.add("gx-on");
+  document.documentElement.classList.add("iv-page");
   var scanNode = form.querySelector(".alif-passport-scan");
   var extraNode = form.querySelector(".alif-extra-travellers");
   var addNode = form.querySelector("[data-extra-add-wrap]");
   var MOVE = { scan: [scanNode], extra: [extraNode, addNode] };
   function park() { [scanNode, extraNode, addNode].forEach(function (n) { if (n && n.parentNode !== holder) holder.appendChild(n); }); }
   park();
-  var side = document.querySelector(".avf__help");
-  var aside = document.createElement("div"); aside.className = "gx-aside";
-  if (side) { side.appendChild(aside); side.classList.add("gx-side-on"); }
-  var heroP = document.querySelector(".avx-hero p"); if (heroP) heroP.textContent = "Answer a few short questions, one screen at a time. Your answers save as you go.";
+  var heroP = document.querySelector(".avx-hero p"); if (heroP) heroP.textContent = "A few short steps. Your answers save as you go.";
+  root.addEventListener("click", function (e) { var g = e.target.closest("[data-goto]"); if (g) { S.ret = true; go(IDX[g.getAttribute("data-goto")]); } });
 
+  function visaName() { var el = document.querySelector("[data-avr-vname]"); var v = el ? el.textContent.trim() : ""; return v || "visa"; }
   function sumHtml() {
-    var dest = S.to && NAME[S.to] ? flag(S.to) + "<span>" + esc(NAME[S.to]) + " visa" + (S.purpose ? "<small>" + esc(label(PURPOSES, S.purpose)) + "</small>" : "") + "</span>" : '<span style="color:#5a6e65;font-weight:600;font-size:15px">Choose a destination to begin</span>';
-    var extra = form.querySelectorAll("[data-extra-list] li[data-saved='1']").length;
-    var rows = [["Passport", NAME[S.from]], ["Travel dates", fmt("arrive") && fmt("leave") ? fmt("arrive") + " – " + fmt("leave") : ""], ["Travellers", S.first ? S.first + " " + (S.last || "") + (extra ? " +" + extra : "") : ""]];
-    return '<div class="gx-dest">' + dest + '</div><dl class="gx-sum">' + rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + (r[1] ? esc(r[1]) : '<span style="color:#5a6e65;font-weight:500">–</span>') + "</dd></div>"; }).join("") + "</dl>";
+    var extra = [].map.call(form.querySelectorAll("[data-extra-list] li[data-saved='1']"), function (li) { var b = li.querySelector("strong,b,h4,p"); return b ? b.textContent.trim() : ""; }).filter(Boolean);
+    var names = [[S.first, S.last].filter(Boolean).join(" ")].concat(extra).filter(Boolean).join(", ");
+    var dates = fmt("arrive") && fmt("leave") ? fmt("arrive").replace(/ \d{4}$/, "") + " – " + fmt("leave") : "";
+    return '<aside class="iv-sum"><div class="iv-sum-top">' + (S.to ? '<div class="iv-sum-flag">' + flag(S.to) + "</div>" : "") + '</div><div class="iv-sum-body">' +
+      "<h3>" + (S.to && NAME[S.to] ? esc(NAME[S.to]) + " " + esc(visaName().toLowerCase()) : "Your visa application") + "</h3>" +
+      '<p class="iv-sub">' + (S.purpose ? esc(label(REASONS, S.purpose)) : "Choose your destination to start") + "</p>" +
+      '<div class="iv-row keep">' + ic("cal") + "<span>Travel dates<b>" + (dates ? esc(dates) : "Not set yet") + "</b></span></div>" +
+      (names ? '<div class="iv-row">' + ic("user") + "<span>Travellers<b>" + esc(names) + "</b></span></div>" : "") +
+      '<div class="iv-row">' + ic("lock") + "<span>Secure and safe<b>256-bit encrypted</b></span></div>" +
+      '<a class="iv-help-box" href="https://wa.me/447482331249" target="_blank" rel="noopener"><b>Need help?</b>WhatsApp a UK adviser on +44 7482 331249</a></div></aside>';
   }
-  function renderAside() {
-    var todo = [["Trip details", S.to && S.from && S.purpose && dateOf("arrive") && dateOf("leave")], ["Personal details", S.first && S.last && dateOf("dob") && S.gender], ["Passport", S.pp_no && dateOf("pp_exp")], ["Contact and address", S.email && S.phone && S.res && S.addr], ["Work and travel history", S.emp && S.bal && S.crim]];
-    aside.innerHTML = '<div class="gx-box">' + sumHtml() + "</div>" +
-      '<div class="gx-box gx-help"><p>Stuck on a question? Message a UK adviser on WhatsApp.</p><a href="https://wa.me/447482331249" target="_blank" rel="noopener">' + ic("chat") + "+44 7482 331249</a><p style=\"margin-top:6px!important;color:#5a6e65;font-size:13px\">Monday to Friday, 09:00 to 18:00 UK time</p></div>" +
-      '<div class="gx-box"><div class="gx-trust"><span>' + ic("shield") + "UK-registered company, Wolverhampton</span><span>" + ic("lock") + "256-bit encrypted form</span><span>" + ic("info") + "Private service, not a government website</span></div></div>";
+  function progHtml(s) {
+    var n = ["Application", "Add travellers", "Review & pay"];
+    return '<div class="iv-prog">' + n.map(function (t, i) { var st = i + 1 < s.stage ? "done" : i + 1 === s.stage ? "on" : ""; return '<div class="iv-ps ' + st + '"' + (st === "on" ? ' aria-current="step"' : "") + "><i>" + (st === "done" ? ic("check") : i + 1) + "</i><span>" + t + "</span></div>" + (i < 2 ? '<div class="iv-pl"><b style="width:' + (i + 1 < s.stage ? 100 : i + 1 === s.stage ? s.pct : 0) + '%"></b></div>' : ""); }).join("") + "</div>";
   }
-  function render(focusErr, keepScroll) {
-    var y = window.scrollY;
-    park();
-    var sc = SCREENS[S.step], cur = sc.stage;
-    var inStage = SCREENS.filter(function (s) { return s.stage === cur && s.id !== "start"; });
-    var pos = inStage.indexOf(sc);
-    var steps = STAGES.map(function (n, i) { return '<div class="gx-st' + (i < cur ? " done" : i === cur ? " on" : "") + '"' + (i === cur ? ' aria-current="step"' : "") + '><i>' + (i < cur ? ic("check") : i + 1) + "</i><span>" + n + "</span></div>" + (i < 2 ? '<b class="gx-stl' + (i < cur ? " done" : "") + '"></b>' : ""); }).join("");
-    var pct = Math.round(S.step / TOTAL * 100), left = Math.max(1, Math.round((TOTAL - S.step) * 0.6));
-    var meta = S.step === 0 ? "Takes about 6 minutes" : S.step === TOTAL ? "Last step" : "About " + left + " min left";
-    var back = S.step > 0 ? '<button type="button" class="gx-btn gx-ghost" id="gx-back">' + ic("arrowL") + "Back</button>" : "<span></span>";
-    root.innerHTML = '<details class="gx-msum"><summary>' + ic("passport") + 'Your application</summary><div style="margin-top:12px">' + sumHtml() + "</div></details>" +
-      '<div class="gx-screen">' +
-      '<h2 class="gx-title" id="gx-h" tabindex="-1">' + sc.title + '</h2><p class="gx-lead">' + sc.lead + '</p><div class="gx-fields">' + sc.body() + "</div>" +
-      (S.errs.same ? '<p class="gx-err" style="margin-top:14px!important">' + ic("warn") + esc(S.errs.same) + "</p>" : "") +
-      '<div class="gx-nav">' + back + '<button type="button" class="gx-btn gx-go" id="gx-next">' + (sc.next || "Continue") + ic("arrowR") + "</button></div></div>";
+  function render(focusErr, keep) {
+    var y = window.scrollY; park();
+    var s = SC[S.step];
+    root.innerHTML = progHtml(s) + '<div class="iv-cols">' + sumHtml() + '<div class="iv-card"><h2 id="gx-h" tabindex="-1">' + s.h + '</h2><p class="iv-lede">' + s.lede + '</p><div class="iv-fields">' + s.body() + "</div>" +
+      '<div class="iv-foot">' + (S.step > 0 ? '<button type="button" class="iv-back" id="gx-back">Back</button>' : "") + '<button type="button" class="iv-go" id="gx-next">' + (S.ret && s.id !== "review" ? "Save and review" : (s.go || "Continue")) + "</button></div></div></div>";
     root.querySelectorAll("[data-slot]").forEach(function (slot) { (MOVE[slot.getAttribute("data-slot")] || []).forEach(function (n) { if (n) slot.appendChild(n); }); });
-    renderAside(); bind(); syncSteps();
-    if (keepScroll) window.scrollTo(0, y);
-    if (focusErr) {
-      var k = Object.keys(S.errs).filter(function (x) { return S.errs[x]; })[0];
-      var el = k && (document.getElementById("gx-" + k) || document.getElementById("gx-" + k + "-err"));
-      if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); try { el.focus({ preventScroll: true }); } catch (e) {} }
-    }
+    bind();
+    if (keep) window.scrollTo(0, y);
+    if (focusErr) { var k = Object.keys(S.errs).filter(function (x) { return S.errs[x]; })[0]; var el = k && (document.getElementById("gx-" + k) || document.getElementById("gx-" + k + "-err")); if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); try { el.focus({ preventScroll: true }); } catch (e) {} } }
   }
-  var OLD_STEP = { start: 1, trip: 1, dates: 1, you: 2, contact: 2, address: 2, passport: 3, money: 3, history: 3, people: 3, review: 4 };
-  function syncSteps() {
-    if (!steps) return;
-    var cur = OLD_STEP[SCREENS[S.step].id] || 1;
-    steps.querySelectorAll("li[data-avx-step]").forEach(function (li) {
-      var n = +li.getAttribute("data-avx-step");
-      li.classList.toggle("is-cur", n === cur); li.classList.toggle("is-done", n < cur);
-      if (n === cur) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
-    });
-    steps.style.setProperty("--avx-p", Math.max(4, Math.round(S.step / TOTAL * 100)) + "%");
-  }
-  if (steps) new MutationObserver(function () { var li = steps.querySelector("li.is-cur"); var want = String(OLD_STEP[SCREENS[S.step].id] || 1); if (!li || li.getAttribute("data-avx-step") !== want) syncSteps(); }).observe(steps, { attributes: true, subtree: true, attributeFilter: ["class"] });
+  function renderSum() { var a = root.querySelector(".iv-sum"); if (a) { var t = document.createElement("div"); t.innerHTML = sumHtml(); a.parentNode.replaceChild(t.firstChild, a); } }
   function go(i) {
     S.step = Math.max(0, Math.min(TOTAL, i)); S.errs = {};
     try { sessionStorage.setItem("alifGxStep", String(S.step)); } catch (e) {}
     render();
-    var top = root.getBoundingClientRect().top + window.scrollY - 100;
+    var top = root.getBoundingClientRect().top + window.scrollY - 90;
     window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     var h = document.getElementById("gx-h"); if (h) try { h.focus({ preventScroll: true }); } catch (e) {}
   }
   function passportWarn() {
-    S.warn = "";
-    var e = dateOf("pp_exp"), l = dateOf("leave");
-    if (e && e !== "bad" && e >= TODAY && l && l !== "bad") {
-      var need = new Date(l); need.setMonth(need.getMonth() + 6);
-      if (e < need) S.warn = "Your passport expires less than 6 months after your return date (" + fmt("leave") + "). Many countries will refuse entry. Renew it first if you can, or talk to an adviser.";
-    }
+    S.warn = ""; var e = dateOf("pp_exp"), l = dateOf("leave");
+    if (e && e !== "bad" && e >= TODAY && l && l !== "bad") { var need = new Date(l); need.setMonth(need.getMonth() + 6); if (e < need) S.warn = "Your passport expires less than 6 months after your return date (" + fmt("leave") + "). Many countries won't accept this. If you can, renew it before you apply."; }
   }
+  function clearErr(k, el) { if (!S.errs[k]) return; S.errs[k] = ""; var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); var w = el && el.closest(".iv-bad"); if (w) w.classList.remove("iv-bad"); }
 
-  /* ---------- events ---------- */
   function bind() {
     root.querySelectorAll("[data-k]").forEach(function (el) {
       el.addEventListener(el.tagName === "SELECT" ? "change" : "input", function () {
         var k = el.getAttribute("data-k"), v = el.value;
         if (el.getAttribute("data-upper")) { v = v.toUpperCase().replace(/\s+/g, ""); el.value = v; }
-        S[k] = v; push();
-        if (S.errs[k]) { S.errs[k] = ""; var f = el.closest(".gx-f"); if (f) f.classList.remove("gx-bad"); var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); }
-        renderAside();
+        if (el.tagName === "SELECT") el.classList.toggle("ph", !v);
+        S[k] = v; push(); clearErr(k, el); renderSum();
       });
     });
-    root.querySelectorAll("[data-dt]").forEach(bindTyped);
-    root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); openCal(b.getAttribute("data-rfocus")); }); });
+    root.querySelectorAll("[data-d3]").forEach(function (el) {
+      el.addEventListener("change", function () {
+        var k = el.getAttribute("data-d3"), o = {}; for (var p in (S[k] || {})) o[p] = S[k][p];
+        o[el.getAttribute("data-part")] = el.value; S[k] = o; el.classList.toggle("ph", !el.value); push(); clearErr(k, el);
+        if (k === "pp_exp") { passportWarn(); var w = root.querySelector("[data-warn]"); if (w) w.innerHTML = S.warn ? note("warn", S.warn) : ""; }
+      });
+    });
+    root.querySelectorAll("[data-dn]").forEach(function (el) {
+      el.addEventListener("change", function () {
+        var k = el.getAttribute("data-dn"), m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(el.value);
+        S[k] = m ? { y: m[1], m: String(+m[2]), d: String(+m[3]) } : {}; push(); clearErr(k, el);
+        if (k === "arrive") { var L = dateOf("leave"), A = dateOf("arrive"); var lv = root.querySelector('[data-dn="leave"]'); if (lv && A && A !== "bad") { lv.min = isoToday(new Date(A.getFullYear(), A.getMonth(), A.getDate() + 1)); if (L && L !== "bad" && L <= A) { S.leave = {}; lv.value = ""; push(); } } }
+        renderSum();
+      });
+    });
     root.querySelectorAll("[data-pick]").forEach(function (el) {
       el.addEventListener("click", function () {
-        var k = el.getAttribute("data-pick"), v = el.getAttribute("data-v");
-        S[k] = v; S.errs[k] = ""; push(); render(false, true);
-        var again = root.querySelector('[data-pick="' + k + '"][data-v="' + v.replace(/"/g, '\\"') + '"]'); if (again) again.focus();
+        var k = el.getAttribute("data-pick"), v = el.getAttribute("data-v"), before = S[k];
+        S[k] = v; push();
+        var follow = (k === "purpose" && (v === "other") !== (before === "other")) || (k === "travelled" && (v === "Yes") !== (before === "Yes")) || (k === "refused" && (v === "yes") !== (before === "yes"));
+        if (follow) { S.errs[k] = ""; render(false, true); var again = root.querySelector('[data-pick="' + k + '"][data-v="' + v + '"]'); if (again) again.focus(); return; }
+        root.querySelectorAll('[data-pick="' + k + '"]').forEach(function (b) { var on = b === el; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+        clearErr(k, el); renderSum();
       });
     });
-    root.querySelectorAll("[data-set]").forEach(function (el) { el.addEventListener("click", function () { S[el.getAttribute("data-set")] = el.getAttribute("data-v"); S.errs.res = ""; push(); render(false, true); }); });
-    root.querySelectorAll("[data-goto]").forEach(function (el) { el.addEventListener("click", function () { go(IDX[el.getAttribute("data-goto")]); }); });
-    var ag = root.querySelector("[data-agree]"); if (ag) ag.addEventListener("change", function () { rset("agree_terms", ag.checked ? "1" : ""); S.errs.agree = ""; });
+    var wa = root.querySelector("[data-wa]"); if (wa) wa.addEventListener("change", function () { S.wa = wa.checked ? "yes" : "no"; push(); });
+    var ag = root.querySelector("[data-agree]"); if (ag) ag.addEventListener("change", function () { rset("agree_terms", ag.checked ? "1" : ""); clearErr("agree", ag); });
     root.querySelectorAll("[data-cs]").forEach(bindPicker);
-    var back = document.getElementById("gx-back"); if (back) back.addEventListener("click", function () { go(S.step - 1); });
+    var back = document.getElementById("gx-back"); if (back) back.addEventListener("click", function () { if (S.ret) { S.ret = false; return go(IDX.review); } go(S.step - 1); });
     document.getElementById("gx-next").addEventListener("click", next);
   }
   function next() {
-    var sc = SCREENS[S.step], e = sc.check ? sc.check() : {}, clean = {};
-    for (var k in e) if (e[k]) clean[k] = e[k];
-    if (sc.id === "people") { var open = form.querySelector("[data-extra-list] li.is-editing"); if (open) { open.scrollIntoView({ block: "center", behavior: "smooth" }); var msg = open.querySelector(".gx-err") || document.createElement("p"); msg.className = "gx-err"; msg.textContent = "Save or cancel this traveller before you continue."; if (!msg.parentNode) open.appendChild(msg); return; } }
+    var s = SC[S.step];
+    if (s.id === "people") { var open = form.querySelector("[data-extra-list] li.is-editing"); if (open) { open.scrollIntoView({ block: "center", behavior: "smooth" }); var msg = open.querySelector(".gx-err") || document.createElement("p"); msg.className = "gx-err"; msg.textContent = "Save or cancel this traveller before you continue."; if (!msg.parentNode) open.appendChild(msg); return; } }
+    if (s.id === "review") {
+      var gap = firstGap(); if (gap >= 0) { S.errs = { agree: "Some answers are missing. Press Edit next to “Missing” to add them." }; return render(true, true); }
+      if (!rget("agree_terms")) { S.errs = { agree: "Tick the box to confirm your details and accept the Terms." }; return render(true, true); }
+      return submit();
+    }
+    var e = s.check ? s.check() : {}, clean = {}; for (var k in e) if (e[k]) clean[k] = e[k];
     if (hasErr(clean)) { S.errs = clean; return render(true, true); }
-    push();
-    if (sc.id === "passport") passportWarn();
-    if (sc.id === "review") return submit();
+    push(); if (s.id === "passport") passportWarn();
+    if (S.ret) { S.ret = false; return go(IDX.review); }
     go(S.step + 1);
   }
   function submit() {
     push(); rset("agree_terms", "1");
-    var real = form.querySelector("[data-wizard-step='review'] [data-go-stripe]");
-    var btn = document.getElementById("gx-next");
+    var real = form.querySelector("[data-wizard-step='review'] [data-go-stripe]"), btn = document.getElementById("gx-next");
     if (LOGGED_IN && btn) { btn.disabled = true; btn.textContent = "Opening secure payment…"; }
     if (real) real.click(); else HTMLFormElement.prototype.submit.call(form);
-    window.addEventListener("pageshow", function () { var b = document.getElementById("gx-next"); if (b) { b.disabled = false; } });
+    window.addEventListener("pageshow", function () { var b = document.getElementById("gx-next"); if (b) b.disabled = false; });
   }
 
-  /* typed DD / MM / YYYY */
-  function bindTyped(box) {
-    var k = box.getAttribute("data-dt"), ins = box.querySelectorAll("input"), out = box.querySelector("[data-dt-out]");
-    function save() {
-      var o = { d: String(+ins[0].value || ""), m: String(+ins[1].value || ""), y: ins[2].value.length === 4 ? ins[2].value : "" };
-      if (o.d === "0") o.d = ""; if (o.m === "0") o.m = "";
-      S[k] = o; push(); out.textContent = dtOut(k);
-      if (S.errs[k]) { S.errs[k] = ""; var f = box.closest(".gx-f"); if (f) f.classList.remove("gx-bad"); var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); }
-      if (k === "pp_exp") { var had = S.warn; passportWarn(); if (had !== S.warn) { var w = root.querySelector("[data-warn]"); if (w) w.outerHTML = warnHtml(); } }
-      renderAside();
-    }
-    ins.forEach(function (inp, i) {
-      inp.addEventListener("input", function () {
-        var v = inp.value.replace(/\D/g, ""); var max = i === 2 ? 4 : 2;
-        if (i === 0 && v.length === 1 && +v > 3) v = "0" + v;
-        if (i === 1 && v.length === 1 && +v > 1) v = "0" + v;
-        if (i === 1 && +v > 12) v = "12"; if (i === 0 && +v > 31) v = "31";
-        inp.value = v.slice(0, max);
-        if (inp.value.length === max && ins[i + 1]) { ins[i + 1].focus(); ins[i + 1].select(); }
-        save();
-      });
-      inp.addEventListener("keydown", function (e) { if (e.key === "Backspace" && !inp.value && ins[i - 1]) { e.preventDefault(); ins[i - 1].focus(); } });
-      inp.addEventListener("paste", function (e) {
-        var t = (e.clipboardData || window.clipboardData).getData("text"), m = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})/.exec(t);
-        if (m) { e.preventDefault(); ins[0].value = pad(m[1]); ins[1].value = pad(m[2]); ins[2].value = m[3]; save(); ins[2].focus(); }
-      });
-    });
-    box.addEventListener("click", function (e) { if (e.target === box || e.target.closest(".gx-dt-ic")) { var first = [].filter.call(ins, function (x) { return !x.value; })[0] || ins[0]; first.focus(); } });
-  }
-  function warnHtml() { return '<div data-warn>' + (S.warn ? note("warn", S.warn) : "") + "</div>"; }
-
-  /* range calendar */
-  var calFocus = "arrive", calView = null;
-  function openCal(focus) {
-    calFocus = focus;
-    var A = dateOf("arrive"); var base = (focus === "leave" && dateOf("leave") && dateOf("leave") !== "bad") ? dateOf("leave") : (A && A !== "bad" ? A : TODAY);
-    calView = new Date(base.getFullYear(), base.getMonth(), 1);
-    if (focus === "leave" && A && A !== "bad") calView = new Date(A.getFullYear(), A.getMonth(), 1);
-    drawCal();
-  }
-  function closeCal() { var p = root.querySelector(".gx-cal"); if (p) p.remove(); root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.classList.remove("on"); }); }
-  function drawCal() {
-    var wrap = root.querySelector(".gx-range"); if (!wrap) return;
-    var old = root.querySelector(".gx-cal"); if (old) old.remove();
-    root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-rfocus") === calFocus); });
-    var A = dateOf("arrive"), L = dateOf("leave"); if (A === "bad") A = null; if (L === "bad") L = null;
-    var two = window.matchMedia("(min-width: 760px)").matches, html = "";
-    for (var mo = 0; mo < (two ? 2 : 1); mo++) {
-      var first = new Date(calView.getFullYear(), calView.getMonth() + mo, 1), days = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
-      var lead = (first.getDay() + 6) % 7, cells = "";
-      for (var e = 0; e < lead; e++) cells += "<span></span>";
-      for (var d = 1; d <= days; d++) {
-        var dt = new Date(first.getFullYear(), first.getMonth(), d), dis = dt < TODAY || (calFocus === "leave" && A && dt <= A) || dt > new Date(YEAR + 2, 11, 31);
-        var cls = []; if (A && +dt === +A) cls.push("s"); if (L && +dt === +L) cls.push("e"); if (A && L && dt > A && dt < L) cls.push("in"); if (+dt === +TODAY) cls.push("t");
-        cells += '<button type="button" data-day="' + dkey(dt) + '" class="' + cls.join(" ") + '"' + (dis ? " disabled" : "") + ' aria-label="' + dt.toDateString() + '">' + d + "</button>";
-      }
-      html += '<div class="gx-cm"><p class="gx-cm-h">' + MONTHS[first.getMonth()] + " " + first.getFullYear() + '</p><div class="gx-dow"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div><div class="gx-days">' + cells + "</div></div>";
-    }
-    var canPrev = new Date(calView.getFullYear(), calView.getMonth(), 1) > new Date(YEAR, NOW.getMonth(), 1);
-    var p = document.createElement("div"); p.className = "gx-cal";
-    p.innerHTML = '<div class="gx-cal-top"><button type="button" class="gx-cal-nav" data-cnav="-1" aria-label="Previous month"' + (canPrev ? "" : " disabled") + ">" + ic("left") + '</button><p class="gx-cal-tip">' + (calFocus === "arrive" ? "Select your arrival date" : "Select your return date") + '</p><button type="button" class="gx-cal-nav" data-cnav="1" aria-label="Next month">' + ic("right") + "</button></div>" +
-      '<div class="gx-cms">' + html + '</div><div class="gx-cal-foot"><button type="button" class="gx-link" data-cclear>Clear dates</button><button type="button" class="gx-btn gx-go gx-sm" data-cdone>Done</button></div>';
-    wrap.parentNode.insertBefore(p, wrap.nextSibling);
-    p.addEventListener("click", function (ev) {
-      ev.stopPropagation();
-      var nav = ev.target.closest("[data-cnav]"), day = ev.target.closest("[data-day]");
-      if (nav && !nav.disabled) { calView = new Date(calView.getFullYear(), calView.getMonth() + (+nav.getAttribute("data-cnav")), 1); return drawCal(); }
-      if (ev.target.closest("[data-cclear]")) { S.arrive = {}; S.leave = {}; push(); calFocus = "arrive"; return refreshRange(); }
-      if (ev.target.closest("[data-cdone]")) { closeCal(); return; }
-      if (day && !day.disabled) {
-        var m = day.getAttribute("data-day").split("-"), picked = new Date(+m[0], +m[1] - 1, +m[2]);
-        var A2 = dateOf("arrive");
-        if (calFocus === "arrive" || !A2 || A2 === "bad" || picked <= A2) { S.arrive = toObj(picked); var L2 = dateOf("leave"); if (L2 && L2 !== "bad" && L2 <= picked) S.leave = {}; calFocus = "leave"; S.errs.arrive = ""; push(); refreshRange(); }
-        else { S.leave = toObj(picked); S.errs.leave = ""; push(); refreshRange(); closeCal(); }
-      }
-    });
-  }
-  function refreshRange() {
-    var f = root.querySelector(".gx-range").closest(".gx-f"), open = !!root.querySelector(".gx-cal");
-    var tmp = document.createElement("div"); tmp.innerHTML = range(); var nf = tmp.firstChild;
-    f.parentNode.replaceChild(nf, f);
-    nf.querySelectorAll("[data-rfocus]").forEach(function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); openCal(b.getAttribute("data-rfocus")); }); });
-    if (open) drawCal();
-    renderAside();
-  }
-  document.addEventListener("click", function (e) { if (!e.target.closest(".gx-cal") && !e.target.closest("[data-rfocus]")) closeCal(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCal(); });
 
   /* searchable country / code picker */
   function fold(s) { s = String(s || "").toLowerCase(); try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) {} return s; }
@@ -659,19 +479,16 @@
   /* other scripts (passport scan, restore after sign-in) may fill the real form: keep in step */
   var pullTimer;
   form.addEventListener("change", function (e) { if (writing || root.contains(e.target)) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); render(false, true); }, 150); });
-  form.addEventListener("input", function (e) { if (writing || root.contains(e.target)) return; if (e.target.closest && e.target.closest("[data-extra-list]")) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); renderAside(); }, 300); });
-  if (extraNode) new MutationObserver(function () { renderAside(); }).observe(extraNode, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-saved"] });
+  form.addEventListener("input", function (e) { if (writing || root.contains(e.target)) return; if (e.target.closest && e.target.closest("[data-extra-list]")) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); renderSum(); }, 300); });
+  if (extraNode) new MutationObserver(function () { renderSum(); }).observe(extraNode, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-saved"] });
 
   pull();
-  var start = 0;
-  try { var saved = +sessionStorage.getItem("alifGxStep"); if (saved > 0 && saved <= TOTAL && SCREENS.slice(1, saved).every(function (s) { return !s.check || !hasErr(s.check()); })) start = saved; } catch (e) {}
-  if (SCREENS.slice(1, 10).every(function (s) { return !s.check || !hasErr(s.check()); })) start = IDX.review;
-  if (/alif_error=1/.test(location.search)) start = IDX.review;
-  S.step = start;
+  (function () {
+    var start = 0, gap = firstGap();
+    if (/alif_error=1/.test(location.search) || gap < 0) start = IDX.review;
+    else { try { var saved = +sessionStorage.getItem("alifGxStep") || 0; if (saved > 0) start = Math.min(saved, gap); } catch (e) {} }
+    S.step = start;
+  })();
   render();
-  setTimeout(function () {
-    pull();
-    if (form.querySelector("[data-wizard-step='review'] [style*='e7f8ef']") || SCREENS.slice(1, 10).every(function (s) { return !s.check || !hasErr(s.check()); })) S.step = IDX.review;
-    render();
-  }, 600);
+  setTimeout(function () { pull(); if (firstGap() < 0 && S.step !== IDX.review) { S.step = IDX.review; render(); } else renderSum(); }, 600);
 })();

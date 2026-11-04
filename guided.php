@@ -1,298 +1,153 @@
 
 
-/* ===== Alif guided application form (4 Nov 2026, v2.1). Old form stays underneath; add ?classic=1 to see it. ===== */
+/* ===== Alif guided application form (4 Nov 2026, v4). Old form stays underneath; add ?classic=1 to see it. ===== */
 function alif_gx_css() {
     return <<<'GXCSS'
-/* Alif guided application (sits on top of #alif-apply-wizard) */
-.gx-on > [data-wizard-step]{display:none!important}
-#main .gx-on > .avx-steps{margin:0 0 18px!important}
-.gx-side-on > :not(.gx-aside){display:none!important}
-.gx{--ink:#10241c;--muted:#5a6e65;--line:#dde6e1;--line2:#c6d3cc;--brand:#0b6b4a;--accent:#1fce7c;--accent-ink:#06321f;--mint:#e7f7ee;--mint-line:#bfe9d2;--soft:#f7faf8;--err:#c63b2f;--warn-bg:#fff6e5;--warn-ink:#7a4a00;--warn-line:#f3d79c;font-family:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 1px 2px rgba(16,36,28,.06),0 12px 32px -18px rgba(16,36,28,.25);padding:clamp(20px,3.6vw,38px);font-size:16px;line-height:1.55;text-align:left}
-.gx *,.gx-aside *{box-sizing:border-box}
-.gx button,.gx input,.gx select,.gx textarea{font-family:inherit;color:inherit;letter-spacing:normal;text-transform:none}
-.gx :focus-visible,.gx-aside :focus-visible{outline:3px solid var(--accent)!important;outline-offset:2px}
-.gx svg{flex:0 0 auto}
-.gx-prog{display:flex;flex-direction:column;gap:8px;margin:0 0 22px}
-.gx-prog-top{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:700;color:var(--muted)}
-.gx-prog-top b{color:var(--brand);letter-spacing:.06em;text-transform:uppercase;font-size:12.5px}
-.gx-stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.gx-stages span{display:block;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
-.gx-stages i{display:block;height:100%;background:var(--accent);border-radius:inherit;transition:width .35s ease}
-.gx-stagenames{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-size:12.5px;font-weight:700;color:var(--muted)}
-.gx-stagenames .on{color:var(--ink)}
-.gx h2.gx-title{margin:0!important;font-size:clamp(23px,3vw,30px)!important;line-height:1.2!important;letter-spacing:-.02em!important;font-weight:800!important;color:var(--ink)!important;text-wrap:balance;padding:0!important;border:0!important}
-.gx-lead{margin:8px 0 0!important;color:var(--muted)!important;max-width:62ch;font-size:15.5px!important}
-.gx-fields{display:flex;flex-direction:column;gap:22px;margin-top:26px}
-.gx-row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.gx-date{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
-.gx-f{display:flex;flex-direction:column;gap:7px;min-width:0;margin:0!important}
-.gx-lbl{font-weight:700!important;font-size:14.5px!important;color:var(--ink)!important;margin:0!important}
-.gx-opt{font-weight:500;color:var(--muted);font-size:13px}
-.gx-hint{margin:0!important;font-size:13px!important;color:var(--muted)!important;line-height:1.45!important}
-.gx .gx-inp,.gx .gx-sel{width:100%!important;min-height:52px!important;height:auto!important;border:1.5px solid var(--line2)!important;border-radius:14px!important;background:#fff!important;padding:12px 14px!important;font-size:16px!important;box-shadow:none!important;margin:0!important;color:var(--ink)!important}
-.gx .gx-inp::placeholder{color:#97a8a0!important;opacity:1}
-.gx .gx-inp:focus,.gx .gx-sel:focus{border-color:var(--brand)!important;outline:none!important;box-shadow:0 0 0 4px var(--mint)!important}
-.gx .gx-sel{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,#5a6e65 50%),linear-gradient(135deg,#5a6e65 50%,transparent 50%)!important;background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%!important;background-size:6px 6px!important;background-repeat:no-repeat!important;padding-right:36px!important}
-.gx-bad .gx-inp,.gx-bad .gx-sel,.gx-bad .gx-csb,.gx-bad .gx-choice,.gx-bad .gx-yn button{border-color:var(--err)!important}
-.gx-err{margin:0!important;font-size:13px!important;font-weight:600!important;color:var(--err)!important;display:flex;gap:6px;align-items:flex-start}
+/* Alif application form v4: iVisa-style layout on top of #alif-apply-wizard */
+#main .gx-on > [data-wizard-step],#main .gx-on > .avx-steps,.gx-on > [data-wizard-step]{display:none!important}
+.iv-page #main .avf{grid-template-columns:minmax(0,1fr)!important}
+.iv-page #main .avf__help{display:none!important}
+.iv{--ink:#0f2a22;--text:#33443d;--muted:#6b7a74;--line:#e3e9e6;--field:#d5ddd9;--brand:#0b6b4a;--btn:#12a26b;--btn-dk:#0d8a5a;--soft:#eef8f3;--err:#c23a2b;
+  font-family:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text);font-size:16px;line-height:1.5;text-align:left}
+.iv *{box-sizing:border-box}
+.iv button,.iv input,.iv select{font-family:inherit;letter-spacing:normal;text-transform:none}
+.iv :focus-visible{outline:3px solid #1fce7c!important;outline-offset:2px}
+.iv svg{flex:0 0 auto}
+/* progress line */
+.iv-prog{display:flex;align-items:center;gap:18px;margin:0 0 26px}
+.iv-ps{display:flex;align-items:center;gap:10px;flex:0 0 auto;font-weight:700;font-size:17px;color:var(--ink)}
+.iv-ps i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:700;border:1.5px solid var(--ink);color:var(--ink);background:#fff}
+.iv-ps i svg{width:15px;height:15px}
+.iv-ps.on i{background:var(--ink);color:#fff}
+.iv-ps.done i{background:var(--btn);border-color:var(--btn);color:#fff}
+.iv-ps:not(.on):not(.done){color:var(--muted)}
+.iv-ps:not(.on):not(.done) i{border-color:#b9c5c0;color:var(--muted)}
+.iv-pl{flex:1;height:3px;border-radius:3px;background:#d7e0dc;position:relative;overflow:hidden;min-width:20px}
+.iv-pl b{position:absolute;inset:0 auto 0 0;background:var(--btn);border-radius:3px;transition:width .4s ease}
+.iv-cols{display:grid;grid-template-columns:320px minmax(0,1fr);gap:26px;align-items:start}
+/* summary */
+.iv-sum{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;position:sticky;top:100px}
+.iv-sum-top{position:relative;height:90px;background:linear-gradient(135deg,#0d4a34 0%,#0b6b4a 55%,#18a46d 100%)}
+.iv-sum-top::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(255,255,255,.25),transparent 40%),repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 14px,transparent 14px 28px)}
+.iv-sum-flag{position:absolute;left:22px;bottom:-22px;z-index:1;width:52px;height:52px;border-radius:14px;background:#fff;box-shadow:0 8px 20px -10px rgba(0,0,0,.35);display:grid;place-items:center}
+.iv-sum-flag .gx-flag{width:32px;height:22px;border-radius:3px;object-fit:cover}
+.iv-sum-body{padding:32px 22px 22px}
+.iv-sum-body h3{margin:0!important;color:var(--ink)!important;font-size:19px!important;font-weight:800!important;line-height:1.3!important;text-transform:none}
+.iv-sub{margin:3px 0 0!important;color:var(--muted)!important;font-size:14px!important}
+.iv-row{display:flex;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line);margin-top:14px}
+.iv-row + .iv-row{margin-top:0}
+.iv-row svg{width:20px;height:20px;color:var(--brand)}
+.iv-row span{display:flex;flex-direction:column;font-size:13.5px;color:var(--muted);min-width:0}
+.iv-row b{color:var(--ink);font-size:15px;font-weight:700;overflow-wrap:anywhere}
+.iv-help-box{display:block;margin-top:4px;padding:14px;border-radius:14px;background:var(--soft);font-size:14px;color:var(--text)!important;text-decoration:none!important}
+.iv-help-box b{display:block;color:var(--ink)}
+/* card */
+.iv-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,44px);box-shadow:0 30px 60px -48px rgba(15,42,34,.4);min-width:0}
+.iv-card h2{margin:0!important;color:var(--ink)!important;font-size:clamp(26px,3vw,32px)!important;font-weight:800!important;letter-spacing:-.02em!important;line-height:1.2!important;border:0!important;padding:0!important;outline:none;text-transform:none}
+.iv-lede{margin:10px 0 0!important;color:var(--text)!important;font-size:16.5px!important}
+.iv-fields{display:flex;flex-direction:column;gap:24px;margin-top:28px}
+.iv-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.iv-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.iv-f{display:flex;flex-direction:column;gap:8px;min-width:0;margin:0!important}
+.iv-f > label,.iv-lbl{font-weight:600!important;font-size:16px!important;color:var(--ink)!important;margin:0!important;line-height:1.35!important}
+.iv-opt{font-weight:500;color:var(--muted)}
+.iv-help{margin:0!important;font-size:14px!important;color:var(--muted)!important;line-height:1.45!important}
+.iv .iv-in{width:100%!important;height:56px!important;min-height:56px!important;border:1.5px solid var(--field)!important;border-radius:14px!important;background:#fff!important;padding:0 18px!important;font-size:17px!important;font-weight:500!important;color:var(--ink)!important;box-shadow:none!important;margin:0!important;line-height:normal!important}
+.iv .iv-in::placeholder{color:#a6b2ad!important;opacity:1}
+.iv .iv-in:focus{outline:none!important;border-color:var(--brand)!important;box-shadow:0 0 0 4px var(--soft)!important}
+.iv .iv-sel{appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5 7 7l5.5-5.5' fill='none' stroke='%230f2a22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 18px center!important;padding-right:44px!important;cursor:pointer}
+.iv .iv-sel.ph{color:#a6b2ad!important}
+.iv .iv-sel option{color:var(--ink)}
+.iv .iv-date{cursor:pointer}
+.iv .iv-date::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.7}
+.iv-bad .iv-in,.iv-bad .iv-r{border-color:var(--err)!important}
+.gx-err{margin:0!important;font-size:14px!important;font-weight:600!important;color:var(--err)!important;display:flex;gap:6px;align-items:flex-start}
 .gx-err svg{width:16px;height:16px;margin-top:2px}
-.gx-choices{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
-.gx-choices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.gx .gx-choice{display:flex!important;align-items:flex-start;gap:12px;text-align:left;width:100%;padding:14px!important;border:1.5px solid var(--line2)!important;border-radius:14px!important;background:#fff!important;cursor:pointer;margin:0!important;box-shadow:none!important;min-height:0!important;height:auto!important;color:var(--ink)!important;font-weight:400!important}
-.gx .gx-choice:hover{border-color:var(--muted)!important}
-.gx .gx-choice[aria-pressed="true"]{border-color:var(--brand)!important;background:var(--mint)!important;box-shadow:inset 0 0 0 1px var(--brand)!important}
-.gx-choice .gx-ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--brand);border:1px solid var(--line);flex:0 0 auto}
-.gx-choice[aria-pressed="true"] .gx-ic{background:var(--brand);color:#fff;border-color:var(--brand)}
-.gx-choice .gx-ic svg{width:20px;height:20px}
-.gx-choice b{display:block;font-size:15px;font-weight:700;line-height:1.3}
-.gx-choice small{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
-.gx-yn{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
-.gx .gx-yn button{display:flex!important;align-items:center;gap:12px;min-height:54px!important;height:auto!important;padding:10px 16px!important;border:1.5px solid var(--line2)!important;border-radius:14px!important;background:#fff!important;cursor:pointer;font-weight:600!important;font-size:15.5px!important;text-align:left;margin:0!important;box-shadow:none!important;color:var(--ink)!important;line-height:1.3!important}
-.gx .gx-yn button::before{content:"";flex:0 0 auto;width:20px;height:20px;border-radius:50%;border:2px solid var(--line2);background:#fff}
-.gx .gx-yn button[aria-pressed="true"]{border-color:var(--brand)!important;background:var(--mint)!important}
-.gx .gx-yn button[aria-pressed="true"]::before{border:6px solid var(--brand)}
-.gx-cs{position:relative}.gx-cs:has(.gx-panel){z-index:6}
-.gx .gx-csb{width:100%!important;min-height:52px!important;height:auto!important;display:flex!important;align-items:center;gap:10px;border:1.5px solid var(--line2)!important;border-radius:14px!important;background:#fff!important;padding:10px 14px!important;cursor:pointer;text-align:left;font-size:16px!important;font-weight:500!important;margin:0!important;box-shadow:none!important;color:var(--ink)!important}
-.gx-csb .gx-ph{color:#8a9c94}
-.gx-csb .gx-chev{margin-left:auto;width:16px;height:16px;color:var(--muted)}
-.gx-flag{width:24px;height:17px;border-radius:3px;object-fit:cover;display:block;flex:0 0 auto;box-shadow:0 0 0 1px rgba(16,36,28,.08)}
-.gx-panel{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 6px);background:#fff;border:1px solid var(--line2);border-radius:14px;box-shadow:0 20px 50px -20px rgba(16,36,28,.45);padding:8px}
+/* radio boxes */
+.iv-rb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.iv-rb.iv-c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.iv .iv-r{display:flex!important;align-items:center;gap:14px;min-height:60px!important;height:auto!important;padding:12px 18px!important;border:1.5px solid var(--field)!important;border-radius:14px!important;background:#fff!important;cursor:pointer;font-weight:500!important;font-size:16.5px!important;color:var(--ink)!important;text-align:left;margin:0!important;box-shadow:none!important;line-height:1.3!important;transition:border-color .15s}
+.iv .iv-r:hover{border-color:#9fb1a9!important}
+.iv-r i{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:2px solid #7d8b85;background:#fff;display:grid;place-items:center}
+.iv-r i::after{content:"";width:10px;height:10px;border-radius:50%;background:#fff;transform:scale(0);transition:transform .12s}
+.iv .iv-r.on{border-color:var(--ink)!important;font-weight:700!important}
+.iv-r.on i{background:var(--ink);border-color:var(--ink)}
+.iv-r.on i::after{transform:scale(1)}
+.iv-r small{display:block;font-size:13.5px;font-weight:500;color:var(--muted)}
+.iv-chk{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--text);cursor:pointer;margin:0!important;line-height:1.5}
+.iv-chk input{width:22px!important;height:22px!important;flex:0 0 auto;margin:1px 0 0!important;accent-color:var(--ink)}
+.iv-chk a{color:var(--ink)!important;font-weight:700;text-decoration:underline}
+.iv-chk.iv-bad{color:var(--err)}
+.iv-phone{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px}
+.iv-note{display:flex;gap:12px;padding:14px 16px;border-radius:14px;font-size:15px;line-height:1.5}
+.iv-note svg{width:20px;height:20px;margin-top:1px}
+.iv-note.info{background:var(--soft);color:var(--text)}.iv-note.info svg{color:var(--brand)}
+.iv-note.warn{background:#fffaeb;border:1px solid #fedf89;color:#7a4d00}.iv-note.warn svg{color:#b54708}
+.iv-or{display:flex;align-items:center;gap:16px;color:var(--muted);font-size:14.5px}
+.iv-or::before,.iv-or::after{content:"";flex:1;height:1px;background:var(--line)}
+.gx-slot:empty,.gx-slot:empty + .iv-or{display:none}
+.iv-trav{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1.5px solid var(--line);border-radius:14px}
+.iv-av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;flex:0 0 auto}
+.iv-trav b{display:block;color:var(--ink);font-size:16.5px}
+.iv-trav small{color:var(--muted)}
+/* review */
+.iv-rv{border:1.5px solid var(--line);border-radius:16px;overflow:hidden}
+.iv-rvh{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);background:#fafcfb}
+.iv-rvh b{color:var(--ink);font-size:16.5px}
+.iv .iv-link{background:none!important;border:0!important;color:var(--brand)!important;font-weight:700!important;font-size:15px!important;cursor:pointer;padding:4px!important;margin:0!important;min-height:0!important;height:auto!important;box-shadow:none!important}
+.iv-rv dl{margin:0!important;padding:10px 18px 14px;display:grid;grid-template-columns:minmax(130px,38%) minmax(0,1fr);row-gap:8px;column-gap:12px}
+.iv-rv dt{color:var(--muted);margin:0!important;font-weight:500}
+.iv-rv dd{margin:0!important;color:var(--ink);font-weight:600;overflow-wrap:anywhere}
+.iv-miss{color:var(--err);font-weight:700}
+.iv-total{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-radius:16px;background:var(--ink);color:#fff}
+.iv-total span{opacity:.85}.iv-total b{font-size:17px}
+/* footer */
+.iv-foot{display:flex;justify-content:flex-end;align-items:center;gap:20px;margin-top:34px}
+.iv .iv-back{background:none!important;border:0!important;color:var(--ink)!important;font-weight:600!important;font-size:16px!important;margin:0 auto 0 0!important;padding:8px 0!important;cursor:pointer;box-shadow:none!important;min-height:0!important;height:auto!important}
+.iv .iv-go{display:inline-flex!important;align-items:center;justify-content:center;height:58px!important;min-height:58px!important;padding:0 40px!important;border:0!important;border-radius:16px!important;background:var(--btn)!important;color:#fff!important;font-weight:700!important;font-size:18px!important;cursor:pointer;margin:0!important;box-shadow:none!important;transition:background .15s}
+.iv .iv-go:hover{background:var(--btn-dk)!important}
+.iv .iv-go[disabled]{opacity:.65;cursor:wait}
+/* country / code picker */
+.gx-cs{position:relative}
+.gx-cs:has(.gx-panel){z-index:20}
+.iv .gx-csb{display:flex!important;align-items:center;gap:12px;text-align:left;cursor:pointer}
+.gx-csb .iv-ph{color:#a6b2ad}
+.gx-csb .gx-chev{margin-left:auto;width:16px;height:16px;color:var(--ink)}
+.gx-flag{width:26px;height:18px;border-radius:3px;object-fit:cover;display:block;flex:0 0 auto;box-shadow:0 0 0 1px rgba(15,42,34,.08)}
+.gx-code{display:inline-grid;place-items:center;min-width:30px;height:22px;padding:0 5px;border-radius:6px;background:var(--soft);color:var(--brand);font-size:11.5px;font-weight:800;flex:0 0 auto}
+.gx-panel{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 6px);background:#fff;border:1px solid var(--field);border-radius:14px;box-shadow:0 20px 50px -20px rgba(15,42,34,.45);padding:8px}
 .gx-panel.narrow{right:auto;width:min(340px,calc(100vw - 64px))}
-.gx .gx-search{width:100%!important;height:46px!important;border:1.5px solid var(--line2)!important;border-radius:10px!important;padding:0 12px!important;font-size:16px!important;background:#fff!important;margin:0!important;box-shadow:none!important}
-.gx .gx-search:focus{outline:none!important;border-color:var(--brand)!important}
-.gx-list{max-height:280px;overflow:auto;margin-top:6px;overscroll-behavior:contain}
+.iv .gx-search{width:100%!important;height:48px!important;border:1.5px solid var(--field)!important;border-radius:10px!important;padding:0 12px!important;font-size:16px!important;background:#fff!important;margin:0!important;box-shadow:none!important}
+.iv .gx-search:focus{outline:none!important;border-color:var(--brand)!important}
+.gx-list{max-height:290px;overflow:auto;margin-top:6px;overscroll-behavior:contain}
 .gx-grp{margin:8px 8px 4px!important;font-size:11.5px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)!important}
-.gx .gx-o{display:flex!important;align-items:center;gap:10px;width:100%;padding:10px 8px!important;border:0!important;border-radius:8px!important;background:none!important;cursor:pointer;text-align:left;font-size:15px!important;font-weight:500!important;margin:0!important;box-shadow:none!important;color:var(--ink)!important;min-height:0!important;height:auto!important}
-.gx .gx-o:hover,.gx .gx-o.on{background:var(--mint)!important}
+.iv .gx-o{display:flex!important;align-items:center;gap:10px;width:100%;padding:10px 8px!important;border:0!important;border-radius:8px!important;background:none!important;cursor:pointer;text-align:left;font-size:15px!important;font-weight:500!important;margin:0!important;box-shadow:none!important;color:var(--ink)!important;min-height:0!important;height:auto!important}
+.iv .gx-o:hover,.iv .gx-o.on{background:var(--soft)!important}
 .gx-o span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.gx-o em{font-style:normal;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.gx-o em{font-style:normal;color:var(--muted);font-weight:600}
 .gx-empty{padding:12px 8px;color:var(--muted);font-size:14px;margin:0!important}
-.gx-phone{display:grid;grid-template-columns:minmax(118px,auto) minmax(0,1fr);gap:10px}
-.gx-suggest{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
-.gx .gx-chip{border:1px solid var(--mint-line)!important;background:var(--mint)!important;color:var(--brand)!important;border-radius:99px!important;padding:5px 12px!important;font-size:13px!important;font-weight:700!important;cursor:pointer;margin:0!important;min-height:0!important;height:auto!important;box-shadow:none!important}
-.gx-why{border:1px solid var(--line);border-radius:14px;background:var(--soft);margin:0!important}
-.gx-why summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;color:var(--brand)}
-.gx-why summary::-webkit-details-marker{display:none}
-.gx-why summary svg{width:16px;height:16px}
-.gx-why summary::after{content:"+";margin-left:auto;font-size:18px;line-height:1}
-.gx-why[open] summary::after{content:"\2013"}
-.gx-why p{margin:0!important;padding:0 14px 14px!important;font-size:14px!important;color:var(--muted)!important}
-.gx-note{display:flex;gap:10px;align-items:flex-start;border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5}
-.gx-note svg{width:18px;height:18px;margin-top:2px}
-.gx-note.warn{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line)}
-.gx-note.info{background:var(--mint);color:var(--ink);border:1px solid var(--mint-line)}
-.gx-note.info svg{color:var(--brand)}
-.gx-nav{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
-.gx .gx-btn{display:inline-flex!important;align-items:center;justify-content:center;gap:8px;min-height:52px!important;height:auto!important;padding:0 26px!important;border-radius:99px!important;font-weight:700!important;font-size:16px!important;cursor:pointer;margin:0!important;box-shadow:none!important;line-height:1.2!important;text-decoration:none!important}
-.gx .gx-go{background:var(--accent)!important;color:var(--accent-ink)!important;border:0!important;min-width:170px}
-.gx .gx-go:hover{filter:brightness(1.05)}
-.gx .gx-go[disabled]{opacity:.6;cursor:wait}
-.gx .gx-ghost{background:#fff!important;color:var(--ink)!important;border:1.5px solid var(--line2)!important}
-.gx-btn svg{width:18px;height:18px}
-.gx-ready{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:26px 0 0!important;padding:0!important;list-style:none!important}
-.gx-ready li{list-style:none!important;display:flex;gap:12px;align-items:flex-start;padding:14px!important;margin:0!important;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
-.gx-ready li::before,.gx-ready li::marker{content:none!important}
-.gx-ready .gx-ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--mint);color:var(--brand);flex:0 0 auto}
-.gx-ready .gx-ic svg{width:20px;height:20px}
-.gx-ready b{display:block;font-size:15px}
-.gx-ready small{color:var(--muted);font-size:13px;line-height:1.45;display:block}
-.gx-facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-size:14px;color:var(--muted)}
-.gx-facts span{display:inline-flex;gap:7px;align-items:center}
-.gx-facts svg{width:16px;height:16px;color:var(--brand)}
-.gx-slot:empty{display:none}
-.gx-rv{display:flex;flex-direction:column;gap:14px;margin-top:24px}
-.gx-sec{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.gx-sech{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--soft);border-bottom:1px solid var(--line)}
-.gx-sech h3{margin:0!important;font-size:15px!important;font-weight:800!important;color:var(--ink)!important}
-.gx .gx-link{background:none!important;border:0!important;color:var(--brand)!important;font-weight:700!important;cursor:pointer;padding:6px!important;font-size:14px!important;margin:0!important;min-height:0!important;height:auto!important;box-shadow:none!important}
-.gx-sec dl{margin:0!important;display:grid;grid-template-columns:minmax(120px,38%) minmax(0,1fr)}
-.gx-sec dt,.gx-sec dd{margin:0!important;padding:10px 16px!important;border-bottom:1px solid var(--line);font-size:14.5px}
-.gx-sec dt{color:var(--muted);font-weight:500}
-.gx-sec dd{font-weight:600;overflow-wrap:anywhere}
-.gx-sec dl > :nth-last-child(-n+2){border-bottom:0}
-.gx-miss{color:var(--err)}
-.gx-check{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;cursor:pointer;margin-top:20px;line-height:1.5}
-.gx-check input{width:20px!important;height:20px!important;margin-top:2px!important;accent-color:var(--brand);flex:0 0 auto}
-.gx-check a{color:var(--brand);font-weight:700}
-.gx-aside{display:flex;flex-direction:column;gap:16px;font-family:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;color:#10241c;position:sticky;top:96px}
-.gx-box{background:#fff;border:1px solid #dde6e1;border-radius:20px;padding:20px}
-.gx-box h4{margin:0 0 12px!important;font-size:12.5px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;color:#5a6e65!important}
-.gx-dest{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;line-height:1.3}
-.gx-dest small{display:block;font-size:13px;font-weight:600;color:#5a6e65}
-.gx-sum{margin:14px 0 0!important}
-.gx-sum div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid #dde6e1;font-size:14px}
-.gx-sum dt{color:#5a6e65;margin:0!important;font-weight:500}
-.gx-sum dd{margin:0!important;font-weight:600;text-align:right;overflow-wrap:anywhere}
-.gx-todo{list-style:none!important;margin:0!important;padding:0!important;display:flex;flex-direction:column;gap:10px}
-.gx-todo li{display:flex;gap:10px;align-items:center;font-size:14px;margin:0!important;padding:0!important}
-.gx-todo li::before{content:none!important}
-.gx-todo i{flex:0 0 auto;width:20px;height:20px;border-radius:50%;border:2px solid #c6d3cc;display:grid;place-items:center}
-.gx-todo li.ok i{background:#1fce7c;border-color:#1fce7c}
-.gx-todo li.ok i::after{content:"";width:8px;height:5px;border-left:2px solid #06321f;border-bottom:2px solid #06321f;transform:rotate(-45deg) translate(1px,-1px)}
-.gx-todo li.ok span{color:#5a6e65}
-.gx-help{background:#e7f7ee;border-color:#bfe9d2}
-.gx-help p{margin:0!important;font-size:14px}
-.gx-help a{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:800;font-size:16px;color:#0b6b4a!important;text-decoration:none!important}
-.gx-trust{display:flex;flex-direction:column;gap:8px;font-size:13px;color:#5a6e65}
-.gx-trust span{display:flex;gap:8px;align-items:center}
-.gx-trust svg{width:16px;height:16px;color:#0b6b4a;flex:0 0 auto}
-.gx-msum{display:none;margin:0 0 16px}
-@media (max-width:1020px){
-  .gx-aside{position:static}
-  .gx-aside > .gx-box:nth-child(-n+2){display:none!important}
-  .gx-msum{display:block;border:1px solid #dde6e1;border-radius:16px;background:#fff;padding:14px 16px}
-  .gx-msum summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
-  .gx-msum summary::-webkit-details-marker{display:none}
-  .gx-msum summary::after{content:"Show";margin-left:auto;font-size:13px;color:#0b6b4a}
-  .gx-msum[open] summary::after{content:"Hide"}
+@media (max-width:980px){
+  .iv-cols{grid-template-columns:minmax(0,1fr)}
+  .iv-sum{position:static;border-radius:16px}
+  .iv-sum-top,.iv-row:not(.keep),.iv-help-box{display:none}
+  .iv-sum-body{padding:14px 18px}
+  .iv-row.keep{border:0;margin:8px 0 0;padding:0}
 }
 @media (max-width:640px){
-  .gx-row2,.gx-choices.c2,.gx-ready{grid-template-columns:minmax(0,1fr)}
-  .gx-date{grid-template-columns:1.3fr 1fr 1fr;gap:8px}
-  .gx-nav{position:sticky;bottom:0;z-index:5;background:#fff;margin-left:calc(-1 * clamp(20px,3.6vw,38px));margin-right:calc(-1 * clamp(20px,3.6vw,38px));padding:12px clamp(20px,3.6vw,38px) calc(12px + env(safe-area-inset-bottom,0px));border-radius:0 0 20px 20px}
-  .gx .gx-go{flex:1;min-width:0}
-  .gx-sec dl{grid-template-columns:minmax(0,1fr)}
-  .gx-sec dt{padding-bottom:0!important;border-bottom:0}
-  .gx-stagenames{display:none}
+  .iv-ps span{display:none}.iv-ps.on span{display:inline;font-size:15px}.iv-prog{gap:10px}
+  .iv-two{grid-template-columns:minmax(0,1fr)}
+  .iv-rb,.iv-rb.iv-c3{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .iv .iv-r{padding:10px 14px!important;gap:10px;font-size:15.5px!important;min-height:54px!important}
+  .iv-three{gap:8px}
+  .iv .iv-sel{padding:0 30px 0 12px!important;background-position:right 10px center!important;font-size:16px!important}
+  .iv-phone{grid-template-columns:120px minmax(0,1fr)}
+  .iv-foot{flex-direction:column-reverse;align-items:stretch;gap:10px}
+  .iv .iv-back{margin:0!important;text-align:center}
+  .iv .iv-go{width:100%}
+  .iv-rv dl{grid-template-columns:minmax(0,1fr);row-gap:0}.iv-rv dd{margin-bottom:8px!important}
 }
-@media (prefers-reduced-motion:no-preference){.gx-screen{animation:gxIn .25s ease}}
-@keyframes gxIn{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* ===== v2 refresh ===== */
-.gx{border-color:#e4ebe7;box-shadow:0 1px 2px rgba(16,36,28,.05),0 24px 48px -28px rgba(16,36,28,.28);border-radius:24px}
-.gx-code{display:inline-grid;place-items:center;min-width:30px;height:22px;padding:0 5px;border-radius:6px;background:var(--mint);color:var(--brand);font-size:11.5px;font-weight:800;letter-spacing:.04em;border:1px solid var(--mint-line);flex:0 0 auto}
-/* one progress indicator, at the top */
-.gx-prog{gap:10px;margin:0 0 26px}
-.gx-steps{display:flex;align-items:center;gap:10px}
-.gx-st{display:flex;align-items:center;gap:8px;flex:0 0 auto;font-size:13.5px;font-weight:700;color:var(--muted)}
-.gx-st i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12.5px;font-weight:800;background:#fff;border:1.5px solid var(--line2);color:var(--muted)}
-.gx-st i svg{width:14px;height:14px}
-.gx-st.on{color:var(--ink)}
-.gx-st.on i{background:var(--ink);border-color:var(--ink);color:#fff}
-.gx-st.done{color:var(--brand)}
-.gx-st.done i{background:var(--mint);border-color:var(--mint-line);color:var(--brand)}
-.gx-stl{flex:1 1 auto;height:1.5px;background:var(--line);border-radius:2px;min-width:12px}
-.gx-stl.done{background:var(--mint-line)}
-.gx-pbar{height:4px;border-radius:99px;background:#eef3f0;overflow:hidden}
-.gx-pbar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#1fce7c,#0fa968);transition:width .4s ease}
-.gx-pmeta{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;font-weight:600;color:var(--muted)}
-/* answer tiles */
-.gx .gx-choice{position:relative;flex-direction:column!important;align-items:flex-start;gap:12px;padding:16px 16px 18px!important;border:1.5px solid #e1e8e4!important;border-radius:16px!important;transition:border-color .15s,box-shadow .15s,transform .15s}
-.gx .gx-choice:hover{border-color:#b9c9c0!important;box-shadow:0 8px 20px -14px rgba(16,36,28,.35)!important;transform:translateY(-1px)}
-.gx .gx-choice[aria-checked="true"]{border-color:var(--brand)!important;background:#fff!important;box-shadow:0 0 0 3px rgba(31,206,124,.18)!important}
-.gx-choice .gx-ic{width:42px;height:42px;border-radius:12px;background:#f1f6f3;border:0}
-.gx-choice[aria-checked="true"] .gx-ic{background:var(--brand);color:#fff}
-.gx-ct b{display:block;font-size:15.5px;font-weight:700;line-height:1.3}
-.gx-ct small{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:3px}
-.gx-tick{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;color:transparent;background:#fff}
-.gx-tick svg{width:13px;height:13px}
-.gx-choice[aria-checked="true"] .gx-tick{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.gx-choices{grid-template-columns:repeat(3,minmax(0,1fr))}
-.gx-choices.c2{grid-template-columns:repeat(4,minmax(0,1fr))}
-/* segmented yes / no */
-.gx-seg{display:inline-flex;gap:4px;padding:4px;background:#f1f5f3;border:1px solid #e3eae6;border-radius:14px;align-self:flex-start;max-width:100%;flex-wrap:wrap}
-.gx .gx-seg button{display:inline-flex!important;align-items:center;justify-content:center;gap:6px;min-width:96px;min-height:42px!important;height:auto!important;padding:8px 18px!important;border:0!important;border-radius:10px!important;background:transparent!important;color:var(--muted)!important;font-weight:700!important;font-size:14.5px!important;cursor:pointer;margin:0!important;box-shadow:none!important;transition:background .15s,color .15s}
-.gx .gx-seg button:hover{color:var(--ink)!important}
-.gx .gx-seg button[aria-checked="true"]{background:#fff!important;color:var(--ink)!important;box-shadow:0 1px 2px rgba(16,36,28,.12),0 4px 12px -6px rgba(16,36,28,.25)!important}
-.gx-seg button svg{width:15px;height:15px;color:var(--brand)}
-.gx-bad .gx-seg{border-color:var(--err)}
-/* question rows */
-.gx-qlist{display:flex;flex-direction:column;border:1px solid #e4ebe7;border-radius:16px;overflow:hidden;background:#fff}
-.gx-qlist > *{padding:16px 18px}
-.gx-qlist > * + *{border-top:1px solid #edf2ef}
-.gx-q{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.gx-q-t{min-width:0;display:flex;flex-direction:column;gap:3px}
-.gx-q-t b{font-size:15px;font-weight:700;line-height:1.35}
-.gx-q-t small{font-size:13px;color:var(--muted);line-height:1.4}
-.gx-q .gx-seg{flex:0 0 auto}
-.gx-q.gx-bad{background:#fdf5f4}
-.gx-qlist > .gx-f,.gx-qlist > .gx-note{background:#fafcfb}
-.gx-qlist > .gx-note{border-radius:0;border-left:0;border-right:0}
-/* work chips */
-.gx-chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.gx .gx-chipo{display:flex!important;align-items:center;gap:12px;padding:12px 14px!important;border:1.5px solid #e1e8e4!important;border-radius:14px!important;background:#fff!important;cursor:pointer;text-align:left;margin:0!important;min-height:0!important;height:auto!important;box-shadow:none!important;color:var(--ink)!important;font-weight:400!important;transition:border-color .15s,box-shadow .15s}
-.gx .gx-chipo:hover{border-color:#b9c9c0!important}
-.gx .gx-chipo[aria-checked="true"]{border-color:var(--brand)!important;box-shadow:0 0 0 3px rgba(31,206,124,.18)!important}
-.gx-chipo-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#f1f6f3;color:var(--brand);flex:0 0 auto}
-.gx-chipo[aria-checked="true"] .gx-chipo-ic{background:var(--accent);color:var(--accent-ink)}
-.gx-chipo-ic svg{width:18px;height:18px}
-.gx-chipo b{display:block;font-size:14.5px;font-weight:700}
-.gx-chipo small{display:block;font-size:12.5px;color:var(--muted)}
-/* balance scale */
-.gx-scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.gx .gx-scale button{display:flex!important;flex-direction:column;align-items:flex-start;gap:10px;padding:14px!important;border:1.5px solid #e1e8e4!important;border-radius:14px!important;background:#fff!important;cursor:pointer;margin:0!important;min-height:0!important;height:auto!important;box-shadow:none!important;color:var(--ink)!important;text-align:left}
-.gx .gx-scale button:hover{border-color:#b9c9c0!important}
-.gx .gx-scale button[aria-checked="true"]{border-color:var(--brand)!important;box-shadow:0 0 0 3px rgba(31,206,124,.18)!important}
-.gx-scale b{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
-.gx-bars{display:flex;align-items:flex-end;gap:3px;height:18px}
-.gx-bars i{width:6px;border-radius:2px;background:#dfe7e2}
-.gx-bars i:nth-child(1){height:6px}.gx-bars i:nth-child(2){height:10px}.gx-bars i:nth-child(3){height:14px}.gx-bars i:nth-child(4){height:18px}
-.gx-bars i.on{background:#9adfbd}
-.gx-scale button[aria-checked="true"] .gx-bars i.on{background:var(--brand)}
-/* typed date */
-.gx-dt{display:flex;align-items:center;gap:6px;min-height:54px;padding:0 14px;border:1.5px solid var(--line2);border-radius:14px;background:#fff;cursor:text;max-width:100%}
-.gx-dt:focus-within{border-color:var(--brand);box-shadow:0 0 0 4px var(--mint)}
-.gx-dt-ic{color:var(--muted);display:grid;place-items:center}
-.gx-dt-ic svg{width:18px;height:18px}
-.gx .gx-dt input{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;margin:0!important;height:40px!important;min-height:0!important;font-size:17px!important;font-weight:600!important;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink)!important;width:2.4ch}
-.gx .gx-dt input[data-seg="y"]{width:4.6ch}
-.gx .gx-dt input::placeholder{color:#a9b8b0!important;font-weight:500}
-.gx-dt i{font-style:normal;color:#b6c4bc;font-weight:600}
-.gx-dt-out{margin-left:auto;padding-left:10px;font-size:13px;font-weight:600;color:var(--brand);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gx-bad .gx-dt,.gx-bad .gx-range{border-color:var(--err)!important}
-/* travel dates range */
-.gx-range{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;border:1.5px solid var(--line2);border-radius:16px;background:#fff;padding:4px}
-.gx .gx-rb{display:flex!important;align-items:center;gap:12px;padding:10px 12px!important;border:0!important;border-radius:12px!important;background:transparent!important;cursor:pointer;text-align:left;margin:0!important;min-height:58px!important;height:auto!important;box-shadow:none!important;color:var(--ink)!important;min-width:0}
-.gx .gx-rb:hover{background:#f6faf8!important}
-.gx .gx-rb.on{background:var(--mint)!important;box-shadow:inset 0 0 0 1.5px var(--brand)!important}
-.gx-rb-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#f1f6f3;color:var(--brand);flex:0 0 auto}
-.gx-rb-ic svg{width:18px;height:18px}
-.gx-rb-t{display:flex;flex-direction:column;min-width:0}
-.gx-rb-t small{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.gx-rb-t b{font-size:15.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gx-rb-t em{font-style:normal;font-weight:500;color:#97a8a0}
-.gx-rsep{display:grid;place-items:center;color:var(--muted);padding:0 6px}
-.gx-rsep svg{width:16px;height:16px}
-.gx-nights{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;background:var(--mint);color:var(--brand);font-size:12.5px;font-weight:800;white-space:nowrap}
-.gx-nights svg{width:13px;height:13px}
-.gx-cal{position:relative;z-index:8;margin-top:-6px;background:#fff;border:1px solid #dfe7e2;border-radius:18px;box-shadow:0 24px 60px -24px rgba(16,36,28,.45);padding:16px;animation:gxIn .18s ease}
-.gx-cal-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
-.gx-cal-tip{margin:0!important;font-size:13.5px!important;font-weight:700;color:var(--brand)!important}
-.gx .gx-cal-nav{width:38px;height:38px!important;min-height:0!important;border-radius:50%!important;border:1px solid var(--line)!important;background:#fff!important;display:grid!important;place-items:center;cursor:pointer;padding:0!important;margin:0!important;box-shadow:none!important;color:var(--ink)!important}
-.gx .gx-cal-nav[disabled]{opacity:.35;cursor:default}
-.gx-cal-nav svg{width:16px;height:16px}
-.gx-cms{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
-.gx-cm-h{margin:0 0 8px!important;text-align:center;font-weight:800;font-size:15px}
-.gx-dow,.gx-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
-.gx-dow span{text-align:center;font-size:11.5px;font-weight:700;color:var(--muted);padding:4px 0}
-.gx .gx-days button{height:40px!important;min-height:0!important;border:0!important;background:transparent!important;border-radius:10px!important;font-size:14px!important;font-weight:600!important;color:var(--ink)!important;cursor:pointer;padding:0!important;margin:0!important;box-shadow:none!important;font-variant-numeric:tabular-nums}
-.gx .gx-days button:hover:not([disabled]){background:#eef6f1!important}
-.gx .gx-days button[disabled]{color:#c7d2cc!important;cursor:default}
-.gx .gx-days button.t{box-shadow:inset 0 0 0 1px var(--line2)!important}
-.gx .gx-days button.in{background:var(--mint)!important;border-radius:0!important}
-.gx .gx-days button.s,.gx .gx-days button.e{background:var(--brand)!important;color:#fff!important}
-.gx-cal-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid #edf2ef}
-.gx .gx-sm{min-height:40px!important;padding:0 20px!important;font-size:14.5px!important;min-width:0}
-/* nav */
-.gx .gx-ghost{border:0!important;background:transparent!important;padding:0 10px!important;color:var(--muted)!important}
-.gx .gx-ghost:hover{color:var(--ink)!important}
-@media (max-width:900px){.gx-choices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.gx-choices{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){
-  .gx-st span{display:none}.gx-st.on span{display:inline}
-  .gx-choices,.gx-choices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gx .gx-choice{padding:14px!important;gap:10px}
-  .gx-ct small{display:none}
-  .gx-q{flex-direction:column;align-items:stretch;gap:10px}
-  .gx-q .gx-seg,.gx-seg{display:flex;width:100%}
-  .gx .gx-seg button{flex:1;min-width:0}
-  .gx-scale{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gx-chips{grid-template-columns:minmax(0,1fr)}
-  .gx-range{grid-template-columns:minmax(0,1fr)}
-  .gx-rsep{padding:2px 0;justify-content:start;padding-left:60px}
-  .gx-rsep > svg{transform:rotate(90deg)}
-  .gx-cal{padding:12px}
-  .gx-dt-out{display:none}
-}
+@media (prefers-reduced-motion:no-preference){.iv-card{animation:ivIn .25s ease}}
+@keyframes ivIn{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 GXCSS;
 }
@@ -344,6 +199,7 @@ function alif_gx_js() {
     retire: '<circle cx="12" cy="7" r="3"/><path d="M6 21v-3.5A5.5 5.5 0 0 1 11.5 12h1a5.5 5.5 0 0 1 5.5 5.5V21"/>',
     pause: '<circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/>',
     chat: '<path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/>',
+    user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-6 7-6s6.2 2.4 7 6"/>',
     cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
     check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
     left: '<path d="m15 6-6 6 6 6"/>', right: '<path d="m9 6 6 6-6 6"/>',
@@ -442,6 +298,7 @@ function alif_gx_js() {
     if (S.refused) L.push("Refused a visa before: " + (S.refused === "yes" ? "Yes" : "No"));
     if (S.refused === "yes" && S.refused_where) L.push("Refusal details: " + S.refused_where);
     if (S.purpose === "other" && S.purpose_other) L.push("Trip details: " + S.purpose_other);
+    var pi = fmt("pp_issue"); if (pi) L.push("Passport issued: " + pi);
     if (S._rest) L.push(S._rest);
     return L.join("\n");
   }
@@ -471,446 +328,264 @@ function alif_gx_js() {
   function fmt(k) { var d = dateOf(k); return d && d !== "bad" ? d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : ""; }
   function label(list, v) { var o = list.filter(function (x) { return x.v === v; })[0]; return o ? o.t : (v || ""); }
 
-  /* ---------- field builders ---------- */
+  /* ---------- small builders (iVisa-style layout) ---------- */
   function err(k) { return S.errs[k] ? '<p class="gx-err" id="gx-' + k + '-err">' + ic("warn") + esc(S.errs[k]) + "</p>" : ""; }
-  function bad(k) { return S.errs[k] ? " gx-bad" : ""; }
-  function why(t) { return '<details class="gx-why"><summary>' + ic("info") + "Why we ask</summary><p>" + t + "</p></details>"; }
-  function note(type, t) { return '<div class="gx-note ' + type + '">' + ic(type === "warn" ? "warn" : "info") + "<span>" + t + "</span></div>"; }
+  function bad(k) { return S.errs[k] ? " iv-bad" : ""; }
+  function note(type, t) { return '<div class="iv-note ' + type + '">' + ic(type === "warn" ? "warn" : "info") + "<span>" + t + "</span></div>"; }
+  function pad(n) { return ("0" + n).slice(-2); }
   function text(k, lbl, o) {
     o = o || {};
-    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + (o.opt ? ' <span class="gx-opt">(optional)</span>' : "") + "</label>" +
-      '<input class="gx-inp" id="gx-' + k + '" data-k="' + k + '" type="' + (o.type || "text") + '" value="' + esc(S[k] || "") + '" placeholder="' + esc(o.ph || "") + '"' + (o.auto ? ' autocomplete="' + o.auto + '"' : "") + (o.mode ? ' inputmode="' + o.mode + '"' : "") + (o.upper ? ' data-upper="1" autocapitalize="characters"' : "") + ">" +
-      (o.hint ? '<p class="gx-hint">' + o.hint + "</p>" : "") + err(k) + "</div>";
+    return '<div class="iv-f' + bad(k) + '"><label for="gx-' + k + '">' + lbl + (o.opt ? ' <span class="iv-opt">(optional)</span>' : "") + "</label>" +
+      '<input class="iv-in" id="gx-' + k + '" data-k="' + k + '" type="' + (o.type || "text") + '" value="' + esc(S[k] || "") + '" placeholder="' + esc(o.ph || "") + '"' + (o.auto ? ' autocomplete="' + o.auto + '"' : "") + (o.mode ? ' inputmode="' + o.mode + '"' : "") + (o.upper ? ' data-upper="1" autocapitalize="characters"' : "") + ">" +
+      (o.help ? '<p class="iv-help">' + o.help + "</p>" : "") + err(k) + "</div>";
   }
-  function country(k, lbl, o) {
-    o = o || {}; var v = S[k];
-    var inner = v && NAME[v] ? flag(v) + "<span>" + esc(NAME[v]) + "</span>" : '<span class="gx-ph">' + esc(o.ph || "Search or select a country") + "</span>";
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
-      '<div class="gx-cs" data-cs="' + k + '" data-pop="' + (o.pop || "from") + '"><button type="button" class="gx-csb" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' + inner + ic("chev", "gx-chev") + "</button></div>" +
-      (o.suggest || "") + (o.hint ? '<p class="gx-hint">' + o.hint + "</p>" : "") + err(k) + "</div>";
+  function select(k, lbl, list, ph, help) {
+    return '<div class="iv-f' + bad(k) + '"><label for="gx-' + k + '">' + lbl + '</label><select class="iv-in iv-sel' + (S[k] ? "" : " ph") + '" id="gx-' + k + '" data-k="' + k + '"><option value="">' + ph + "</option>" +
+      list.map(function (o) { var v = o.v || o, t = o.t || o; return '<option value="' + esc(v) + '"' + (S[k] === v ? " selected" : "") + ">" + esc(t) + "</option>"; }).join("") + "</select>" + (help ? '<p class="iv-help">' + help + "</p>" : "") + err(k) + "</div>";
   }
-  function pad(n) { return ("0" + n).slice(-2); }
-  function dkey(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
-  function toObj(d) { return { y: String(d.getFullYear()), m: String(d.getMonth() + 1), d: String(d.getDate()) }; }
-  function long(k) { var d = dateOf(k); return d && d !== "bad" ? d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : ""; }
-  /* typed date: DD / MM / YYYY in one box */
-  function typed(k, lbl, hint) {
-    var v = S[k] || {};
-    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + "</label>" +
-      '<div class="gx-dt" data-dt="' + k + '"><span class="gx-dt-ic">' + ic("cal") + "</span>" +
-      '<input id="gx-' + k + '" data-seg="d" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="DD" aria-label="Day" value="' + esc(v.d ? pad(v.d) : "") + '">' +
-      '<i>/</i><input data-seg="m" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="MM" aria-label="Month" value="' + esc(v.m ? pad(v.m) : "") + '">' +
-      '<i>/</i><input data-seg="y" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="YYYY" aria-label="Year" value="' + esc(v.y || "") + '">' +
-      '<span class="gx-dt-out" data-dt-out="' + k + '">' + esc(dtOut(k)) + "</span></div>" +
-      (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + err(k) + "</div>";
-  }
-  function dtOut(k) {
-    var d = dateOf(k); if (!d || d === "bad") return "";
-    var txt = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-    if (k === "dob") { var age = TODAY.getFullYear() - d.getFullYear() - ((TODAY.getMonth() < d.getMonth() || (TODAY.getMonth() === d.getMonth() && TODAY.getDate() < d.getDate())) ? 1 : 0); return age >= 0 && age < 130 ? txt + " \u00b7 age " + age : txt; }
-    return txt;
-  }
-  /* travel dates: one range field with a calendar */
-  function range() {
-    var a = long("arrive"), l = long("leave"), nights = "";
-    var A = dateOf("arrive"), L = dateOf("leave");
-    if (A && L && A !== "bad" && L !== "bad" && L > A) { var n = Math.round((L - A) / 864e5); nights = n + (n === 1 ? " night" : " nights"); }
-    return '<div class="gx-f' + bad("arrive") + bad("leave") + '"><span class="gx-lbl">Travel dates</span>' +
-      '<div class="gx-range" id="gx-arrive">' +
-      '<button type="button" class="gx-rb" data-rfocus="arrive"><span class="gx-rb-ic">' + ic("cal") + '</span><span class="gx-rb-t"><small>Arrival</small><b>' + (a || '<em>Add date</em>') + "</b></span></button>" +
-      '<span class="gx-rsep">' + (nights ? '<span class="gx-nights">' + ic("moon") + nights + "</span>" : ic("arrowR")) + "</span>" +
-      '<button type="button" class="gx-rb" id="gx-leave" data-rfocus="leave"><span class="gx-rb-ic">' + ic("cal") + '</span><span class="gx-rb-t"><small>Return</small><b>' + (l || '<em>Add date</em>') + "</b></span></button>" +
-      "</div>" + '<p class="gx-hint">Not fixed yet? Pick your best guess. You can change dates later.</p>' + err("arrive") + err("leave") + "</div>";
-  }
-  function seg(k, opts) {
-    return '<div class="gx-seg" role="radiogroup" id="gx-' + k + '">' + opts.map(function (o) { return '<button type="button" role="radio" data-pick="' + k + '" data-v="' + esc(o[0]) + '" aria-checked="' + (S[k] === o[0]) + '">' + (S[k] === o[0] ? ic("check") : "") + esc(o[1]) + "</button>"; }).join("") + "</div>";
-  }
-  function yn(k, lbl, opts, hint) {
-    opts = opts || [["yes", "Yes"], ["no", "No"]];
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + seg(k, opts) + err(k) + "</div>";
-  }
-  /* question list: one row per yes/no question */
-  function qlist(rows) {
-    return '<div class="gx-qlist">' + rows.map(function (r) {
-      return '<div class="gx-q' + bad(r[0]) + '"><div class="gx-q-t"><b>' + r[1] + "</b>" + (r[2] ? "<small>" + r[2] + "</small>" : "") + err(r[0]) + "</div>" + seg(r[0], r[3] || [["Yes", "Yes"], ["No", "No"]]) + "</div>" + (r[4] || "");
-    }).join("") + "</div>";
-  }
-  function chips(k, lbl, list) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl">' + lbl + '</span><div class="gx-chips" role="radiogroup" id="gx-' + k + '">' +
-      list.map(function (o) { return '<button type="button" role="radio" class="gx-chipo" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-checked="' + (S[k] === o.v) + '"><span class="gx-chipo-ic">' + ic(S[k] === o.v ? "check" : o.icon) + "</span><span><b>" + esc(o.t) + "</b><small>" + esc(o.d) + "</small></span></button>"; }).join("") + "</div>" + err(k) + "</div>";
-  }
-  function scale(k, lbl, hint) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + '<div class="gx-scale" role="radiogroup" id="gx-' + k + '">' +
-      BALANCES.map(function (v, i) { var bars = ""; for (var j = 0; j < 4; j++) bars += "<i" + (j <= i ? ' class="on"' : "") + "></i>"; return '<button type="button" role="radio" data-pick="' + k + '" data-v="' + esc(v) + '" aria-checked="' + (S[k] === v) + '" aria-label="' + esc(v) + '"><span class="gx-bars">' + bars + "</span><b>" + BAL_SHORT[i] + "</b></button>"; }).join("") + "</div>" + err(k) + "</div>";
-  }
-  function choices(k, lbl, list, cls) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
-      '<div class="gx-choices ' + (cls || "") + '" role="radiogroup" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
-      list.map(function (o) { return '<button type="button" class="gx-choice" role="radio" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-checked="' + (S[k] === o.v) + '"><span class="gx-ic">' + ic(o.icon) + '</span><span class="gx-ct"><b>' + esc(o.t) + "</b>" + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + '</span><span class="gx-tick">' + ic("check") + "</span></button>"; }).join("") +
+  function radios(k, lbl, list, cls, help) {
+    return '<div class="iv-f' + bad(k) + '"><span class="iv-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" + (help ? '<p class="iv-help">' + help + "</p>" : "") +
+      '<div class="iv-rb ' + (cls || "") + '" role="radiogroup" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
+      list.map(function (o) { var on = S[k] === o.v; return '<button type="button" class="iv-r' + (on ? " on" : "") + '" role="radio" aria-checked="' + on + '" data-pick="' + k + '" data-v="' + esc(o.v) + '"><i></i><span>' + esc(o.t) + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + "</span></button>"; }).join("") +
       "</div>" + err(k) + "</div>";
   }
-  function select(k, lbl, list, ph) {
-    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + '</label><select class="gx-sel" id="gx-' + k + '" data-k="' + k + '"><option value="">' + ph + "</option>" +
-      list.map(function (v) { return "<option" + (S[k] === v ? " selected" : "") + ">" + esc(v) + "</option>"; }).join("") + "</select>" + err(k) + "</div>";
+  function yn(k, lbl, vals, help) { vals = vals || ["Yes", "No"]; return radios(k, lbl, [{ v: vals[0], t: "Yes" }, { v: vals[1], t: "No" }], "", help); }
+  function country(k, lbl, o) {
+    o = o || {}; var v = S[k];
+    var inner = v && NAME[v] ? flag(v) + "<span>" + esc(NAME[v]) + "</span>" : '<span class="iv-ph">' + esc(o.ph || "Select country") + "</span>";
+    return '<div class="iv-f' + bad(k) + '"><span class="iv-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
+      '<div class="gx-cs" data-cs="' + k + '" data-pop="' + (o.pop || "from") + '"><button type="button" class="gx-csb iv-in" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' + inner + ic("chev", "gx-chev") + "</button></div>" +
+      (o.help ? '<p class="iv-help">' + o.help + "</p>" : "") + err(k) + "</div>";
+  }
+  function date3(k, lbl, from, to, desc, help) {
+    var v = S[k] || {}, years = [], y;
+    if (desc) for (y = to; y >= from; y--) years.push(y); else for (y = from; y <= to; y++) years.push(y);
+    var mo = MONTHS.map(function (m, i) { return '<option value="' + (i + 1) + '"' + (+v.m === i + 1 ? " selected" : "") + ">" + m + "</option>"; }).join("");
+    var da = ""; for (var d = 1; d <= 31; d++) da += '<option value="' + d + '"' + (+v.d === d ? " selected" : "") + ">" + d + "</option>";
+    var ye = years.map(function (yy) { return '<option value="' + yy + '"' + (+v.y === yy ? " selected" : "") + ">" + yy + "</option>"; }).join("");
+    return '<div class="iv-f' + bad(k) + '"><span class="iv-lbl" id="gx-' + k + '-lbl">' + lbl + '</span><div class="iv-three" role="group" aria-labelledby="gx-' + k + '-lbl">' +
+      '<select class="iv-in iv-sel' + (v.m ? "" : " ph") + '" id="gx-' + k + '" data-d3="' + k + '" data-part="m" aria-label="Month"><option value="">Month</option>' + mo + "</select>" +
+      '<select class="iv-in iv-sel' + (v.d ? "" : " ph") + '" data-d3="' + k + '" data-part="d" aria-label="Day"><option value="">Day</option>' + da + "</select>" +
+      '<select class="iv-in iv-sel' + (v.y ? "" : " ph") + '" data-d3="' + k + '" data-part="y" aria-label="Year"><option value="">Year</option>' + ye + "</select>" +
+      "</div>" + (help ? '<p class="iv-help">' + help + "</p>" : "") + err(k) + "</div>";
+  }
+  function ymdStr(k) { var v = S[k]; return v && v.y && v.m && v.d ? v.y + "-" + pad(v.m) + "-" + pad(v.d) : ""; }
+  function dateIn(k, lbl, min) {
+    return '<div class="iv-f' + bad(k) + '"><label for="gx-' + k + '">' + lbl + '</label><input class="iv-in iv-date" type="date" id="gx-' + k + '" data-dn="' + k + '" value="' + ymdStr(k) + '" min="' + min + '">' + err(k) + "</div>";
   }
   function phone() {
     var c = S.code;
-    return '<div class="gx-f' + bad("phone") + bad("code") + '"><label class="gx-lbl" for="gx-phone">Mobile number</label>' +
-      '<div class="gx-phone"><div class="gx-cs" data-cs="code" data-dial="1"><button type="button" class="gx-csb" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code" id="gx-code">' +
-      (c ? flag(c) + "<span>" + esc(DIAL[c] || "") + "</span>" : '<span class="gx-ph">Code</span>') + ic("chev", "gx-chev") + "</button></div>" +
-      '<input class="gx-inp" id="gx-phone" data-k="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="3001234567" value="' + esc(S.phone || "") + '"></div>' +
-      '<p class="gx-hint">Search the code by country name or number, for example "Pakistan" or "92". Leave out the first 0.</p>' + err("code") + err("phone") + "</div>";
+    return '<div class="iv-f' + bad("phone") + bad("code") + '"><label for="gx-phone">Mobile number</label>' +
+      '<div class="iv-phone"><div class="gx-cs" data-cs="code" data-dial="1"><button type="button" class="gx-csb iv-in" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code" id="gx-code">' +
+      (c ? flag(c) + "<span>" + esc(DIAL[c] || "") + "</span>" : '<span class="iv-ph">Code</span>') + ic("chev", "gx-chev") + "</button></div>" +
+      '<input class="iv-in" id="gx-phone" data-k="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="300 1234567" value="' + esc(S.phone || "") + '"></div>' +
+      '<p class="iv-help">Leave out the first 0.</p>' + err("code") + err("phone") + "</div>";
   }
+  function isoToday(d) { d = d || TODAY; return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
 
   /* ---------- screens ---------- */
-  var SCREENS = [
-    { id: "start", stage: 0, title: "Apply for your visa in about 6 minutes", lead: "We ask one short group of questions at a time. Have these ready and you won't need to stop halfway.",
+  var REASONS = [{ v: "tourism", t: "Visit & tourism" }, { v: "family-visit", t: "Family & friends" }, { v: "business", t: "Business" }, { v: "transit", t: "Transit" }, { v: "visa-invitation", t: "Invitation letter" }, { v: "other", t: "Something else" }];
+  var WORK = [{ v: "employed", t: "Employed" }, { v: "business", t: "Self-employed" }, { v: "student", t: "Student" }, { v: "retired", t: "Retired" }, { v: "unemployed", t: "Not working" }];
+  var STAYOPT = [{ v: "Hotel", t: "Hotel" }, { v: "Staying with family or friends", t: "With family or friends" }, { v: "Rented apartment", t: "Rented flat or apartment" }, { v: "Not booked yet", t: "Not booked yet" }];
+  var SC = [
+    { id: "trip", stage: 1, pct: 12, h: "Your trip", lede: "Tell us where you're going and why.",
+      body: function () { var minLeave = dateOf("arrive"); minLeave = minLeave && minLeave !== "bad" ? isoToday(new Date(minLeave.getFullYear(), minLeave.getMonth(), minLeave.getDate() + 1)) : isoToday();
+        return country("to", "Where are you going?", { pop: "to", ph: "Select country" }) +
+          radios("purpose", "Main reason for your trip", REASONS) +
+          (S.purpose === "other" ? text("purpose_other", "Tell us about your trip", { ph: "For example: a wedding or medical treatment" }) : "") +
+          '<div class="iv-two">' + dateIn("arrive", "Arrival date", isoToday()) + dateIn("leave", "Return date", minLeave) + "</div>" +
+          select("stay", "Where will you stay?", STAYOPT, "Select an option"); },
+      check: function () { var a = dateOf("arrive"), l = dateOf("leave");
+        return { to: !S.to && "Select the country you're going to.", purpose: !S.purpose && "Select the main reason for your trip.", purpose_other: S.purpose === "other" && !S.purpose_other && "Tell us briefly what the trip is for.",
+          arrive: !a || a === "bad" ? "Enter your arrival date." : a < TODAY ? "Your arrival date can't be in the past." : "",
+          leave: !l || l === "bad" ? "Enter your return date." : (a && a !== "bad" && l <= a) ? "Your return date must be after your arrival date." : "",
+          stay: !S.stay && "Select where you'll stay." }; } },
+    { id: "you", stage: 1, pct: 26, h: "Personal details", lede: "Enter the details as they appear on your passport.",
+      body: function () { return '<div class="gx-slot iv-scan" data-slot="scan"></div>' + (scanNode ? '<div class="iv-or">Or fill in manually</div>' : "") +
+          country("from", "Passport", { ph: "Select country" }) +
+          '<div class="iv-two">' + text("first", "First and middle name", { ph: "Muhammad Ali", auto: "given-name" }) + text("last", "Last name", { ph: "Khan", auto: "family-name" }) + "</div>" +
+          date3("dob", "Date of birth", YEAR - 100, YEAR, true) +
+          '<div class="iv-two">' + radios("gender", "Gender", [{ v: "Male", t: "Male" }, { v: "Female", t: "Female" }]) + select("marital", "Marital status", ["Single", "Married", "Divorced", "Widowed"], "Select") + "</div>"; },
+      check: function () { var d = dateOf("dob");
+        return { from: !S.from ? "Select the country that issued your passport." : S.from === S.to ? "Your passport country and destination are the same. Please check." : "", first: !S.first && "Enter your first name.", last: !S.last && "Enter your last name.",
+          dob: !d ? "Enter your date of birth." : d === "bad" ? "That date doesn't exist." : d > TODAY ? "Date of birth can't be in the future." : "", gender: !S.gender && "Select your gender.", marital: !S.marital && "Select your marital status." }; } },
+    { id: "passport", stage: 1, pct: 40, h: "Passport details", lede: "You'll find these on the photo page of your passport.",
+      body: function () { return text("pp_no", "Passport number", { ph: "AB1234567", upper: true }) +
+          date3("pp_issue", "Issue date", YEAR - 15, YEAR, true) +
+          date3("pp_exp", "Expiry date", YEAR, YEAR + 15, false, "Your passport should be valid for at least 6 months after you return.") +
+          '<div data-warn>' + (S.warn ? note("warn", S.warn) : "") + "</div>"; },
+      check: function () { var i = dateOf("pp_issue"), e = dateOf("pp_exp");
+        return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces." : "",
+          pp_issue: !i ? "Enter the issue date." : i === "bad" ? "That date doesn't exist." : i > TODAY ? "The issue date can't be in the future." : "",
+          pp_exp: !e ? "Enter the expiry date." : e === "bad" ? "That date doesn't exist." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : "" }; } },
+    { id: "contact", stage: 1, pct: 54, h: "Contact details", lede: "We'll send your visa and any updates here.",
+      body: function () { return text("email", "Email address", { type: "email", ph: "name@example.com", auto: "email", mode: "email", help: "Your visa will be sent to this email address." }) + phone() +
+          '<label class="iv-chk"><input type="checkbox" id="gx-wa" data-wa="1"' + (S.wa === "yes" ? " checked" : "") + "><span>You can contact me on WhatsApp about my application</span></label>"; },
+      check: function () { var p = (S.phone || "").replace(/[\s-]/g, "").replace(/^0+/, "");
+        return { email: !S.email ? "Enter your email address." : !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(S.email) ? "Enter an email address like name@example.com." : "", code: !S.code && "Select your country code.", phone: !p ? "Enter your mobile number." : !/^\d{6,14}$/.test(p) ? "Use numbers only, without the country code." : "" }; } },
+    { id: "address", stage: 1, pct: 66, h: "Address details", lede: "Your home address in the country where you live.",
+      body: function () { return country("res", "Country of residence", { ph: "Select country", help: "The country where you live permanently." }) +
+          '<div class="iv-two">' + text("addr", "Home address", { ph: "House 12, Street 4", auto: "street-address" }) + text("city", "City or town", { auto: "address-level2" }) + "</div>" +
+          '<div class="iv-two">' + text("region", "State or province", { auto: "address-level1", opt: true }) + text("zip", "Postcode", { auto: "postal-code", opt: true }) + "</div>"; },
+      check: function () { return { res: !S.res && "Select the country where you live.", addr: !S.addr && "Enter your home address.", city: !S.city && "Enter your city or town." }; } },
+    { id: "money", stage: 1, pct: 80, h: "Work and finances", lede: "A few quick questions about your job and savings.",
+      body: function () { return radios("emp", "What do you do?", WORK, "iv-c3") +
+          select("bal", "Roughly how much is in your bank account?", BALANCES, "Select an amount", "In US dollars. A rough figure is fine.") +
+          yn("stmt", "Can you get a bank statement for the last 6 months?") +
+          yn("prop", "Do you own property in your home country?"); },
+      check: function () { return { emp: !S.emp && "Select what you do.", bal: !S.bal && "Select an amount.", stmt: !S.stmt && "Select Yes or No.", prop: !S.prop && "Select Yes or No." }; } },
+    { id: "history", stage: 1, pct: 94, h: "Additional information", lede: "Please answer honestly. Embassies check this.",
+      body: function () { return yn("travelled", "Have you travelled abroad in the last 10 years?") +
+          (S.travelled === "Yes" ? text("travelled_where", "Which countries?", { ph: "UAE, Saudi Arabia" }) : "") +
+          yn("refused", "Have you ever been refused a visa?", ["yes", "no"]) +
+          (S.refused === "yes" ? text("refused_where", "Which country, and when?", { ph: "United Kingdom, 2023" }) : "") +
+          yn("crim", "Have you ever been convicted of a criminal offence?"); },
+      check: function () { return { travelled: !S.travelled && "Select Yes or No.", travelled_where: S.travelled === "Yes" && !S.travelled_where && "List the countries you visited.", refused: !S.refused && "Select Yes or No.", refused_where: S.refused === "yes" && !S.refused_where && "Tell us which country and when.", crim: !S.crim && "Select Yes or No." }; } },
+    { id: "people", stage: 2, pct: 50, h: "Add travellers", lede: "Is anyone else travelling with you on this trip? If not, continue.",
+      body: function () { return '<div class="iv-trav"><span class="iv-av">' + esc(((S.first || "Y")[0] + ((S.last || "")[0] || "")).toUpperCase()) + "</span><div><b>" + esc([S.first, S.last].filter(Boolean).join(" ") || "You") + "</b><small>Main applicant</small></div></div>" + '<div class="gx-slot" data-slot="extra"></div>'; } },
+    { id: "review", stage: 3, pct: 50, h: "Review your order", lede: "Check your details, then continue to payment.",
       body: function () {
-        return '<ul class="gx-ready">' +
-          '<li><span class="gx-ic">' + ic("passport") + "</span><span><b>Your passport</b><small>Passport number and expiry date</small></span></li>" +
-          '<li><span class="gx-ic">' + ic("plane") + "</span><span><b>Your travel plans</b><small>Rough arrival and return dates are fine</small></span></li>" +
-          '<li><span class="gx-ic">' + ic("pin") + "</span><span><b>Your home address</b><small>Where you live now, with postcode</small></span></li>" +
-          '<li><span class="gx-ic">' + ic("bank") + "</span><span><b>Work and money</b><small>Your job and an idea of your bank balance</small></span></li></ul>" +
-          '<div class="gx-facts"><span>' + ic("save") + "Answers save as you go</span><span>" + ic("lock") + "256-bit encrypted</span><span>" + ic("shield") + "Nothing to pay until you review everything</span></div>";
-      }, next: "Start my application" },
-    { id: "trip", stage: 0, title: "Where are you going, and why?", lead: "This decides which visa you need and which documents we ask for.",
-      body: function () {
-        return country("to", "Destination country", { ph: "Where are you travelling to?", pop: "to" }) +
-          country("from", "Passport country", { ph: "Which country issued your passport?", hint: "Choose the country printed on your passport, even if you live somewhere else." }) +
-          choices("purpose", "Main reason for your trip", PURPOSES) +
-          (S.purpose === "other" ? text("purpose_other", "Tell us about your trip", { ph: "For example: medical treatment, a wedding, a sports event" }) : "") +
-          why("Visa rules depend on your passport, not where you live. A Pakistani passport holder living in Dubai still applies as a Pakistani citizen.");
-      },
-      check: function () { return { to: !S.to && "Choose the country you are travelling to.", from: !S.from && "Choose the country that issued your passport.", same: S.to && S.to === S.from && "Your destination and passport country are the same. Check both.", purpose: !S.purpose && "Pick the main reason for your trip.", purpose_other: S.purpose === "other" && !S.purpose_other && "Tell us briefly what the trip is for." }; } },
-    { id: "dates", stage: 0, title: "When are you travelling?", lead: "Pick your arrival and return dates. Your best estimate is fine.",
-      body: function () {
-        return range() + choices("stay", "Where will you stay?", STAYS, "c2") +
-          yn("flights", "Have you booked your flights?", [["yes", "Yes, booked"], ["no", "Not yet"]]) +
-          (S.flights === "no" ? note("info", "You don't need to buy tickets before your visa is approved. If the embassy asks for a flight plan, we can arrange a flight reservation for you.") : "") +
-          why("Embassies check that your trip has a clear start and end date and that the length of stay matches the visa.");
-      },
-      check: function () {
-        var a = dateOf("arrive"), l = dateOf("leave");
-        return { arrive: !a ? "Choose your arrival date." : a === "bad" ? "Choose a valid arrival date." : a < TODAY ? "Your arrival date can't be in the past." : "",
-          leave: !l ? "Choose your return date." : l === "bad" ? "Choose a valid return date." : (a && a !== "bad" && l <= a) ? "Your return date must be after your arrival date." : "",
-          stay: !S.stay && "Choose where you will stay.", flights: !S.flights && "Tell us if your flights are booked." };
-      } },
-    { id: "you", stage: 1, title: "Tell us about yourself", lead: "Type your name exactly as it appears on your passport, including middle names.",
-      body: function () {
-        return '<div class="gx-slot" data-slot="scan"></div>' +
-          '<div class="gx-row2">' + text("first", "First and middle names", { ph: "Muhammad Ali", auto: "given-name" }) + text("last", "Last name (surname)", { ph: "Khan", auto: "family-name" }) + "</div>" +
-          typed("dob", "Date of birth", "Type it as day, month, year. For example 20 05 1990.") +
-          yn("gender", "Gender as shown on your passport", [["Male", "Male"], ["Female", "Female"], ["Other", "Other"]]) +
-          select("marital", "Marital status", ["Single", "Married", "Divorced", "Widowed"], "Choose your status") +
-          why("Your visa is checked against your passport at the border. A single wrong letter in your name can mean a refused or invalid visa.");
-      },
-      check: function () {
-        var d = dateOf("dob");
-        return { first: !S.first && "Enter your first name exactly as on your passport.", last: !S.last && "Enter your last name (surname) as on your passport.",
-          dob: !d ? "Enter your full date of birth." : d === "bad" ? "That date doesn't exist. Check the day and month." : d > TODAY ? "Your date of birth can't be in the future." : d.getFullYear() < YEAR - 120 ? "Check the year of birth." : "",
-          gender: !S.gender && "Choose the gender shown on your passport.", marital: !S.marital && "Choose your marital status." };
-      } },
-    { id: "contact", stage: 1, title: "How can we reach you?", lead: "We send updates about your application here, and your adviser may message you if a document is missing.",
-      body: function () {
-        return text("email", "Email address", { type: "email", ph: "you@example.com", auto: "email", mode: "email", hint: "Your confirmation and visa documents are sent to this address." }) +
-          phone() + yn("wa", "Can we message you on WhatsApp on this number?", [["yes", "Yes"], ["no", "No, phone and email only"]]) +
-          why("Embassies sometimes ask for a document at short notice. A WhatsApp message is the fastest way for your adviser to reach you.");
-      },
-      check: function () {
-        var p = (S.phone || "").replace(/[\s-]/g, "").replace(/^0+/, "");
-        return { email: !S.email ? "Enter your email address." : !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(S.email) ? "Check your email address. It should look like name@example.com." : "",
-          code: !S.code && "Choose your country code.", phone: !p ? "Enter your mobile number." : !/^\d{6,14}$/.test(p) ? "Use numbers only, without the country code." : "", wa: !S.wa && "Choose Yes or No." };
-      } },
-    { id: "address", stage: 1, title: "Where do you live?", lead: "Your home address now. It must be in the country where you live.",
-      body: function () {
-        return country("res", "Country of residence", { ph: "Search or select a country", hint: "The country where you live permanently." }) +
-          text("addr", "Home address", { ph: "House 12, Street 4, Block B", auto: "street-address" }) +
-          '<div class="gx-row2">' + text("city", "City or town", { ph: "Lahore", auto: "address-level2" }) + text("region", "State or province", { ph: "Punjab", auto: "address-level1", opt: true }) + "</div>" +
-          text("zip", "Postcode or ZIP", { ph: "54000", auto: "postal-code", opt: true }) +
-          why("You usually apply from the country where you live. Your address also tells us which visa centre or embassy handles your file.");
-      },
-      check: function () { return { res: !S.res && "Choose the country where you live.", addr: !S.addr && "Enter your home address.", city: !S.city && "Enter your city or town." }; } },
-    { id: "passport", stage: 1, title: "Your passport", lead: "Open your passport at the photo page. Everything we need is printed there.",
-      body: function () {
-        return text("pp_no", "Passport number", { ph: "AB1234567", upper: true, hint: "Usually 7 to 9 letters and numbers, top right of the photo page. No spaces." }) +
-          typed("pp_exp", "Expiry date", "Printed under \u201cDate of expiry\u201d on the photo page.") +
-          warnHtml() +
-          why("Most countries need your passport to be valid for at least 6 months after you return, with two blank pages. We check this now so there are no surprises later.");
-      },
-      check: function () {
-        var e = dateOf("pp_exp");
-        return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces or dashes." : "",
-          pp_exp: !e ? "Enter your passport's expiry date." : e === "bad" ? "That date doesn't exist. Check the day and month." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : e.getFullYear() > YEAR + 20 ? "Check the year. Passports are valid for 10 years at most." : "" };
-      } },
-    { id: "money", stage: 1, title: "Work & finances", lead: "Quick questions so your adviser knows which documents to prepare. Pick the closest answers.",
-      body: function () {
-        return chips("emp", "Your work", JOBS) +
-          scale("bal", "Money in your bank account", "Roughly, in US dollars. An estimate is fine.") +
-          '<div class="gx-f"><span class="gx-lbl">A few quick checks</span>' + qlist([
-            ["stmt", "Can you get a 6-month bank statement?", "Most embassies ask for the last 3 to 6 months."],
-            ["prop", "Do you own property at home?", "A house, flat or land in your name."],
-            ["sponsor", "Is someone else paying for this trip?", "For example a family member or your employer.", [["yes", "Yes"], ["no", "No"]], S.sponsor === "yes" ? note("info", "We'll ask for your sponsor's details and a support letter later.") : ""]
-          ]) + "</div>" +
-          why("These answers build your personal document checklist. They are only used for your application.");
-      },
-      check: function () { return { emp: !S.emp && "Choose your work situation.", bal: !S.bal && "Choose the closest amount.", stmt: !S.stmt && "Choose Yes or No.", prop: !S.prop && "Choose Yes or No.", sponsor: !S.sponsor && "Choose Yes or No." }; } },
-    { id: "history", stage: 1, title: "Travel history", lead: "Answer honestly. Embassies can see past applications, and a wrong answer can lead to a refusal.",
-      body: function () {
-        return qlist([
-          ["travelled", "Have you travelled abroad in the last 10 years?", "", null, S.travelled === "Yes" ? text("travelled_where", "Which countries?", { ph: "UAE, Saudi Arabia, Türkiye", hint: "Any order. Dates are not needed now." }) : ""],
-          ["refused", "Have you ever been refused a visa?", "For any country.", [["yes", "Yes"], ["no", "No"]], S.refused === "yes" ? text("refused_where", "Which country, and roughly when?", { ph: "United Kingdom, 2023" }) + note("info", "A past refusal doesn't stop you applying. Your adviser will help you address it.") : ""],
-          ["crim", "Have you ever been convicted of a criminal offence?", "In any country. Many visa forms ask this."]
-        ]);
-      },
-      check: function () { return { travelled: !S.travelled && "Choose Yes or No.", travelled_where: S.travelled === "Yes" && !S.travelled_where && "List the countries you visited.", refused: !S.refused && "Choose Yes or No.", refused_where: S.refused === "yes" && !S.refused_where && "Tell us which country and roughly when.", crim: !S.crim && "Choose Yes or No." }; } },
-    { id: "people", stage: 1, title: "Is anyone travelling with you?", lead: "Add family members or colleagues who need a visa for the same trip. If it's just you, press Continue.",
-      body: function () { return '<div class="gx-slot" data-slot="extra"></div>'; } },
-    { id: "review", stage: 2, title: "Check your answers", lead: "Make sure everything matches your passport. Use Edit to change anything.",
-      body: function () {
-        function row(k, v) { return "<dt>" + k + "</dt><dd>" + (v ? esc(v) : '<span class="gx-miss">Missing</span>') + "</dd>"; }
-        function sec(t, id, rows) { return '<section class="gx-sec"><div class="gx-sech"><h3>' + t + '</h3><button type="button" class="gx-link" data-goto="' + id + '">Edit</button></div><dl>' + rows + "</dl></section>"; }
+        function row(k, v) { return "<dt>" + k + "</dt><dd>" + (v ? esc(v) : '<span class="iv-miss">Missing</span>') + "</dd>"; }
+        function sec(t, id, rows) { return '<div class="iv-rv"><div class="iv-rvh"><b>' + t + '</b><button type="button" class="iv-link" data-goto="' + id + '">Edit</button></div><dl>' + rows + "</dl></div>"; }
+        var yesno = function (v) { return /^yes$/i.test(v || "") ? "Yes" : /^no$/i.test(v || "") ? "No" : ""; };
         var extra = [].map.call(form.querySelectorAll("[data-extra-list] li[data-saved='1']"), function (li) { var b = li.querySelector("strong,b,h4,p"); return b ? b.textContent.trim() : ""; }).filter(Boolean);
-        var yesno = function (v) { return v === "yes" || v === "Yes" ? "Yes" : v === "no" || v === "No" ? "No" : ""; };
-        return '<div class="gx-rv">' +
-          sec("Trip", "trip", row("Destination", NAME[S.to]) + row("Passport country", NAME[S.from]) + row("Reason", S.purpose === "other" ? (S.purpose_other || "Other") : label(PURPOSES, S.purpose))) +
-          sec("Dates and stay", "dates", row("Arrival", fmt("arrive")) + row("Return", fmt("leave")) + row("Staying at", label(STAYS, S.stay)) + row("Flights", S.flights === "yes" ? "Booked" : S.flights === "no" ? "Not booked yet" : "")) +
-          sec("About you", "you", row("Name", [S.first, S.last].filter(Boolean).join(" ")) + row("Date of birth", fmt("dob")) + row("Gender", S.gender) + row("Marital status", S.marital)) +
-          sec("Passport", "passport", row("Number", S.pp_no) + row("Expires", fmt("pp_exp"))) +
-          sec("Contact", "contact", row("Email", S.email) + row("Mobile", S.code && S.phone ? (DIAL[S.code] || "") + " " + S.phone : "") + row("WhatsApp", yesno(S.wa))) +
-          sec("Address", "address", row("Country", NAME[S.res]) + row("Address", [S.addr, S.city, S.region, S.zip].filter(Boolean).join(", "))) +
-          sec("Work and money", "money", row("Work", label(JOBS, S.emp)) + row("Bank balance", S.bal) + row("Bank statement", yesno(S.stmt)) + row("Owns property", yesno(S.prop)) + row("Paid by", S.sponsor === "yes" ? "Sponsor" : S.sponsor === "no" ? "Applicant" : "")) +
-          sec("Travel history", "history", row("Travelled abroad", S.travelled === "Yes" ? "Yes" + (S.travelled_where ? ", " + S.travelled_where : "") : yesno(S.travelled)) + row("Visa refused before", S.refused === "yes" ? "Yes" + (S.refused_where ? ", " + S.refused_where : "") : yesno(S.refused)) + row("Criminal conviction", yesno(S.crim))) +
+        return sec("Trip", "trip", row("Destination", NAME[S.to]) + row("Reason", S.purpose === "other" ? (S.purpose_other || "Something else") : label(REASONS, S.purpose)) + row("Dates", fmt("arrive") && fmt("leave") ? fmt("arrive") + " – " + fmt("leave") : "") + row("Staying at", label(STAYOPT, S.stay))) +
+          sec("Personal details", "you", row("Name", [S.first, S.last].filter(Boolean).join(" ")) + row("Passport", NAME[S.from]) + row("Date of birth", fmt("dob")) + row("Gender", S.gender) + row("Marital status", S.marital)) +
+          sec("Passport", "passport", row("Number", S.pp_no) + row("Issued", fmt("pp_issue")) + row("Expires", fmt("pp_exp"))) +
+          sec("Contact and address", "contact", row("Email", S.email) + row("Mobile", S.code && S.phone ? (DIAL[S.code] || "") + " " + S.phone : "") + row("Lives in", NAME[S.res]) + row("Address", [S.addr, S.city, S.region, S.zip].filter(Boolean).join(", "))) +
+          sec("Work and history", "money", row("Work", label(WORK, S.emp)) + row("Bank balance", S.bal) + row("Bank statement", yesno(S.stmt)) + row("Owns property", yesno(S.prop)) + row("Travelled abroad", S.travelled === "Yes" ? "Yes" + (S.travelled_where ? ", " + S.travelled_where : "") : yesno(S.travelled)) + row("Refused a visa", S.refused === "yes" ? "Yes" + (S.refused_where ? ", " + S.refused_where : "") : yesno(S.refused)) + row("Criminal conviction", yesno(S.crim))) +
           sec("Travellers", "people", row("Main applicant", [S.first, S.last].filter(Boolean).join(" ")) + "<dt>Also travelling</dt><dd>" + (extra.length ? esc(extra.join(", ")) : "No one else") + "</dd>") +
-          "</div>" +
-          '<label class="gx-check' + bad("agree") + '"><input type="checkbox" id="gx-agree" data-agree="1"' + (rget("agree_terms") ? " checked" : "") + '><span>I confirm the information is correct and complete, and I agree to the Alif Visa <a href="/terms/" target="_blank" rel="noopener">Terms and Conditions</a> and <a href="/refund-policy/" target="_blank" rel="noopener">Refund Policy</a>. False information may lead to my application being refused.</span></label>' +
-          err("agree") +
-          '<div style="margin-top:16px">' + note("info", (LOGGED_IN ? "" : "You'll sign in or create a free account next, so you can track your application. ") + "Your Alif Visa service fee is shown before you pay. Card payments are handled securely by Stripe. Government or visa-centre fees are separate where they apply.") + "</div>";
-      },
-      check: function () {
-        var miss = SCREENS.slice(1, 10).filter(function (s) { return s.check && hasErr(s.check()); })[0];
-        return { agree: miss ? "Some answers are missing in “" + miss.title + "”. Press Edit to complete them." : !rget("agree_terms") && "Tick the box to confirm your details and accept the Terms." };
-      }, next: LOGGED_IN ? "Continue to payment" : "Continue" }
+          '<div class="iv-total"><span>Alif Visa service fee</span><b>Shown before you pay</b></div>' +
+          '<label class="iv-chk' + bad("agree") + '"><input type="checkbox" id="gx-agree" data-agree="1"' + (rget("agree_terms") ? " checked" : "") + '><span>I confirm my details are correct and I agree to the <a href="/terms/" target="_blank" rel="noopener">Terms and Conditions</a> and <a href="/refund-policy/" target="_blank" rel="noopener">Refund Policy</a>.</span></label>' + err("agree") +
+          (LOGGED_IN ? "" : '<p class="iv-help" style="margin-top:-8px!important">You\'ll sign in or create a free account before paying, so you can track your application.</p>'); },
+      go: LOGGED_IN ? "Continue to payment" : "Continue" }
   ];
-  var IDX = {}; SCREENS.forEach(function (s, i) { IDX[s.id] = i; });
-  var TOTAL = SCREENS.length - 1;
+  var IDX = {}; SC.forEach(function (s, i) { IDX[s.id] = i; });
+  var TOTAL = SC.length - 1;
   function hasErr(e) { for (var k in e) if (e[k]) return true; return false; }
+  function firstGap() { for (var i = 0; i < TOTAL; i++) if (SC[i].check && hasErr(SC[i].check())) return i; return -1; }
 
   /* ---------- mount ---------- */
-  var root = document.createElement("div"); root.className = "gx"; root.id = "gx";
+  var root = document.createElement("div"); root.className = "iv"; root.id = "gx";
   var holder = document.createElement("div"); holder.hidden = true; holder.className = "gx-holder";
   var steps = form.querySelector(".avx-steps");
-  if (steps && steps.nextSibling) form.insertBefore(root, steps.nextSibling); else form.insertBefore(root, form.firstChild);
+  form.insertBefore(root, form.firstChild);
   form.appendChild(holder);
   form.classList.add("gx-on");
+  document.documentElement.classList.add("iv-page");
   var scanNode = form.querySelector(".alif-passport-scan");
   var extraNode = form.querySelector(".alif-extra-travellers");
   var addNode = form.querySelector("[data-extra-add-wrap]");
   var MOVE = { scan: [scanNode], extra: [extraNode, addNode] };
   function park() { [scanNode, extraNode, addNode].forEach(function (n) { if (n && n.parentNode !== holder) holder.appendChild(n); }); }
   park();
-  var side = document.querySelector(".avf__help");
-  var aside = document.createElement("div"); aside.className = "gx-aside";
-  if (side) { side.appendChild(aside); side.classList.add("gx-side-on"); }
-  var heroP = document.querySelector(".avx-hero p"); if (heroP) heroP.textContent = "Answer a few short questions, one screen at a time. Your answers save as you go.";
+  var heroP = document.querySelector(".avx-hero p"); if (heroP) heroP.textContent = "A few short steps. Your answers save as you go.";
+  root.addEventListener("click", function (e) { var g = e.target.closest("[data-goto]"); if (g) { S.ret = true; go(IDX[g.getAttribute("data-goto")]); } });
 
+  function visaName() { var el = document.querySelector("[data-avr-vname]"); var v = el ? el.textContent.trim() : ""; return v || "visa"; }
   function sumHtml() {
-    var dest = S.to && NAME[S.to] ? flag(S.to) + "<span>" + esc(NAME[S.to]) + " visa" + (S.purpose ? "<small>" + esc(label(PURPOSES, S.purpose)) + "</small>" : "") + "</span>" : '<span style="color:#5a6e65;font-weight:600;font-size:15px">Choose a destination to begin</span>';
-    var extra = form.querySelectorAll("[data-extra-list] li[data-saved='1']").length;
-    var rows = [["Passport", NAME[S.from]], ["Travel dates", fmt("arrive") && fmt("leave") ? fmt("arrive") + " – " + fmt("leave") : ""], ["Travellers", S.first ? S.first + " " + (S.last || "") + (extra ? " +" + extra : "") : ""]];
-    return '<div class="gx-dest">' + dest + '</div><dl class="gx-sum">' + rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + (r[1] ? esc(r[1]) : '<span style="color:#5a6e65;font-weight:500">–</span>') + "</dd></div>"; }).join("") + "</dl>";
+    var extra = [].map.call(form.querySelectorAll("[data-extra-list] li[data-saved='1']"), function (li) { var b = li.querySelector("strong,b,h4,p"); return b ? b.textContent.trim() : ""; }).filter(Boolean);
+    var names = [[S.first, S.last].filter(Boolean).join(" ")].concat(extra).filter(Boolean).join(", ");
+    var dates = fmt("arrive") && fmt("leave") ? fmt("arrive").replace(/ \d{4}$/, "") + " – " + fmt("leave") : "";
+    return '<aside class="iv-sum"><div class="iv-sum-top">' + (S.to ? '<div class="iv-sum-flag">' + flag(S.to) + "</div>" : "") + '</div><div class="iv-sum-body">' +
+      "<h3>" + (S.to && NAME[S.to] ? esc(NAME[S.to]) + " " + esc(visaName().toLowerCase()) : "Your visa application") + "</h3>" +
+      '<p class="iv-sub">' + (S.purpose ? esc(label(REASONS, S.purpose)) : "Choose your destination to start") + "</p>" +
+      '<div class="iv-row keep">' + ic("cal") + "<span>Travel dates<b>" + (dates ? esc(dates) : "Not set yet") + "</b></span></div>" +
+      (names ? '<div class="iv-row">' + ic("user") + "<span>Travellers<b>" + esc(names) + "</b></span></div>" : "") +
+      '<div class="iv-row">' + ic("lock") + "<span>Secure and safe<b>256-bit encrypted</b></span></div>" +
+      '<a class="iv-help-box" href="https://wa.me/447482331249" target="_blank" rel="noopener"><b>Need help?</b>WhatsApp a UK adviser on +44 7482 331249</a></div></aside>';
   }
-  function renderAside() {
-    var todo = [["Trip details", S.to && S.from && S.purpose && dateOf("arrive") && dateOf("leave")], ["Personal details", S.first && S.last && dateOf("dob") && S.gender], ["Passport", S.pp_no && dateOf("pp_exp")], ["Contact and address", S.email && S.phone && S.res && S.addr], ["Work and travel history", S.emp && S.bal && S.crim]];
-    aside.innerHTML = '<div class="gx-box">' + sumHtml() + "</div>" +
-      '<div class="gx-box gx-help"><p>Stuck on a question? Message a UK adviser on WhatsApp.</p><a href="https://wa.me/447482331249" target="_blank" rel="noopener">' + ic("chat") + "+44 7482 331249</a><p style=\"margin-top:6px!important;color:#5a6e65;font-size:13px\">Monday to Friday, 09:00 to 18:00 UK time</p></div>" +
-      '<div class="gx-box"><div class="gx-trust"><span>' + ic("shield") + "UK-registered company, Wolverhampton</span><span>" + ic("lock") + "256-bit encrypted form</span><span>" + ic("info") + "Private service, not a government website</span></div></div>";
+  function progHtml(s) {
+    var n = ["Application", "Add travellers", "Review & pay"];
+    return '<div class="iv-prog">' + n.map(function (t, i) { var st = i + 1 < s.stage ? "done" : i + 1 === s.stage ? "on" : ""; return '<div class="iv-ps ' + st + '"' + (st === "on" ? ' aria-current="step"' : "") + "><i>" + (st === "done" ? ic("check") : i + 1) + "</i><span>" + t + "</span></div>" + (i < 2 ? '<div class="iv-pl"><b style="width:' + (i + 1 < s.stage ? 100 : i + 1 === s.stage ? s.pct : 0) + '%"></b></div>' : ""); }).join("") + "</div>";
   }
-  function render(focusErr, keepScroll) {
-    var y = window.scrollY;
-    park();
-    var sc = SCREENS[S.step], cur = sc.stage;
-    var inStage = SCREENS.filter(function (s) { return s.stage === cur && s.id !== "start"; });
-    var pos = inStage.indexOf(sc);
-    var steps = STAGES.map(function (n, i) { return '<div class="gx-st' + (i < cur ? " done" : i === cur ? " on" : "") + '"' + (i === cur ? ' aria-current="step"' : "") + '><i>' + (i < cur ? ic("check") : i + 1) + "</i><span>" + n + "</span></div>" + (i < 2 ? '<b class="gx-stl' + (i < cur ? " done" : "") + '"></b>' : ""); }).join("");
-    var pct = Math.round(S.step / TOTAL * 100), left = Math.max(1, Math.round((TOTAL - S.step) * 0.6));
-    var meta = S.step === 0 ? "Takes about 6 minutes" : S.step === TOTAL ? "Last step" : "About " + left + " min left";
-    var back = S.step > 0 ? '<button type="button" class="gx-btn gx-ghost" id="gx-back">' + ic("arrowL") + "Back</button>" : "<span></span>";
-    root.innerHTML = '<details class="gx-msum"><summary>' + ic("passport") + 'Your application</summary><div style="margin-top:12px">' + sumHtml() + "</div></details>" +
-      '<div class="gx-screen">' +
-      '<h2 class="gx-title" id="gx-h" tabindex="-1">' + sc.title + '</h2><p class="gx-lead">' + sc.lead + '</p><div class="gx-fields">' + sc.body() + "</div>" +
-      (S.errs.same ? '<p class="gx-err" style="margin-top:14px!important">' + ic("warn") + esc(S.errs.same) + "</p>" : "") +
-      '<div class="gx-nav">' + back + '<button type="button" class="gx-btn gx-go" id="gx-next">' + (sc.next || "Continue") + ic("arrowR") + "</button></div></div>";
+  function render(focusErr, keep) {
+    var y = window.scrollY; park();
+    var s = SC[S.step];
+    root.innerHTML = progHtml(s) + '<div class="iv-cols">' + sumHtml() + '<div class="iv-card"><h2 id="gx-h" tabindex="-1">' + s.h + '</h2><p class="iv-lede">' + s.lede + '</p><div class="iv-fields">' + s.body() + "</div>" +
+      '<div class="iv-foot">' + (S.step > 0 ? '<button type="button" class="iv-back" id="gx-back">Back</button>' : "") + '<button type="button" class="iv-go" id="gx-next">' + (S.ret && s.id !== "review" ? "Save and review" : (s.go || "Continue")) + "</button></div></div></div>";
     root.querySelectorAll("[data-slot]").forEach(function (slot) { (MOVE[slot.getAttribute("data-slot")] || []).forEach(function (n) { if (n) slot.appendChild(n); }); });
-    renderAside(); bind(); syncSteps();
-    if (keepScroll) window.scrollTo(0, y);
-    if (focusErr) {
-      var k = Object.keys(S.errs).filter(function (x) { return S.errs[x]; })[0];
-      var el = k && (document.getElementById("gx-" + k) || document.getElementById("gx-" + k + "-err"));
-      if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); try { el.focus({ preventScroll: true }); } catch (e) {} }
-    }
+    bind();
+    if (keep) window.scrollTo(0, y);
+    if (focusErr) { var k = Object.keys(S.errs).filter(function (x) { return S.errs[x]; })[0]; var el = k && (document.getElementById("gx-" + k) || document.getElementById("gx-" + k + "-err")); if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); try { el.focus({ preventScroll: true }); } catch (e) {} } }
   }
-  var OLD_STEP = { start: 1, trip: 1, dates: 1, you: 2, contact: 2, address: 2, passport: 3, money: 3, history: 3, people: 3, review: 4 };
-  function syncSteps() {
-    if (!steps) return;
-    var cur = OLD_STEP[SCREENS[S.step].id] || 1;
-    steps.querySelectorAll("li[data-avx-step]").forEach(function (li) {
-      var n = +li.getAttribute("data-avx-step");
-      li.classList.toggle("is-cur", n === cur); li.classList.toggle("is-done", n < cur);
-      if (n === cur) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
-    });
-    steps.style.setProperty("--avx-p", Math.max(4, Math.round(S.step / TOTAL * 100)) + "%");
-  }
-  if (steps) new MutationObserver(function () { var li = steps.querySelector("li.is-cur"); var want = String(OLD_STEP[SCREENS[S.step].id] || 1); if (!li || li.getAttribute("data-avx-step") !== want) syncSteps(); }).observe(steps, { attributes: true, subtree: true, attributeFilter: ["class"] });
+  function renderSum() { var a = root.querySelector(".iv-sum"); if (a) { var t = document.createElement("div"); t.innerHTML = sumHtml(); a.parentNode.replaceChild(t.firstChild, a); } }
   function go(i) {
     S.step = Math.max(0, Math.min(TOTAL, i)); S.errs = {};
     try { sessionStorage.setItem("alifGxStep", String(S.step)); } catch (e) {}
     render();
-    var top = root.getBoundingClientRect().top + window.scrollY - 100;
+    var top = root.getBoundingClientRect().top + window.scrollY - 90;
     window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     var h = document.getElementById("gx-h"); if (h) try { h.focus({ preventScroll: true }); } catch (e) {}
   }
   function passportWarn() {
-    S.warn = "";
-    var e = dateOf("pp_exp"), l = dateOf("leave");
-    if (e && e !== "bad" && e >= TODAY && l && l !== "bad") {
-      var need = new Date(l); need.setMonth(need.getMonth() + 6);
-      if (e < need) S.warn = "Your passport expires less than 6 months after your return date (" + fmt("leave") + "). Many countries will refuse entry. Renew it first if you can, or talk to an adviser.";
-    }
+    S.warn = ""; var e = dateOf("pp_exp"), l = dateOf("leave");
+    if (e && e !== "bad" && e >= TODAY && l && l !== "bad") { var need = new Date(l); need.setMonth(need.getMonth() + 6); if (e < need) S.warn = "Your passport expires less than 6 months after your return date (" + fmt("leave") + "). Many countries won't accept this. If you can, renew it before you apply."; }
   }
+  function clearErr(k, el) { if (!S.errs[k]) return; S.errs[k] = ""; var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); var w = el && el.closest(".iv-bad"); if (w) w.classList.remove("iv-bad"); }
 
-  /* ---------- events ---------- */
   function bind() {
     root.querySelectorAll("[data-k]").forEach(function (el) {
       el.addEventListener(el.tagName === "SELECT" ? "change" : "input", function () {
         var k = el.getAttribute("data-k"), v = el.value;
         if (el.getAttribute("data-upper")) { v = v.toUpperCase().replace(/\s+/g, ""); el.value = v; }
-        S[k] = v; push();
-        if (S.errs[k]) { S.errs[k] = ""; var f = el.closest(".gx-f"); if (f) f.classList.remove("gx-bad"); var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); }
-        renderAside();
+        if (el.tagName === "SELECT") el.classList.toggle("ph", !v);
+        S[k] = v; push(); clearErr(k, el); renderSum();
       });
     });
-    root.querySelectorAll("[data-dt]").forEach(bindTyped);
-    root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); openCal(b.getAttribute("data-rfocus")); }); });
+    root.querySelectorAll("[data-d3]").forEach(function (el) {
+      el.addEventListener("change", function () {
+        var k = el.getAttribute("data-d3"), o = {}; for (var p in (S[k] || {})) o[p] = S[k][p];
+        o[el.getAttribute("data-part")] = el.value; S[k] = o; el.classList.toggle("ph", !el.value); push(); clearErr(k, el);
+        if (k === "pp_exp") { passportWarn(); var w = root.querySelector("[data-warn]"); if (w) w.innerHTML = S.warn ? note("warn", S.warn) : ""; }
+      });
+    });
+    root.querySelectorAll("[data-dn]").forEach(function (el) {
+      el.addEventListener("change", function () {
+        var k = el.getAttribute("data-dn"), m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(el.value);
+        S[k] = m ? { y: m[1], m: String(+m[2]), d: String(+m[3]) } : {}; push(); clearErr(k, el);
+        if (k === "arrive") { var L = dateOf("leave"), A = dateOf("arrive"); var lv = root.querySelector('[data-dn="leave"]'); if (lv && A && A !== "bad") { lv.min = isoToday(new Date(A.getFullYear(), A.getMonth(), A.getDate() + 1)); if (L && L !== "bad" && L <= A) { S.leave = {}; lv.value = ""; push(); } } }
+        renderSum();
+      });
+    });
     root.querySelectorAll("[data-pick]").forEach(function (el) {
       el.addEventListener("click", function () {
-        var k = el.getAttribute("data-pick"), v = el.getAttribute("data-v");
-        S[k] = v; S.errs[k] = ""; push(); render(false, true);
-        var again = root.querySelector('[data-pick="' + k + '"][data-v="' + v.replace(/"/g, '\\"') + '"]'); if (again) again.focus();
+        var k = el.getAttribute("data-pick"), v = el.getAttribute("data-v"), before = S[k];
+        S[k] = v; push();
+        var follow = (k === "purpose" && (v === "other") !== (before === "other")) || (k === "travelled" && (v === "Yes") !== (before === "Yes")) || (k === "refused" && (v === "yes") !== (before === "yes"));
+        if (follow) { S.errs[k] = ""; render(false, true); var again = root.querySelector('[data-pick="' + k + '"][data-v="' + v + '"]'); if (again) again.focus(); return; }
+        root.querySelectorAll('[data-pick="' + k + '"]').forEach(function (b) { var on = b === el; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+        clearErr(k, el); renderSum();
       });
     });
-    root.querySelectorAll("[data-set]").forEach(function (el) { el.addEventListener("click", function () { S[el.getAttribute("data-set")] = el.getAttribute("data-v"); S.errs.res = ""; push(); render(false, true); }); });
-    root.querySelectorAll("[data-goto]").forEach(function (el) { el.addEventListener("click", function () { go(IDX[el.getAttribute("data-goto")]); }); });
-    var ag = root.querySelector("[data-agree]"); if (ag) ag.addEventListener("change", function () { rset("agree_terms", ag.checked ? "1" : ""); S.errs.agree = ""; });
+    var wa = root.querySelector("[data-wa]"); if (wa) wa.addEventListener("change", function () { S.wa = wa.checked ? "yes" : "no"; push(); });
+    var ag = root.querySelector("[data-agree]"); if (ag) ag.addEventListener("change", function () { rset("agree_terms", ag.checked ? "1" : ""); clearErr("agree", ag); });
     root.querySelectorAll("[data-cs]").forEach(bindPicker);
-    var back = document.getElementById("gx-back"); if (back) back.addEventListener("click", function () { go(S.step - 1); });
+    var back = document.getElementById("gx-back"); if (back) back.addEventListener("click", function () { if (S.ret) { S.ret = false; return go(IDX.review); } go(S.step - 1); });
     document.getElementById("gx-next").addEventListener("click", next);
   }
   function next() {
-    var sc = SCREENS[S.step], e = sc.check ? sc.check() : {}, clean = {};
-    for (var k in e) if (e[k]) clean[k] = e[k];
-    if (sc.id === "people") { var open = form.querySelector("[data-extra-list] li.is-editing"); if (open) { open.scrollIntoView({ block: "center", behavior: "smooth" }); var msg = open.querySelector(".gx-err") || document.createElement("p"); msg.className = "gx-err"; msg.textContent = "Save or cancel this traveller before you continue."; if (!msg.parentNode) open.appendChild(msg); return; } }
+    var s = SC[S.step];
+    if (s.id === "people") { var open = form.querySelector("[data-extra-list] li.is-editing"); if (open) { open.scrollIntoView({ block: "center", behavior: "smooth" }); var msg = open.querySelector(".gx-err") || document.createElement("p"); msg.className = "gx-err"; msg.textContent = "Save or cancel this traveller before you continue."; if (!msg.parentNode) open.appendChild(msg); return; } }
+    if (s.id === "review") {
+      var gap = firstGap(); if (gap >= 0) { S.errs = { agree: "Some answers are missing. Press Edit next to “Missing” to add them." }; return render(true, true); }
+      if (!rget("agree_terms")) { S.errs = { agree: "Tick the box to confirm your details and accept the Terms." }; return render(true, true); }
+      return submit();
+    }
+    var e = s.check ? s.check() : {}, clean = {}; for (var k in e) if (e[k]) clean[k] = e[k];
     if (hasErr(clean)) { S.errs = clean; return render(true, true); }
-    push();
-    if (sc.id === "passport") passportWarn();
-    if (sc.id === "review") return submit();
+    push(); if (s.id === "passport") passportWarn();
+    if (S.ret) { S.ret = false; return go(IDX.review); }
     go(S.step + 1);
   }
   function submit() {
     push(); rset("agree_terms", "1");
-    var real = form.querySelector("[data-wizard-step='review'] [data-go-stripe]");
-    var btn = document.getElementById("gx-next");
+    var real = form.querySelector("[data-wizard-step='review'] [data-go-stripe]"), btn = document.getElementById("gx-next");
     if (LOGGED_IN && btn) { btn.disabled = true; btn.textContent = "Opening secure payment…"; }
     if (real) real.click(); else HTMLFormElement.prototype.submit.call(form);
-    window.addEventListener("pageshow", function () { var b = document.getElementById("gx-next"); if (b) { b.disabled = false; } });
+    window.addEventListener("pageshow", function () { var b = document.getElementById("gx-next"); if (b) b.disabled = false; });
   }
 
-  /* typed DD / MM / YYYY */
-  function bindTyped(box) {
-    var k = box.getAttribute("data-dt"), ins = box.querySelectorAll("input"), out = box.querySelector("[data-dt-out]");
-    function save() {
-      var o = { d: String(+ins[0].value || ""), m: String(+ins[1].value || ""), y: ins[2].value.length === 4 ? ins[2].value : "" };
-      if (o.d === "0") o.d = ""; if (o.m === "0") o.m = "";
-      S[k] = o; push(); out.textContent = dtOut(k);
-      if (S.errs[k]) { S.errs[k] = ""; var f = box.closest(".gx-f"); if (f) f.classList.remove("gx-bad"); var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); }
-      if (k === "pp_exp") { var had = S.warn; passportWarn(); if (had !== S.warn) { var w = root.querySelector("[data-warn]"); if (w) w.outerHTML = warnHtml(); } }
-      renderAside();
-    }
-    ins.forEach(function (inp, i) {
-      inp.addEventListener("input", function () {
-        var v = inp.value.replace(/\D/g, ""); var max = i === 2 ? 4 : 2;
-        if (i === 0 && v.length === 1 && +v > 3) v = "0" + v;
-        if (i === 1 && v.length === 1 && +v > 1) v = "0" + v;
-        if (i === 1 && +v > 12) v = "12"; if (i === 0 && +v > 31) v = "31";
-        inp.value = v.slice(0, max);
-        if (inp.value.length === max && ins[i + 1]) { ins[i + 1].focus(); ins[i + 1].select(); }
-        save();
-      });
-      inp.addEventListener("keydown", function (e) { if (e.key === "Backspace" && !inp.value && ins[i - 1]) { e.preventDefault(); ins[i - 1].focus(); } });
-      inp.addEventListener("paste", function (e) {
-        var t = (e.clipboardData || window.clipboardData).getData("text"), m = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})/.exec(t);
-        if (m) { e.preventDefault(); ins[0].value = pad(m[1]); ins[1].value = pad(m[2]); ins[2].value = m[3]; save(); ins[2].focus(); }
-      });
-    });
-    box.addEventListener("click", function (e) { if (e.target === box || e.target.closest(".gx-dt-ic")) { var first = [].filter.call(ins, function (x) { return !x.value; })[0] || ins[0]; first.focus(); } });
-  }
-  function warnHtml() { return '<div data-warn>' + (S.warn ? note("warn", S.warn) : "") + "</div>"; }
-
-  /* range calendar */
-  var calFocus = "arrive", calView = null;
-  function openCal(focus) {
-    calFocus = focus;
-    var A = dateOf("arrive"); var base = (focus === "leave" && dateOf("leave") && dateOf("leave") !== "bad") ? dateOf("leave") : (A && A !== "bad" ? A : TODAY);
-    calView = new Date(base.getFullYear(), base.getMonth(), 1);
-    if (focus === "leave" && A && A !== "bad") calView = new Date(A.getFullYear(), A.getMonth(), 1);
-    drawCal();
-  }
-  function closeCal() { var p = root.querySelector(".gx-cal"); if (p) p.remove(); root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.classList.remove("on"); }); }
-  function drawCal() {
-    var wrap = root.querySelector(".gx-range"); if (!wrap) return;
-    var old = root.querySelector(".gx-cal"); if (old) old.remove();
-    root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-rfocus") === calFocus); });
-    var A = dateOf("arrive"), L = dateOf("leave"); if (A === "bad") A = null; if (L === "bad") L = null;
-    var two = window.matchMedia("(min-width: 760px)").matches, html = "";
-    for (var mo = 0; mo < (two ? 2 : 1); mo++) {
-      var first = new Date(calView.getFullYear(), calView.getMonth() + mo, 1), days = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
-      var lead = (first.getDay() + 6) % 7, cells = "";
-      for (var e = 0; e < lead; e++) cells += "<span></span>";
-      for (var d = 1; d <= days; d++) {
-        var dt = new Date(first.getFullYear(), first.getMonth(), d), dis = dt < TODAY || (calFocus === "leave" && A && dt <= A) || dt > new Date(YEAR + 2, 11, 31);
-        var cls = []; if (A && +dt === +A) cls.push("s"); if (L && +dt === +L) cls.push("e"); if (A && L && dt > A && dt < L) cls.push("in"); if (+dt === +TODAY) cls.push("t");
-        cells += '<button type="button" data-day="' + dkey(dt) + '" class="' + cls.join(" ") + '"' + (dis ? " disabled" : "") + ' aria-label="' + dt.toDateString() + '">' + d + "</button>";
-      }
-      html += '<div class="gx-cm"><p class="gx-cm-h">' + MONTHS[first.getMonth()] + " " + first.getFullYear() + '</p><div class="gx-dow"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div><div class="gx-days">' + cells + "</div></div>";
-    }
-    var canPrev = new Date(calView.getFullYear(), calView.getMonth(), 1) > new Date(YEAR, NOW.getMonth(), 1);
-    var p = document.createElement("div"); p.className = "gx-cal";
-    p.innerHTML = '<div class="gx-cal-top"><button type="button" class="gx-cal-nav" data-cnav="-1" aria-label="Previous month"' + (canPrev ? "" : " disabled") + ">" + ic("left") + '</button><p class="gx-cal-tip">' + (calFocus === "arrive" ? "Select your arrival date" : "Select your return date") + '</p><button type="button" class="gx-cal-nav" data-cnav="1" aria-label="Next month">' + ic("right") + "</button></div>" +
-      '<div class="gx-cms">' + html + '</div><div class="gx-cal-foot"><button type="button" class="gx-link" data-cclear>Clear dates</button><button type="button" class="gx-btn gx-go gx-sm" data-cdone>Done</button></div>';
-    wrap.parentNode.insertBefore(p, wrap.nextSibling);
-    p.addEventListener("click", function (ev) {
-      ev.stopPropagation();
-      var nav = ev.target.closest("[data-cnav]"), day = ev.target.closest("[data-day]");
-      if (nav && !nav.disabled) { calView = new Date(calView.getFullYear(), calView.getMonth() + (+nav.getAttribute("data-cnav")), 1); return drawCal(); }
-      if (ev.target.closest("[data-cclear]")) { S.arrive = {}; S.leave = {}; push(); calFocus = "arrive"; return refreshRange(); }
-      if (ev.target.closest("[data-cdone]")) { closeCal(); return; }
-      if (day && !day.disabled) {
-        var m = day.getAttribute("data-day").split("-"), picked = new Date(+m[0], +m[1] - 1, +m[2]);
-        var A2 = dateOf("arrive");
-        if (calFocus === "arrive" || !A2 || A2 === "bad" || picked <= A2) { S.arrive = toObj(picked); var L2 = dateOf("leave"); if (L2 && L2 !== "bad" && L2 <= picked) S.leave = {}; calFocus = "leave"; S.errs.arrive = ""; push(); refreshRange(); }
-        else { S.leave = toObj(picked); S.errs.leave = ""; push(); refreshRange(); closeCal(); }
-      }
-    });
-  }
-  function refreshRange() {
-    var f = root.querySelector(".gx-range").closest(".gx-f"), open = !!root.querySelector(".gx-cal");
-    var tmp = document.createElement("div"); tmp.innerHTML = range(); var nf = tmp.firstChild;
-    f.parentNode.replaceChild(nf, f);
-    nf.querySelectorAll("[data-rfocus]").forEach(function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); openCal(b.getAttribute("data-rfocus")); }); });
-    if (open) drawCal();
-    renderAside();
-  }
-  document.addEventListener("click", function (e) { if (!e.target.closest(".gx-cal") && !e.target.closest("[data-rfocus]")) closeCal(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCal(); });
 
   /* searchable country / code picker */
   function fold(s) { s = String(s || "").toLowerCase(); try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) {} return s; }
@@ -959,21 +634,18 @@ function alif_gx_js() {
   /* other scripts (passport scan, restore after sign-in) may fill the real form: keep in step */
   var pullTimer;
   form.addEventListener("change", function (e) { if (writing || root.contains(e.target)) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); render(false, true); }, 150); });
-  form.addEventListener("input", function (e) { if (writing || root.contains(e.target)) return; if (e.target.closest && e.target.closest("[data-extra-list]")) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); renderAside(); }, 300); });
-  if (extraNode) new MutationObserver(function () { renderAside(); }).observe(extraNode, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-saved"] });
+  form.addEventListener("input", function (e) { if (writing || root.contains(e.target)) return; if (e.target.closest && e.target.closest("[data-extra-list]")) return; clearTimeout(pullTimer); pullTimer = setTimeout(function () { pull(); renderSum(); }, 300); });
+  if (extraNode) new MutationObserver(function () { renderSum(); }).observe(extraNode, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-saved"] });
 
   pull();
-  var start = 0;
-  try { var saved = +sessionStorage.getItem("alifGxStep"); if (saved > 0 && saved <= TOTAL && SCREENS.slice(1, saved).every(function (s) { return !s.check || !hasErr(s.check()); })) start = saved; } catch (e) {}
-  if (SCREENS.slice(1, 10).every(function (s) { return !s.check || !hasErr(s.check()); })) start = IDX.review;
-  if (/alif_error=1/.test(location.search)) start = IDX.review;
-  S.step = start;
+  (function () {
+    var start = 0, gap = firstGap();
+    if (/alif_error=1/.test(location.search) || gap < 0) start = IDX.review;
+    else { try { var saved = +sessionStorage.getItem("alifGxStep") || 0; if (saved > 0) start = Math.min(saved, gap); } catch (e) {} }
+    S.step = start;
+  })();
   render();
-  setTimeout(function () {
-    pull();
-    if (form.querySelector("[data-wizard-step='review'] [style*='e7f8ef']") || SCREENS.slice(1, 10).every(function (s) { return !s.check || !hasErr(s.check()); })) S.step = IDX.review;
-    render();
-  }, 600);
+  setTimeout(function () { pull(); if (firstGap() < 0 && S.step !== IDX.review) { S.step = IDX.review; render(); } else renderSum(); }, 600);
 })();
 
 GXJS;
