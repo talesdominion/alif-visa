@@ -132,7 +132,8 @@
 .gx-trust svg{width:16px;height:16px;color:#0b6b4a;flex:0 0 auto}
 .gx-msum{display:none;margin:0 0 16px}
 @media (max-width:1020px){
-  .gx-side-on{display:none!important}
+  .gx-aside{position:static}
+  .gx-aside > .gx-box:nth-child(-n+2){display:none!important}
   .gx-msum{display:block;border:1px solid #dde6e1;border-radius:16px;background:#fff;padding:14px 16px}
   .gx-msum summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
   .gx-msum summary::-webkit-details-marker{display:none}
