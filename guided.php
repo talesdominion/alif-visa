@@ -169,7 +169,8 @@ function alif_gx_js() {
   var LOGGED_IN = !!window.ALIF_GX_LOGGED_IN;
   var CFG = window.AlifVisa || {};
   function dec(s) { var t = document.createElement("textarea"); t.innerHTML = s; return t.value; }
-  var COUNTRIES = (CFG.countries || []).map(function (c) { return [c.code, dec(c.name)]; });
+  var COUNTRIES = (window.ALIF_GX_COUNTRIES && window.ALIF_GX_COUNTRIES.length) ? window.ALIF_GX_COUNTRIES : (CFG.countries || []).map(function (c) { return [c.code, dec(c.name)]; });
+  if (window.ALIF_GX_FLAGS) CFG = { flagBase: window.ALIF_GX_FLAGS };
   if (!COUNTRIES.length) return;
   var NAME = {}; COUNTRIES.forEach(function (c) { NAME[c[0]] = c[1]; });
   var POP_FROM = ["PK", "IN", "BD", "NG", "PH", "AE", "SA", "GB"];
@@ -722,7 +723,12 @@ add_action('wp_footer', function () {
         return;
     }
     $dial = function_exists('alif_dial_codes') ? alif_dial_codes() : [];
-    echo '<script>window.ALIF_GX_DIAL=' . wp_json_encode($dial) . ';window.ALIF_GX_LOGGED_IN=' . (is_user_logged_in() ? 'true' : 'false') . ';</script>';
-    echo '<script id="alif-gx-js">' . alif_gx_js() . '</script>';
+    $countries = [];
+    foreach (alif_get_countries() as $c) {
+        $countries[] = [$c['code'], html_entity_decode((string) $c['name'], ENT_QUOTES, 'UTF-8')];
+    }
+    $flags = function_exists('alif_asset') ? alif_asset('flags/') : '';
+    echo '<script data-no-optimize="1" data-no-defer="1" data-cfasync="false">window.ALIF_GX_DIAL=' . wp_json_encode($dial) . ';window.ALIF_GX_COUNTRIES=' . wp_json_encode($countries) . ';window.ALIF_GX_FLAGS=' . wp_json_encode($flags) . ';window.ALIF_GX_LOGGED_IN=' . (is_user_logged_in() ? 'true' : 'false') . ';</script>';
+    echo '<script id="alif-gx-js" data-no-optimize="1" data-no-defer="1" data-cfasync="false">' . alif_gx_js() . '</script>';
 }, 60);
 /* ===== end Alif guided application form ===== */

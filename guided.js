@@ -6,7 +6,8 @@
   var LOGGED_IN = !!window.ALIF_GX_LOGGED_IN;
   var CFG = window.AlifVisa || {};
   function dec(s) { var t = document.createElement("textarea"); t.innerHTML = s; return t.value; }
-  var COUNTRIES = (CFG.countries || []).map(function (c) { return [c.code, dec(c.name)]; });
+  var COUNTRIES = (window.ALIF_GX_COUNTRIES && window.ALIF_GX_COUNTRIES.length) ? window.ALIF_GX_COUNTRIES : (CFG.countries || []).map(function (c) { return [c.code, dec(c.name)]; });
+  if (window.ALIF_GX_FLAGS) CFG = { flagBase: window.ALIF_GX_FLAGS };
   if (!COUNTRIES.length) return;
   var NAME = {}; COUNTRIES.forEach(function (c) { NAME[c[0]] = c[1]; });
   var POP_FROM = ["PK", "IN", "BD", "NG", "PH", "AE", "SA", "GB"];
