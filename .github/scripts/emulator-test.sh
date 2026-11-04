@@ -23,6 +23,7 @@ shot 06-account "https://alifvisa.com/dashboard/"
 shot 07-about "https://alifvisa.com/about/"
 shot 08-blog "https://alifvisa.com/blog/"
 shot 09-apply-form "https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa" 20
+sleep 30; T adb exec-out screencap -p > "$OUT/09a-apply-form-50s.png"
 log "apply: scroll"; T adb shell input swipe 540 1700 540 900 400
 sleep 3; T adb exec-out screencap -p > "$OUT/09b-apply-form-scrolled.png"
 log "apply: tap continue (empty, shows errors)"; T adb shell input swipe 540 1700 540 600 400
