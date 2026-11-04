@@ -1,5 +1,6 @@
 /* Alif guided application (sits on top of #alif-apply-wizard) */
-.gx-on > .avx-steps,.gx-on > [data-wizard-step],.gx-on .avx-steps{display:none!important}
+.gx-on > [data-wizard-step]{display:none!important}
+#main .gx-on > .avx-steps{margin:0 0 18px!important}
 .gx-side-on > :not(.gx-aside){display:none!important}
 .gx{--ink:#10241c;--muted:#5a6e65;--line:#dde6e1;--line2:#c6d3cc;--brand:#0b6b4a;--accent:#1fce7c;--accent-ink:#06321f;--mint:#e7f7ee;--mint-line:#bfe9d2;--soft:#f7faf8;--err:#c63b2f;--warn-bg:#fff6e5;--warn-ink:#7a4a00;--warn-line:#f3d79c;font-family:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 1px 2px rgba(16,36,28,.06),0 12px 32px -18px rgba(16,36,28,.25);padding:clamp(20px,3.6vw,38px);font-size:16px;line-height:1.55;text-align:left}
 .gx *,.gx-aside *{box-sizing:border-box}

@@ -310,18 +310,6 @@
           dob: !d ? "Enter your full date of birth." : d === "bad" ? "That date doesn't exist. Check the day and month." : d > TODAY ? "Your date of birth can't be in the future." : d.getFullYear() < YEAR - 120 ? "Check the year of birth." : "",
           gender: !S.gender && "Choose the gender shown on your passport.", marital: !S.marital && "Choose your marital status." };
       } },
-    { id: "passport", stage: 1, title: "Your passport", lead: "Open your passport at the photo page. Everything we need is printed there.",
-      body: function () {
-        return text("pp_no", "Passport number", { ph: "AB1234567", upper: true, hint: "Usually 7 to 9 letters and numbers, top right of the photo page. No spaces." }) +
-          typed("pp_exp", "Expiry date", "Printed under \u201cDate of expiry\u201d on the photo page.") +
-          warnHtml() +
-          why("Most countries need your passport to be valid for at least 6 months after you return, with two blank pages. We check this now so there are no surprises later.");
-      },
-      check: function () {
-        var e = dateOf("pp_exp");
-        return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces or dashes." : "",
-          pp_exp: !e ? "Enter your passport's expiry date." : e === "bad" ? "That date doesn't exist. Check the day and month." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : e.getFullYear() > YEAR + 20 ? "Check the year. Passports are valid for 10 years at most." : "" };
-      } },
     { id: "contact", stage: 1, title: "How can we reach you?", lead: "We send updates about your application here, and your adviser may message you if a document is missing.",
       body: function () {
         return text("email", "Email address", { type: "email", ph: "you@example.com", auto: "email", mode: "email", hint: "Your confirmation and visa documents are sent to this address." }) +
@@ -342,6 +330,18 @@
           why("You usually apply from the country where you live. Your address also tells us which visa centre or embassy handles your file.");
       },
       check: function () { return { res: !S.res && "Choose the country where you live.", addr: !S.addr && "Enter your home address.", city: !S.city && "Enter your city or town." }; } },
+    { id: "passport", stage: 1, title: "Your passport", lead: "Open your passport at the photo page. Everything we need is printed there.",
+      body: function () {
+        return text("pp_no", "Passport number", { ph: "AB1234567", upper: true, hint: "Usually 7 to 9 letters and numbers, top right of the photo page. No spaces." }) +
+          typed("pp_exp", "Expiry date", "Printed under \u201cDate of expiry\u201d on the photo page.") +
+          warnHtml() +
+          why("Most countries need your passport to be valid for at least 6 months after you return, with two blank pages. We check this now so there are no surprises later.");
+      },
+      check: function () {
+        var e = dateOf("pp_exp");
+        return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces or dashes." : "",
+          pp_exp: !e ? "Enter your passport's expiry date." : e === "bad" ? "That date doesn't exist. Check the day and month." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : e.getFullYear() > YEAR + 20 ? "Check the year. Passports are valid for 10 years at most." : "" };
+      } },
     { id: "money", stage: 1, title: "Work & finances", lead: "Quick questions so your adviser knows which documents to prepare. Pick the closest answers.",
       body: function () {
         return chips("emp", "Your work", JOBS) +
@@ -399,7 +399,7 @@
   var root = document.createElement("div"); root.className = "gx"; root.id = "gx";
   var holder = document.createElement("div"); holder.hidden = true; holder.className = "gx-holder";
   var steps = form.querySelector(".avx-steps");
-  form.insertBefore(root, steps || form.firstChild);
+  if (steps && steps.nextSibling) form.insertBefore(root, steps.nextSibling); else form.insertBefore(root, form.firstChild);
   form.appendChild(holder);
   form.classList.add("gx-on");
   var scanNode = form.querySelector(".alif-passport-scan");
@@ -436,12 +436,12 @@
     var meta = S.step === 0 ? "Takes about 6 minutes" : S.step === TOTAL ? "Last step" : "About " + left + " min left";
     var back = S.step > 0 ? '<button type="button" class="gx-btn gx-ghost" id="gx-back">' + ic("arrowL") + "Back</button>" : "<span></span>";
     root.innerHTML = '<details class="gx-msum"><summary>' + ic("passport") + 'Your application</summary><div style="margin-top:12px">' + sumHtml() + "</div></details>" +
-      '<div class="gx-screen"><div class="gx-prog"><div class="gx-steps">' + steps + '</div><div class="gx-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div><div class="gx-pmeta"><span>' + (S.step === 0 ? "Getting started" : "Step " + S.step + " of " + TOTAL) + "</span><span>" + meta + "</span></div></div>" +
+      '<div class="gx-screen">' +
       '<h2 class="gx-title" id="gx-h" tabindex="-1">' + sc.title + '</h2><p class="gx-lead">' + sc.lead + '</p><div class="gx-fields">' + sc.body() + "</div>" +
       (S.errs.same ? '<p class="gx-err" style="margin-top:14px!important">' + ic("warn") + esc(S.errs.same) + "</p>" : "") +
       '<div class="gx-nav">' + back + '<button type="button" class="gx-btn gx-go" id="gx-next">' + (sc.next || "Continue") + ic("arrowR") + "</button></div></div>";
     root.querySelectorAll("[data-slot]").forEach(function (slot) { (MOVE[slot.getAttribute("data-slot")] || []).forEach(function (n) { if (n) slot.appendChild(n); }); });
-    renderAside(); bind();
+    renderAside(); bind(); syncSteps();
     if (keepScroll) window.scrollTo(0, y);
     if (focusErr) {
       var k = Object.keys(S.errs).filter(function (x) { return S.errs[x]; })[0];
@@ -449,6 +449,18 @@
       if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); try { el.focus({ preventScroll: true }); } catch (e) {} }
     }
   }
+  var OLD_STEP = { start: 1, trip: 1, dates: 1, you: 2, contact: 2, address: 2, passport: 3, money: 3, history: 3, people: 3, review: 4 };
+  function syncSteps() {
+    if (!steps) return;
+    var cur = OLD_STEP[SCREENS[S.step].id] || 1;
+    steps.querySelectorAll("li[data-avx-step]").forEach(function (li) {
+      var n = +li.getAttribute("data-avx-step");
+      li.classList.toggle("is-cur", n === cur); li.classList.toggle("is-done", n < cur);
+      if (n === cur) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+    });
+    steps.style.setProperty("--avx-p", Math.max(4, Math.round(S.step / TOTAL * 100)) + "%");
+  }
+  if (steps) new MutationObserver(function () { var li = steps.querySelector("li.is-cur"); var want = String(OLD_STEP[SCREENS[S.step].id] || 1); if (!li || li.getAttribute("data-avx-step") !== want) syncSteps(); }).observe(steps, { attributes: true, subtree: true, attributeFilter: ["class"] });
   function go(i) {
     S.step = Math.max(0, Math.min(TOTAL, i)); S.errs = {};
     try { sessionStorage.setItem("alifGxStep", String(S.step)); } catch (e) {}
