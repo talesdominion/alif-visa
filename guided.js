@@ -43,16 +43,20 @@
     study: '<path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c1.5 1.5 3.4 2.2 5.5 2.2s4-.7 5.5-2.2V11"/>',
     retire: '<circle cx="12" cy="7" r="3"/><path d="M6 21v-3.5A5.5 5.5 0 0 1 11.5 12h1a5.5 5.5 0 0 1 5.5 5.5V21"/>',
     pause: '<circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/>',
-    chat: '<path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/>'
+    chat: '<path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/>',
+    cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
+    check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+    left: '<path d="m15 6-6 6 6 6"/>', right: '<path d="m9 6 6 6-6 6"/>',
+    moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'
   };
   function ic(n, cls) { return '<svg class="' + (cls || "") + '" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (I[n] || "") + "</svg>"; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function flag(c) { return '<img class="gx-flag" src="' + esc((CFG.flagBase || "") + String(c).toLowerCase() + ".svg") + '" alt="" width="24" height="17">'; }
+  function flag(c) { return CFG.flagBase ? '<img class="gx-flag" src="' + esc(CFG.flagBase + String(c).toLowerCase() + ".svg") + '" alt="" width="24" height="17">' : '<span class="gx-code">' + esc(c) + "</span>"; }
 
   var PURPOSES = [
-    { v: "tourism", t: "Holiday or sightseeing", d: "Tourism and short breaks", icon: "plane" },
-    { v: "family-visit", t: "Visit family or friends", d: "Staying with or visiting people you know", icon: "family" },
-    { v: "business", t: "Business", d: "Meetings, conferences or trade events", icon: "case" },
+    { v: "tourism", t: "Visit & Tourism", d: "Holidays, sightseeing and short trips", icon: "plane" },
+    { v: "family-visit", t: "Family & friends", d: "Visiting or staying with people you know", icon: "family" },
+    { v: "business", t: "Business", d: "Meetings, conferences or trade fairs", icon: "case" },
     { v: "transit", t: "Transit", d: "Passing through to another country", icon: "transit" },
     { v: "visa-invitation", t: "Invitation letter", d: "You need an invitation for your visa file", icon: "mail" },
     { v: "other", t: "Something else", d: "Tell us more and an adviser will check", icon: "dots" }
@@ -64,13 +68,14 @@
     { v: "Not booked yet", t: "Not booked yet", d: "That's fine, you can confirm later", icon: "clock" }
   ];
   var JOBS = [
-    { v: "employed", t: "Employed", d: "Working for a company or organisation", icon: "work" },
-    { v: "business", t: "Self-employed or business owner", d: "Own business or freelance", icon: "self" },
+    { v: "employed", t: "Employed", d: "Salaried job", icon: "work" },
+    { v: "business", t: "Self-employed", d: "Business owner or freelancer", icon: "self" },
     { v: "student", t: "Student", d: "School, college or university", icon: "study" },
     { v: "retired", t: "Retired", d: "Receiving a pension", icon: "retire" },
     { v: "unemployed", t: "Not working", d: "Homemaker or between jobs", icon: "pause" }
   ];
   var BALANCES = ["Under $2,000", "$2,000 – $5,999", "$6,000 – $14,999", "$15,000 or more"];
+  var BAL_SHORT = ["Under $2k", "$2k – $6k", "$6k – $15k", "$15k +"];
 
   /* ---------- real form bridge ---------- */
   function els(n) { return form.querySelectorAll('[name="' + n + '"]'); }
@@ -184,30 +189,64 @@
       '<div class="gx-cs" data-cs="' + k + '" data-pop="' + (o.pop || "from") + '"><button type="button" class="gx-csb" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' + inner + ic("chev", "gx-chev") + "</button></div>" +
       (o.suggest || "") + (o.hint ? '<p class="gx-hint">' + o.hint + "</p>" : "") + err(k) + "</div>";
   }
-  function date(k, lbl, o) {
-    var v = S[k] || {}, years = [], y;
-    if (o.desc) for (y = o.to; y >= o.from; y--) years.push(y); else for (y = o.from; y <= o.to; y++) years.push(y);
-    var mo = MONTHS.map(function (m, i) { return '<option value="' + (i + 1) + '"' + (+v.m === i + 1 ? " selected" : "") + ">" + m + "</option>"; }).join("");
-    var da = ""; for (var d = 1; d <= 31; d++) da += "<option" + (+v.d === d ? " selected" : "") + ">" + d + "</option>";
-    var ye = years.map(function (yy) { return "<option" + (+v.y === yy ? " selected" : "") + ">" + yy + "</option>"; }).join("");
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
-      '<div class="gx-date" role="group" aria-labelledby="gx-' + k + '-lbl">' +
-      '<select class="gx-sel" id="gx-' + k + '" data-date="' + k + '" data-part="m" aria-label="Month"><option value="">Month</option>' + mo + "</select>" +
-      '<select class="gx-sel" data-date="' + k + '" data-part="d" aria-label="Day"><option value="">Day</option>' + da + "</select>" +
-      '<select class="gx-sel" data-date="' + k + '" data-part="y" aria-label="Year"><option value="">Year</option>' + ye + "</select>" +
-      "</div>" + (o.hint ? '<p class="gx-hint">' + o.hint + "</p>" : "") + err(k) + "</div>";
+  function pad(n) { return ("0" + n).slice(-2); }
+  function dkey(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function toObj(d) { return { y: String(d.getFullYear()), m: String(d.getMonth() + 1), d: String(d.getDate()) }; }
+  function long(k) { var d = dateOf(k); return d && d !== "bad" ? d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : ""; }
+  /* typed date: DD / MM / YYYY in one box */
+  function typed(k, lbl, hint) {
+    var v = S[k] || {};
+    return '<div class="gx-f' + bad(k) + '"><label class="gx-lbl" for="gx-' + k + '">' + lbl + "</label>" +
+      '<div class="gx-dt" data-dt="' + k + '"><span class="gx-dt-ic">' + ic("cal") + "</span>" +
+      '<input id="gx-' + k + '" data-seg="d" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="DD" aria-label="Day" value="' + esc(v.d ? pad(v.d) : "") + '">' +
+      '<i>/</i><input data-seg="m" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="MM" aria-label="Month" value="' + esc(v.m ? pad(v.m) : "") + '">' +
+      '<i>/</i><input data-seg="y" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="YYYY" aria-label="Year" value="' + esc(v.y || "") + '">' +
+      '<span class="gx-dt-out" data-dt-out="' + k + '">' + esc(dtOut(k)) + "</span></div>" +
+      (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + err(k) + "</div>";
   }
-  function choices(k, lbl, list, cls) {
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
-      '<div class="gx-choices ' + (cls || "") + '" role="group" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
-      list.map(function (o) { return '<button type="button" class="gx-choice" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-pressed="' + (S[k] === o.v) + '"><span class="gx-ic">' + ic(o.icon) + "</span><span><b>" + esc(o.t) + "</b>" + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + "</span></button>"; }).join("") +
-      "</div>" + err(k) + "</div>";
+  function dtOut(k) {
+    var d = dateOf(k); if (!d || d === "bad") return "";
+    var txt = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    if (k === "dob") { var age = TODAY.getFullYear() - d.getFullYear() - ((TODAY.getMonth() < d.getMonth() || (TODAY.getMonth() === d.getMonth() && TODAY.getDate() < d.getDate())) ? 1 : 0); return age >= 0 && age < 130 ? txt + " \u00b7 age " + age : txt; }
+    return txt;
+  }
+  /* travel dates: one range field with a calendar */
+  function range() {
+    var a = long("arrive"), l = long("leave"), nights = "";
+    var A = dateOf("arrive"), L = dateOf("leave");
+    if (A && L && A !== "bad" && L !== "bad" && L > A) { var n = Math.round((L - A) / 864e5); nights = n + (n === 1 ? " night" : " nights"); }
+    return '<div class="gx-f' + bad("arrive") + bad("leave") + '"><span class="gx-lbl">Travel dates</span>' +
+      '<div class="gx-range" id="gx-arrive">' +
+      '<button type="button" class="gx-rb" data-rfocus="arrive"><span class="gx-rb-ic">' + ic("cal") + '</span><span class="gx-rb-t"><small>Arrival</small><b>' + (a || '<em>Add date</em>') + "</b></span></button>" +
+      '<span class="gx-rsep">' + (nights ? '<span class="gx-nights">' + ic("moon") + nights + "</span>" : ic("arrowR")) + "</span>" +
+      '<button type="button" class="gx-rb" id="gx-leave" data-rfocus="leave"><span class="gx-rb-ic">' + ic("cal") + '</span><span class="gx-rb-t"><small>Return</small><b>' + (l || '<em>Add date</em>') + "</b></span></button>" +
+      "</div>" + '<p class="gx-hint">Not fixed yet? Pick your best guess. You can change dates later.</p>' + err("arrive") + err("leave") + "</div>";
+  }
+  function seg(k, opts) {
+    return '<div class="gx-seg" role="radiogroup" id="gx-' + k + '">' + opts.map(function (o) { return '<button type="button" role="radio" data-pick="' + k + '" data-v="' + esc(o[0]) + '" aria-checked="' + (S[k] === o[0]) + '">' + (S[k] === o[0] ? ic("check") : "") + esc(o[1]) + "</button>"; }).join("") + "</div>";
   }
   function yn(k, lbl, opts, hint) {
     opts = opts || [["yes", "Yes"], ["no", "No"]];
-    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") +
-      '<div class="gx-yn" role="group" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
-      opts.map(function (o) { return '<button type="button" data-pick="' + k + '" data-v="' + o[0] + '" aria-pressed="' + (S[k] === o[0]) + '">' + esc(o[1]) + "</button>"; }).join("") +
+    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + seg(k, opts) + err(k) + "</div>";
+  }
+  /* question list: one row per yes/no question */
+  function qlist(rows) {
+    return '<div class="gx-qlist">' + rows.map(function (r) {
+      return '<div class="gx-q' + bad(r[0]) + '"><div class="gx-q-t"><b>' + r[1] + "</b>" + (r[2] ? "<small>" + r[2] + "</small>" : "") + err(r[0]) + "</div>" + seg(r[0], r[3] || [["Yes", "Yes"], ["No", "No"]]) + "</div>" + (r[4] || "");
+    }).join("") + "</div>";
+  }
+  function chips(k, lbl, list) {
+    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl">' + lbl + '</span><div class="gx-chips" role="radiogroup" id="gx-' + k + '">' +
+      list.map(function (o) { return '<button type="button" role="radio" class="gx-chipo" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-checked="' + (S[k] === o.v) + '"><span class="gx-chipo-ic">' + ic(S[k] === o.v ? "check" : o.icon) + "</span><span><b>" + esc(o.t) + "</b><small>" + esc(o.d) + "</small></span></button>"; }).join("") + "</div>" + err(k) + "</div>";
+  }
+  function scale(k, lbl, hint) {
+    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl">' + lbl + "</span>" + (hint ? '<p class="gx-hint">' + hint + "</p>" : "") + '<div class="gx-scale" role="radiogroup" id="gx-' + k + '">' +
+      BALANCES.map(function (v, i) { var bars = ""; for (var j = 0; j < 4; j++) bars += "<i" + (j <= i ? ' class="on"' : "") + "></i>"; return '<button type="button" role="radio" data-pick="' + k + '" data-v="' + esc(v) + '" aria-checked="' + (S[k] === v) + '" aria-label="' + esc(v) + '"><span class="gx-bars">' + bars + "</span><b>" + BAL_SHORT[i] + "</b></button>"; }).join("") + "</div>" + err(k) + "</div>";
+  }
+  function choices(k, lbl, list, cls) {
+    return '<div class="gx-f' + bad(k) + '"><span class="gx-lbl" id="gx-' + k + '-lbl">' + lbl + "</span>" +
+      '<div class="gx-choices ' + (cls || "") + '" role="radiogroup" aria-labelledby="gx-' + k + '-lbl" id="gx-' + k + '">' +
+      list.map(function (o) { return '<button type="button" class="gx-choice" role="radio" data-pick="' + k + '" data-v="' + esc(o.v) + '" aria-checked="' + (S[k] === o.v) + '"><span class="gx-ic">' + ic(o.icon) + '</span><span class="gx-ct"><b>' + esc(o.t) + "</b>" + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + '</span><span class="gx-tick">' + ic("check") + "</span></button>"; }).join("") +
       "</div>" + err(k) + "</div>";
   }
   function select(k, lbl, list, ph) {
@@ -243,25 +282,24 @@
           why("Visa rules depend on your passport, not where you live. A Pakistani passport holder living in Dubai still applies as a Pakistani citizen.");
       },
       check: function () { return { to: !S.to && "Choose the country you are travelling to.", from: !S.from && "Choose the country that issued your passport.", same: S.to && S.to === S.from && "Your destination and passport country are the same. Check both.", purpose: !S.purpose && "Pick the main reason for your trip.", purpose_other: S.purpose === "other" && !S.purpose_other && "Tell us briefly what the trip is for." }; } },
-    { id: "dates", stage: 0, title: "When are you travelling?", lead: "Your best estimate is fine. You can change dates later if your plans move.",
+    { id: "dates", stage: 0, title: "When are you travelling?", lead: "Pick your arrival and return dates. Your best estimate is fine.",
       body: function () {
-        return '<div class="gx-row2">' + date("arrive", "Arrival date", { from: YEAR, to: YEAR + 2 }) + date("leave", "Return date", { from: YEAR, to: YEAR + 2 }) + "</div>" +
-          choices("stay", "Where will you stay?", STAYS, "c2") +
+        return range() + choices("stay", "Where will you stay?", STAYS, "c2") +
           yn("flights", "Have you booked your flights?", [["yes", "Yes, booked"], ["no", "Not yet"]]) +
           (S.flights === "no" ? note("info", "You don't need to buy tickets before your visa is approved. If the embassy asks for a flight plan, we can arrange a flight reservation for you.") : "") +
           why("Embassies check that your trip has a clear start and end date and that the length of stay matches the visa.");
       },
       check: function () {
         var a = dateOf("arrive"), l = dateOf("leave");
-        return { arrive: !a ? "Enter the date you plan to arrive." : a === "bad" ? "That date doesn't exist. Check the day and month." : a < TODAY ? "Your arrival date can't be in the past." : "",
-          leave: !l ? "Enter the date you plan to return home." : l === "bad" ? "That date doesn't exist. Check the day and month." : (a && a !== "bad" && l <= a) ? "Your return date must be after your arrival date." : "",
+        return { arrive: !a ? "Choose your arrival date." : a === "bad" ? "Choose a valid arrival date." : a < TODAY ? "Your arrival date can't be in the past." : "",
+          leave: !l ? "Choose your return date." : l === "bad" ? "Choose a valid return date." : (a && a !== "bad" && l <= a) ? "Your return date must be after your arrival date." : "",
           stay: !S.stay && "Choose where you will stay.", flights: !S.flights && "Tell us if your flights are booked." };
       } },
     { id: "you", stage: 1, title: "Tell us about yourself", lead: "Type your name exactly as it appears on your passport, including middle names.",
       body: function () {
         return '<div class="gx-slot" data-slot="scan"></div>' +
           '<div class="gx-row2">' + text("first", "First and middle names", { ph: "Muhammad Ali", auto: "given-name" }) + text("last", "Last name (surname)", { ph: "Khan", auto: "family-name" }) + "</div>" +
-          date("dob", "Date of birth", { from: YEAR - 100, to: YEAR, desc: true }) +
+          typed("dob", "Date of birth", "Type it as day, month, year. For example 20 05 1990.") +
           yn("gender", "Gender as shown on your passport", [["Male", "Male"], ["Female", "Female"], ["Other", "Other"]]) +
           select("marital", "Marital status", ["Single", "Married", "Divorced", "Widowed"], "Choose your status") +
           why("Your visa is checked against your passport at the border. A single wrong letter in your name can mean a refused or invalid visa.");
@@ -269,20 +307,20 @@
       check: function () {
         var d = dateOf("dob");
         return { first: !S.first && "Enter your first name exactly as on your passport.", last: !S.last && "Enter your last name (surname) as on your passport.",
-          dob: !d ? "Enter your full date of birth." : d === "bad" ? "That date doesn't exist. Check the day and month." : d > TODAY ? "Your date of birth can't be in the future." : "",
+          dob: !d ? "Enter your full date of birth." : d === "bad" ? "That date doesn't exist. Check the day and month." : d > TODAY ? "Your date of birth can't be in the future." : d.getFullYear() < YEAR - 120 ? "Check the year of birth." : "",
           gender: !S.gender && "Choose the gender shown on your passport.", marital: !S.marital && "Choose your marital status." };
       } },
     { id: "passport", stage: 1, title: "Your passport", lead: "Open your passport at the photo page. Everything we need is printed there.",
       body: function () {
         return text("pp_no", "Passport number", { ph: "AB1234567", upper: true, hint: "Usually 7 to 9 letters and numbers, top right of the photo page. No spaces." }) +
-          date("pp_exp", "Date of expiry", { from: YEAR, to: YEAR + 15 }) +
-          (S.warn ? note("warn", S.warn) : "") +
+          typed("pp_exp", "Expiry date", "Printed under \u201cDate of expiry\u201d on the photo page.") +
+          warnHtml() +
           why("Most countries need your passport to be valid for at least 6 months after you return, with two blank pages. We check this now so there are no surprises later.");
       },
       check: function () {
         var e = dateOf("pp_exp");
         return { pp_no: !S.pp_no ? "Enter your passport number." : !/^[A-Z0-9]{5,12}$/.test(S.pp_no) ? "Use letters and numbers only, with no spaces or dashes." : "",
-          pp_exp: !e ? "Enter your passport's expiry date." : e === "bad" ? "That date doesn't exist. Check the day and month." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : "" };
+          pp_exp: !e ? "Enter your passport's expiry date." : e === "bad" ? "That date doesn't exist. Check the day and month." : e < TODAY ? "This passport has expired. You need a valid passport to apply." : e.getFullYear() > YEAR + 20 ? "Check the year. Passports are valid for 10 years at most." : "" };
       } },
     { id: "contact", stage: 1, title: "How can we reach you?", lead: "We send updates about your application here, and your adviser may message you if a document is missing.",
       body: function () {
@@ -297,33 +335,32 @@
       } },
     { id: "address", stage: 1, title: "Where do you live?", lead: "Your home address now. It must be in the country where you live.",
       body: function () {
-        var sug = (!S.res && S.from && NAME[S.from]) ? '<div class="gx-suggest">Live in ' + esc(NAME[S.from]) + '? <button type="button" class="gx-chip" data-set="res" data-v="' + S.from + '">Use ' + esc(NAME[S.from]) + "</button></div>" : "";
-        return country("res", "Country of residence", { ph: "Search or select a country", hint: "The country where you live permanently.", suggest: sug }) +
+        return country("res", "Country of residence", { ph: "Search or select a country", hint: "The country where you live permanently." }) +
           text("addr", "Home address", { ph: "House 12, Street 4, Block B", auto: "street-address" }) +
           '<div class="gx-row2">' + text("city", "City or town", { ph: "Lahore", auto: "address-level2" }) + text("region", "State or province", { ph: "Punjab", auto: "address-level1", opt: true }) + "</div>" +
           text("zip", "Postcode or ZIP", { ph: "54000", auto: "postal-code", opt: true }) +
           why("You usually apply from the country where you live. Your address also tells us which visa centre or embassy handles your file.");
       },
       check: function () { return { res: !S.res && "Choose the country where you live.", addr: !S.addr && "Enter your home address.", city: !S.city && "Enter your city or town." }; } },
-    { id: "money", stage: 1, title: "Your work and finances", lead: "Embassies want to see that you can pay for the trip and that you'll return home.",
+    { id: "money", stage: 1, title: "Work & finances", lead: "Quick questions so your adviser knows which documents to prepare. Pick the closest answers.",
       body: function () {
-        return choices("emp", "What do you do?", JOBS) +
-          select("bal", "Roughly how much is in your bank account?", BALANCES, "Choose a range") +
-          yn("stmt", "Can you get a 6-month bank statement?", [["Yes", "Yes"], ["No", "No"]], "Most embassies ask for the last 3 to 6 months.") +
-          yn("prop", "Do you own property in your home country?", [["Yes", "Yes"], ["No", "No"]], "A house, flat or land in your name. This helps show ties to home.") +
-          yn("sponsor", "Is someone else paying for this trip?", [["no", "No, I'm paying"], ["yes", "Yes, a sponsor is paying"]]) +
-          (S.sponsor === "yes" ? note("info", "We'll ask for your sponsor's details and a support letter later. Nothing more is needed right now.") : "") +
-          why("We use this to build the right document checklist for you. These answers are only used for your application.");
+        return chips("emp", "Your work", JOBS) +
+          scale("bal", "Money in your bank account", "Roughly, in US dollars. An estimate is fine.") +
+          '<div class="gx-f"><span class="gx-lbl">A few quick checks</span>' + qlist([
+            ["stmt", "Can you get a 6-month bank statement?", "Most embassies ask for the last 3 to 6 months."],
+            ["prop", "Do you own property at home?", "A house, flat or land in your name."],
+            ["sponsor", "Is someone else paying for this trip?", "For example a family member or your employer.", [["yes", "Yes"], ["no", "No"]], S.sponsor === "yes" ? note("info", "We'll ask for your sponsor's details and a support letter later.") : ""]
+          ]) + "</div>" +
+          why("These answers build your personal document checklist. They are only used for your application.");
       },
-      check: function () { return { emp: !S.emp && "Choose what you do.", bal: !S.bal && "Choose the closest range.", stmt: !S.stmt && "Choose Yes or No.", prop: !S.prop && "Choose Yes or No.", sponsor: !S.sponsor && "Choose who is paying." }; } },
-    { id: "history", stage: 1, title: "Your travel history", lead: "Answer honestly. Embassies can see your past applications, and a wrong answer can lead to a refusal.",
+      check: function () { return { emp: !S.emp && "Choose your work situation.", bal: !S.bal && "Choose the closest amount.", stmt: !S.stmt && "Choose Yes or No.", prop: !S.prop && "Choose Yes or No.", sponsor: !S.sponsor && "Choose Yes or No." }; } },
+    { id: "history", stage: 1, title: "Travel history", lead: "Answer honestly. Embassies can see past applications, and a wrong answer can lead to a refusal.",
       body: function () {
-        return yn("travelled", "Have you travelled outside your country in the last 10 years?", [["Yes", "Yes"], ["No", "No"]]) +
-          (S.travelled === "Yes" ? text("travelled_where", "Which countries?", { ph: "UAE, Saudi Arabia, Türkiye", hint: "List them in any order. Dates are not needed now." }) : "") +
-          yn("refused", "Have you ever been refused a visa for any country?") +
-          (S.refused === "yes" ? text("refused_where", "Which country, and roughly when?", { ph: "United Kingdom, 2023" }) : "") +
-          (S.refused === "yes" ? note("info", "A past refusal doesn't stop you applying. Your adviser will look at the reason and help you address it in this application.") : "") +
-          yn("crim", "Have you ever been convicted of a criminal offence in any country?", [["Yes", "Yes"], ["No", "No"]], "Many visa forms ask this. Your answer is only shared as part of your visa application.");
+        return qlist([
+          ["travelled", "Have you travelled abroad in the last 10 years?", "", null, S.travelled === "Yes" ? text("travelled_where", "Which countries?", { ph: "UAE, Saudi Arabia, Türkiye", hint: "Any order. Dates are not needed now." }) : ""],
+          ["refused", "Have you ever been refused a visa?", "For any country.", [["yes", "Yes"], ["no", "No"]], S.refused === "yes" ? text("refused_where", "Which country, and roughly when?", { ph: "United Kingdom, 2023" }) + note("info", "A past refusal doesn't stop you applying. Your adviser will help you address it.") : ""],
+          ["crim", "Have you ever been convicted of a criminal offence?", "In any country. Many visa forms ask this."]
+        ]);
       },
       check: function () { return { travelled: !S.travelled && "Choose Yes or No.", travelled_where: S.travelled === "Yes" && !S.travelled_where && "List the countries you visited.", refused: !S.refused && "Choose Yes or No.", refused_where: S.refused === "yes" && !S.refused_where && "Tell us which country and roughly when.", crim: !S.crim && "Choose Yes or No." }; } },
     { id: "people", stage: 1, title: "Is anyone travelling with you?", lead: "Add family members or colleagues who need a visa for the same trip. If it's just you, press Continue.",
@@ -385,7 +422,6 @@
   function renderAside() {
     var todo = [["Trip details", S.to && S.from && S.purpose && dateOf("arrive") && dateOf("leave")], ["Personal details", S.first && S.last && dateOf("dob") && S.gender], ["Passport", S.pp_no && dateOf("pp_exp")], ["Contact and address", S.email && S.phone && S.res && S.addr], ["Work and travel history", S.emp && S.bal && S.crim]];
     aside.innerHTML = '<div class="gx-box">' + sumHtml() + "</div>" +
-      '<div class="gx-box"><h4>Progress</h4><ul class="gx-todo">' + todo.map(function (t) { return '<li class="' + (t[1] ? "ok" : "") + '"><i></i><span>' + t[0] + "</span></li>"; }).join("") + "</ul></div>" +
       '<div class="gx-box gx-help"><p>Stuck on a question? Message a UK adviser on WhatsApp.</p><a href="https://wa.me/447482331249" target="_blank" rel="noopener">' + ic("chat") + "+44 7482 331249</a><p style=\"margin-top:6px!important;color:#5a6e65;font-size:13px\">Monday to Friday, 09:00 to 18:00 UK time</p></div>" +
       '<div class="gx-box"><div class="gx-trust"><span>' + ic("shield") + "UK-registered company, Wolverhampton</span><span>" + ic("lock") + "256-bit encrypted form</span><span>" + ic("info") + "Private service, not a government website</span></div></div>";
   }
@@ -395,11 +431,12 @@
     var sc = SCREENS[S.step], cur = sc.stage;
     var inStage = SCREENS.filter(function (s) { return s.stage === cur && s.id !== "start"; });
     var pos = inStage.indexOf(sc);
-    var bars = STAGES.map(function (n, i) { var p = i < cur ? 100 : i > cur ? 0 : S.step === 0 ? 0 : Math.round((pos + 1) / inStage.length * 100); return '<span><i style="width:' + p + '%"></i></span>'; }).join("");
-    var names = STAGES.map(function (n, i) { return '<span class="' + (i <= cur ? "on" : "") + '">' + (i < cur ? "✓ " : "") + n + "</span>"; }).join("");
+    var steps = STAGES.map(function (n, i) { return '<div class="gx-st' + (i < cur ? " done" : i === cur ? " on" : "") + '"' + (i === cur ? ' aria-current="step"' : "") + '><i>' + (i < cur ? ic("check") : i + 1) + "</i><span>" + n + "</span></div>" + (i < 2 ? '<b class="gx-stl' + (i < cur ? " done" : "") + '"></b>' : ""); }).join("");
+    var pct = Math.round(S.step / TOTAL * 100), left = Math.max(1, Math.round((TOTAL - S.step) * 0.6));
+    var meta = S.step === 0 ? "Takes about 6 minutes" : S.step === TOTAL ? "Last step" : "About " + left + " min left";
     var back = S.step > 0 ? '<button type="button" class="gx-btn gx-ghost" id="gx-back">' + ic("arrowL") + "Back</button>" : "<span></span>";
     root.innerHTML = '<details class="gx-msum"><summary>' + ic("passport") + 'Your application</summary><div style="margin-top:12px">' + sumHtml() + "</div></details>" +
-      '<div class="gx-screen"><div class="gx-prog"><div class="gx-prog-top"><b>' + (S.step === 0 ? "Visa application" : STAGES[cur]) + "</b><span>" + (S.step === 0 ? "Getting started" : "Step " + S.step + " of " + TOTAL) + '</span></div><div class="gx-stages">' + bars + '</div><div class="gx-stagenames">' + names + "</div></div>" +
+      '<div class="gx-screen"><div class="gx-prog"><div class="gx-steps">' + steps + '</div><div class="gx-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div><div class="gx-pmeta"><span>' + (S.step === 0 ? "Getting started" : "Step " + S.step + " of " + TOTAL) + "</span><span>" + meta + "</span></div></div>" +
       '<h2 class="gx-title" id="gx-h" tabindex="-1">' + sc.title + '</h2><p class="gx-lead">' + sc.lead + '</p><div class="gx-fields">' + sc.body() + "</div>" +
       (S.errs.same ? '<p class="gx-err" style="margin-top:14px!important">' + ic("warn") + esc(S.errs.same) + "</p>" : "") +
       '<div class="gx-nav">' + back + '<button type="button" class="gx-btn gx-go" id="gx-next">' + (sc.next || "Continue") + ic("arrowR") + "</button></div></div>";
@@ -440,14 +477,8 @@
         renderAside();
       });
     });
-    root.querySelectorAll("[data-date]").forEach(function (el) {
-      el.addEventListener("change", function () {
-        var k = el.getAttribute("data-date"), o = {}; for (var p in (S[k] || {})) o[p] = S[k][p];
-        o[el.getAttribute("data-part")] = el.value; S[k] = o; S.errs[k] = ""; push();
-        if (k === "pp_exp") { var had = S.warn; passportWarn(); if (had !== S.warn) { render(false, true); var again = root.querySelector('[data-date="pp_exp"][data-part="' + el.getAttribute("data-part") + '"]'); if (again) again.focus(); return; } }
-        renderAside();
-      });
-    });
+    root.querySelectorAll("[data-dt]").forEach(bindTyped);
+    root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); openCal(b.getAttribute("data-rfocus")); }); });
     root.querySelectorAll("[data-pick]").forEach(function (el) {
       el.addEventListener("click", function () {
         var k = el.getAttribute("data-pick"), v = el.getAttribute("data-v");
@@ -468,7 +499,6 @@
     if (sc.id === "people") { var open = form.querySelector("[data-extra-list] li.is-editing"); if (open) { open.scrollIntoView({ block: "center", behavior: "smooth" }); var msg = open.querySelector(".gx-err") || document.createElement("p"); msg.className = "gx-err"; msg.textContent = "Save or cancel this traveller before you continue."; if (!msg.parentNode) open.appendChild(msg); return; } }
     if (hasErr(clean)) { S.errs = clean; return render(true, true); }
     push();
-    if (sc.id === "trip" && !S.code && S.from) { S.code = S.from; setCode(S.from); }
     if (sc.id === "passport") passportWarn();
     if (sc.id === "review") return submit();
     go(S.step + 1);
@@ -481,6 +511,94 @@
     if (real) real.click(); else HTMLFormElement.prototype.submit.call(form);
     window.addEventListener("pageshow", function () { var b = document.getElementById("gx-next"); if (b) { b.disabled = false; } });
   }
+
+  /* typed DD / MM / YYYY */
+  function bindTyped(box) {
+    var k = box.getAttribute("data-dt"), ins = box.querySelectorAll("input"), out = box.querySelector("[data-dt-out]");
+    function save() {
+      var o = { d: String(+ins[0].value || ""), m: String(+ins[1].value || ""), y: ins[2].value.length === 4 ? ins[2].value : "" };
+      if (o.d === "0") o.d = ""; if (o.m === "0") o.m = "";
+      S[k] = o; push(); out.textContent = dtOut(k);
+      if (S.errs[k]) { S.errs[k] = ""; var f = box.closest(".gx-f"); if (f) f.classList.remove("gx-bad"); var m = document.getElementById("gx-" + k + "-err"); if (m) m.remove(); }
+      if (k === "pp_exp") { var had = S.warn; passportWarn(); if (had !== S.warn) { var w = root.querySelector("[data-warn]"); if (w) w.outerHTML = warnHtml(); } }
+      renderAside();
+    }
+    ins.forEach(function (inp, i) {
+      inp.addEventListener("input", function () {
+        var v = inp.value.replace(/\D/g, ""); var max = i === 2 ? 4 : 2;
+        if (i === 0 && v.length === 1 && +v > 3) v = "0" + v;
+        if (i === 1 && v.length === 1 && +v > 1) v = "0" + v;
+        if (i === 1 && +v > 12) v = "12"; if (i === 0 && +v > 31) v = "31";
+        inp.value = v.slice(0, max);
+        if (inp.value.length === max && ins[i + 1]) { ins[i + 1].focus(); ins[i + 1].select(); }
+        save();
+      });
+      inp.addEventListener("keydown", function (e) { if (e.key === "Backspace" && !inp.value && ins[i - 1]) { e.preventDefault(); ins[i - 1].focus(); } });
+      inp.addEventListener("paste", function (e) {
+        var t = (e.clipboardData || window.clipboardData).getData("text"), m = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})/.exec(t);
+        if (m) { e.preventDefault(); ins[0].value = pad(m[1]); ins[1].value = pad(m[2]); ins[2].value = m[3]; save(); ins[2].focus(); }
+      });
+    });
+    box.addEventListener("click", function (e) { if (e.target === box || e.target.closest(".gx-dt-ic")) { var first = [].filter.call(ins, function (x) { return !x.value; })[0] || ins[0]; first.focus(); } });
+  }
+  function warnHtml() { return '<div data-warn>' + (S.warn ? note("warn", S.warn) : "") + "</div>"; }
+
+  /* range calendar */
+  var calFocus = "arrive", calView = null;
+  function openCal(focus) {
+    calFocus = focus;
+    var A = dateOf("arrive"); var base = (focus === "leave" && dateOf("leave") && dateOf("leave") !== "bad") ? dateOf("leave") : (A && A !== "bad" ? A : TODAY);
+    calView = new Date(base.getFullYear(), base.getMonth(), 1);
+    if (focus === "leave" && A && A !== "bad") calView = new Date(A.getFullYear(), A.getMonth(), 1);
+    drawCal();
+  }
+  function closeCal() { var p = root.querySelector(".gx-cal"); if (p) p.remove(); root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.classList.remove("on"); }); }
+  function drawCal() {
+    var wrap = root.querySelector(".gx-range"); if (!wrap) return;
+    var old = root.querySelector(".gx-cal"); if (old) old.remove();
+    root.querySelectorAll("[data-rfocus]").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-rfocus") === calFocus); });
+    var A = dateOf("arrive"), L = dateOf("leave"); if (A === "bad") A = null; if (L === "bad") L = null;
+    var two = window.matchMedia("(min-width: 760px)").matches, html = "";
+    for (var mo = 0; mo < (two ? 2 : 1); mo++) {
+      var first = new Date(calView.getFullYear(), calView.getMonth() + mo, 1), days = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+      var lead = (first.getDay() + 6) % 7, cells = "";
+      for (var e = 0; e < lead; e++) cells += "<span></span>";
+      for (var d = 1; d <= days; d++) {
+        var dt = new Date(first.getFullYear(), first.getMonth(), d), dis = dt < TODAY || (calFocus === "leave" && A && dt <= A) || dt > new Date(YEAR + 2, 11, 31);
+        var cls = []; if (A && +dt === +A) cls.push("s"); if (L && +dt === +L) cls.push("e"); if (A && L && dt > A && dt < L) cls.push("in"); if (+dt === +TODAY) cls.push("t");
+        cells += '<button type="button" data-day="' + dkey(dt) + '" class="' + cls.join(" ") + '"' + (dis ? " disabled" : "") + ' aria-label="' + dt.toDateString() + '">' + d + "</button>";
+      }
+      html += '<div class="gx-cm"><p class="gx-cm-h">' + MONTHS[first.getMonth()] + " " + first.getFullYear() + '</p><div class="gx-dow"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div><div class="gx-days">' + cells + "</div></div>";
+    }
+    var canPrev = new Date(calView.getFullYear(), calView.getMonth(), 1) > new Date(YEAR, NOW.getMonth(), 1);
+    var p = document.createElement("div"); p.className = "gx-cal";
+    p.innerHTML = '<div class="gx-cal-top"><button type="button" class="gx-cal-nav" data-cnav="-1" aria-label="Previous month"' + (canPrev ? "" : " disabled") + ">" + ic("left") + '</button><p class="gx-cal-tip">' + (calFocus === "arrive" ? "Select your arrival date" : "Select your return date") + '</p><button type="button" class="gx-cal-nav" data-cnav="1" aria-label="Next month">' + ic("right") + "</button></div>" +
+      '<div class="gx-cms">' + html + '</div><div class="gx-cal-foot"><button type="button" class="gx-link" data-cclear>Clear dates</button><button type="button" class="gx-btn gx-go gx-sm" data-cdone>Done</button></div>';
+    wrap.parentNode.insertBefore(p, wrap.nextSibling);
+    p.addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      var nav = ev.target.closest("[data-cnav]"), day = ev.target.closest("[data-day]");
+      if (nav && !nav.disabled) { calView = new Date(calView.getFullYear(), calView.getMonth() + (+nav.getAttribute("data-cnav")), 1); return drawCal(); }
+      if (ev.target.closest("[data-cclear]")) { S.arrive = {}; S.leave = {}; push(); calFocus = "arrive"; return refreshRange(); }
+      if (ev.target.closest("[data-cdone]")) { closeCal(); return; }
+      if (day && !day.disabled) {
+        var m = day.getAttribute("data-day").split("-"), picked = new Date(+m[0], +m[1] - 1, +m[2]);
+        var A2 = dateOf("arrive");
+        if (calFocus === "arrive" || !A2 || A2 === "bad" || picked <= A2) { S.arrive = toObj(picked); var L2 = dateOf("leave"); if (L2 && L2 !== "bad" && L2 <= picked) S.leave = {}; calFocus = "leave"; S.errs.arrive = ""; push(); refreshRange(); }
+        else { S.leave = toObj(picked); S.errs.leave = ""; push(); refreshRange(); closeCal(); }
+      }
+    });
+  }
+  function refreshRange() {
+    var f = root.querySelector(".gx-range").closest(".gx-f"), open = !!root.querySelector(".gx-cal");
+    var tmp = document.createElement("div"); tmp.innerHTML = range(); var nf = tmp.firstChild;
+    f.parentNode.replaceChild(nf, f);
+    nf.querySelectorAll("[data-rfocus]").forEach(function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); openCal(b.getAttribute("data-rfocus")); }); });
+    if (open) drawCal();
+    renderAside();
+  }
+  document.addEventListener("click", function (e) { if (!e.target.closest(".gx-cal") && !e.target.closest("[data-rfocus]")) closeCal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCal(); });
 
   /* searchable country / code picker */
   function fold(s) { s = String(s || "").toLowerCase(); try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) {} return s; }
@@ -521,7 +639,6 @@
     function close() { var p = cs.querySelector(".gx-panel"); if (p) p.remove(); btn.setAttribute("aria-expanded", "false"); }
     function pick(code) {
       S[k] = code; S.errs[k] = ""; S.errs.same = "";
-      if (k === "from" && !S.code) S.code = code;
       push(); render(false, true); var b = document.getElementById("gx-" + k); if (b) b.focus();
     }
   }
