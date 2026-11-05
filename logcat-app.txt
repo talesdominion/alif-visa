@@ -1,0 +1,139 @@
+11-05 01:20:06.478   286   286 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+11-05 01:20:06.540   286   286 I AndroidRuntime: Using default boot image
+11-05 01:20:06.540   286   286 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:20:06.763   287   287 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+11-05 01:20:06.886   287   287 I AndroidRuntime: Using default boot image
+11-05 01:20:06.886   287   287 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:20:14.716   851   851 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+11-05 01:20:14.774   861   861 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+11-05 01:20:19.950  1487  1487 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-05 01:20:19.994  1487  1487 I AndroidRuntime: Using default boot image
+11-05 01:20:19.994  1487  1487 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:20:22.050  1487  1487 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-05 01:20:22.159  1487  1487 D AndroidRuntime: Shutting down VM
+11-05 01:20:22.174  1487  1631 I AndroidRuntime: NOTE: attach of thread 'Binder:1487_2' failed
+11-05 01:20:27.434   497   556 V BackupManagerService: [UserID:0] restoreAtInstall pkg=com.alifvisa.app token=1 restoreSet=0
+11-05 01:20:28.585   694   694 D AvrcpMediaPlayerList: Name of package changed: com.alifvisa.app
+11-05 01:20:28.601  1727  1727 I MediaProvider: Invalidating LocalCallingIdentity cache for package com.alifvisa.app. Reason: package android.intent.action.PACKAGE_ADDED
+11-05 01:20:28.683   497  1025 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:20:28.877   497   541 I ActivityManager: Start proc 2470:com.alifvisa.app/u0a167 for pre-top-activity {com.alifvisa.app/com.alifvisa.app.MainActivity}
+11-05 01:20:29.036  2470  2470 I om.alifvisa.ap: Late-enabling -Xcheck:jni
+11-05 01:20:29.047  2470  2470 I om.alifvisa.ap: Unquickening 12 vdex files!
+11-05 01:20:29.047  2470  2470 W om.alifvisa.ap: Unexpected CPU variant for X86 using defaults: x86_64
+11-05 01:20:29.120  1672  1672 I GsaVoiceInteractionSrv: O received Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) }
+11-05 01:20:29.645  2470  2470 W om.alifvisa.ap: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (greylist, reflection, allowed)
+11-05 01:20:29.658  2470  2470 I om.alifvisa.ap: The ClassLoaderContext is a special shared library.
+11-05 01:20:29.673  2470  2470 I om.alifvisa.ap: The ClassLoaderContext is a special shared library.
+11-05 01:20:29.768  2470  2470 I TetheringManager: registerTetheringEventCallback:com.alifvisa.app
+11-05 01:20:29.898   497   541 I ActivityManager: Start proc 2621:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {com.alifvisa.app/org.chromium.content.app.SandboxedProcessService0:0}
+11-05 01:20:29.913  2470  2470 E chromium: [ERROR:filesystem_posix.cc(62)] mkdir /data/user/0/com.alifvisa.app/cache/WebView/Crashpad: No such file or directory (2)
+11-05 01:20:30.306   497   527 D ConnectivityService: requestNetwork for uid/pid:10167/2470 NetworkRequest [ TRACK_DEFAULT id=25, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ]
+11-05 01:20:30.307   497   642 D UntrustedWifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=25, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+11-05 01:20:30.307   497   642 D WifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=25, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+11-05 01:20:30.307  1028  1028 D PhoneSwitcherNetworkRequstListener: got request NetworkRequest [ TRACK_DEFAULT id=25, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+11-05 01:20:30.416   497  1074 D ConnectivityService: requestNetwork for uid/pid:10167/2470 NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ]
+11-05 01:20:30.416   497   642 D UntrustedWifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+11-05 01:20:30.416   497   642 D WifiNetworkFactory: got request NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+11-05 01:20:30.416  1028  1028 D PhoneSwitcherNetworkRequstListener: got request NetworkRequest [ TRACK_DEFAULT id=27, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10167 AdministratorUids: [] RequestorUid: 10167 RequestorPackageName: com.alifvisa.app] ] with score 60 and providerId 3
+11-05 01:20:30.421  2470  2669 W om.alifvisa.ap: Accessing hidden method Landroid/media/AudioManager;->getOutputLatency(I)I (greylist, reflection, allowed)
+11-05 01:20:31.223  1362  2250 I IntentFilterIntentOp: Verifying IntentFilter. verificationId:0 scheme:"https" hosts:"www.alifvisa.com alifvisa.com" package:"com.alifvisa.app".
+11-05 01:20:31.331  2470  2495 I om.alifvisa.ap: Background young concurrent copying GC freed 42636(3332KB) AllocSpace objects, 3(124KB) LOS objects, 88% free, 3252KB/27MB, paused 343us total 283.780ms
+11-05 01:20:32.275  1133  1739 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+11-05 01:20:32.276  1133  2251 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+11-05 01:20:32.323   497  2114 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.packageinstaller/com.android.packageinstaller.PackageInstalledReceiver
+11-05 01:20:32.324   497   540 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+11-05 01:20:32.324   497   540 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+11-05 01:20:32.324   497   540 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+11-05 01:20:32.324   497   540 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+11-05 01:20:32.324   497   540 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 (has extras) } to com.google.android.ims/.receivers.RcsAutoStartReceiver
+11-05 01:20:32.407  1362  2253 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.alifvisa.app flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+11-05 01:20:32.428  1362  1550 I FontsPackageChangeOp: Package com.alifvisa.app has no metadata
+11-05 01:20:32.483  1362  2253 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://MhBgUkCJboim8xbsxr3UVtATKOzjUs-92jywDUG-Wf2K5aku-eHS0FlYNvsIhJ8Gy-VSDsQlqiL0b5eqMLnALQ==@com.alifvisa.app/ was not found. Marking affiliation data as stale...
+11-05 01:20:35.784   428  2457 I iorapd  : Perfetto TraceBuffer saved to file: /data/misc/iorapd/com.alifvisa.app/7/com.alifvisa.app.MainActivity/raw_traces/1793841635554108466.perfetto_trace.pb
+11-05 01:20:36.170   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{cbfe434 com.google.android.youtube/10147} BLOCKED
+11-05 01:20:36.170   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{974325d com.google.android.apps.messaging/10144} BLOCKED
+11-05 01:20:36.171   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{ebff7d2 com.google.android.apps.wellbeing/10113} BLOCKED
+11-05 01:20:36.171   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{3aab0a3 com.google.android.partnersetup/10115} BLOCKED
+11-05 01:20:36.171   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{2910fa0 com.google.android.apps.youtube.music/10138} BLOCKED
+11-05 01:20:36.546  1362  2250 I IntentFilterIntentOp: Verification 0 complete. Success:false. Failed hosts:www.alifvisa.com,alifvisa.com.
+11-05 01:20:39.346  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/ (240)
+11-05 01:20:39.347  2470  2470 I chromium: [INFO:CONSOLE(0)] "The resource https://alifvisa.com/wp-content/themes/alif-visa/assets/images/hero/travellers.png?ver=2.20.4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source:  (0)
+11-05 01:20:39.431  2470  3371 D ProfileInstaller: Installing profile for com.alifvisa.app
+11-05 01:20:40.261   497   539 D ArtManagerInternalImpl: /data/misc/iorapd/com.alifvisa.app/7/com.alifvisa.app.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+11-05 01:20:40.262   497   539 I ActivityTaskManager: Displayed com.alifvisa.app/.MainActivity: +5s75ms
+11-05 01:20:46.793   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{974325d com.google.android.apps.messaging/10144} BLOCKED
+11-05 01:20:57.834   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{cbfe434 com.google.android.youtube/10147} BLOCKED
+11-05 01:20:57.834   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{ebff7d2 com.google.android.apps.wellbeing/10113} BLOCKED
+11-05 01:20:57.834   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{bd915e0 com.google.android.apps.maps/10137} BLOCKED
+11-05 01:20:57.834   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{e377835 com.google.android.videos/10142} BLOCKED
+11-05 01:20:57.834   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{23c84ca com.google.android.apps.photos/10134} BLOCKED
+11-05 01:20:57.834   497   556 I AppsFilter: interaction: PackageSetting{c3c6b07 com.alifvisa.app/10167} -> PackageSetting{886d9d3 com.google.android.projection.gearhead/10116} BLOCKED
+11-05 01:21:16.466  5431  5431 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-05 01:21:16.469  5431  5431 I AndroidRuntime: Using default boot image
+11-05 01:21:16.469  5431  5431 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:21:16.534  5431  5431 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-05 01:21:16.544  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Start Load JS Delayed", source: https://alifvisa.com/ (240)
+11-05 01:21:16.545  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:16.912  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:16.912  2470  2470 I chatty  : uid=10167(com.alifvisa.app) identical 1 line
+11-05 01:21:16.912  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:17.017  5431  5431 D AndroidRuntime: Shutting down VM
+11-05 01:21:17.140  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:17.141  2470  2470 I chromium: [INFO:CONSOLE(1)] "Payment gateway with handle 'wc-stripe-blocks-integration' has been deactivated in Cart and Checkout blocks because its dependency 'jquery' is not registered. Read the docs about registering assets for payment methods: https://github.com/woocommerce/woocommerce-blocks/blob/060f63c04f0f34f645200b5d4da9212125c49177/docs/third-party-developers/extensibility/checkout-payment-methods/payment-method-integration.md#registering-assets", source: blob:https://alifvisa.com/ee8257dc-fe8f-48c7-868e-911276b01280 (1)
+11-05 01:21:17.141  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:18.953  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:18.953  2470  2470 I chatty  : uid=10167(com.alifvisa.app) identical 3 lines
+11-05 01:21:18.953  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:19.052  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:19.053  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:19.228  2470  2470 I chromium: [INFO:CONSOLE(240)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/ (240)
+11-05 01:21:20.119   497  5456 I PackageDexOptimizer: Running dexopt (dexoptNeeded=1) on: /data/app/~~K_G3rTkLgijdFBN8dio9xg==/com.alifvisa.app-bamvigZTNpZeCiGpbiVkJQ==/base.apk pkg=com.alifvisa.app isa=x86_64 dexoptFlags=boot_complete,debuggable,public,enable_hidden_api_checks targetFilter=verify oatDir=/data/app/~~K_G3rTkLgijdFBN8dio9xg==/com.alifvisa.app-bamvigZTNpZeCiGpbiVkJQ==/oat classLoaderContext=PCL[]{}
+11-05 01:21:20.120   427   571 V installd: DexInv: --- BEGIN '/data/app/~~K_G3rTkLgijdFBN8dio9xg==/com.alifvisa.app-bamvigZTNpZeCiGpbiVkJQ==/base.apk' ---
+11-05 01:21:20.265  5479  5479 I dex2oat32: /apex/com.android.art/bin/dex2oat32 --input-vdex-fd=-1 --output-vdex-fd=9 --updatable-bcp-packages-file=/system/etc/updatable-bcp-packages.txt --resolve-startup-const-strings=true --max-image-block-size=524288 --compiler-filter=verify --debuggable --classpath-dir=/data/app/~~K_G3rTkLgijdFBN8dio9xg==/com.alifvisa.app-bamvigZTNpZeCiGpbiVkJQ== --class-loader-context=PCL[]{} --generate-mini-debug-info --compact-dex-level=none --compilation-reason=boot
+11-05 01:21:22.505   497  4860 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:21:23.130  2470  2470 I chromium: [INFO:CONSOLE(163)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/visa/search/ (163)
+11-05 01:21:23.427   427   571 V installd: DexInv: --- END '/data/app/~~K_G3rTkLgijdFBN8dio9xg==/com.alifvisa.app-bamvigZTNpZeCiGpbiVkJQ==/base.apk' (success) ---
+11-05 01:21:23.629   497  5456 I BackgroundDexOptService: Pinning optimized code {com.alifvisa.app, android}
+11-05 01:21:23.629   497  5456 D IorapForwardingService: onPackagesUpdated: com.alifvisa.app
+11-05 01:21:44.802   497  2116 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:21:45.167  2470  2470 I chromium: [INFO:CONSOLE(142)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/track-application/ (142)
+11-05 01:21:59.219   497  2114 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:21:59.598  2470  2470 I chromium: [INFO:CONSOLE(165)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/contact/ (165)
+11-05 01:22:16.383  2470  2470 I chromium: [INFO:CONSOLE(71)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/login/?redirect_to=https%3A%2F%2Falifvisa.com%2Fdashboard%2F (71)
+11-05 01:22:13.499   497  2114 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:22:27.780   497   820 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:22:28.135  2470  2470 I chromium: [INFO:CONSOLE(168)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/about/ (168)
+11-05 01:22:42.198   497  2193 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:22:43.395  2470  2470 I chromium: [INFO:CONSOLE(241)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/blog/ (241)
+11-05 01:22:56.547   497   820 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:22:58.134  2470  2470 I chromium: [INFO:CONSOLE(771)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa (771)
+11-05 01:23:47.068  5984  5984 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-05 01:23:47.069  5984  5984 I AndroidRuntime: Using default boot image
+11-05 01:23:47.069  5984  5984 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:23:47.122  5984  5984 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-05 01:23:47.127  2470  2470 I chromium: [INFO:CONSOLE(771)] "[LiteSpeed] Start Load JS Delayed", source: https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa (771)
+11-05 01:23:47.128  2470  2470 I chromium: [INFO:CONSOLE(771)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa (771)
+11-05 01:23:47.479  2470  2470 I chatty  : uid=10167(com.alifvisa.app) identical 5 lines
+11-05 01:23:47.479  2470  2470 I chromium: [INFO:CONSOLE(771)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa (771)
+11-05 01:23:47.641  5984  5984 D AndroidRuntime: Shutting down VM
+11-05 01:23:47.719  2470  2470 I chromium: [INFO:CONSOLE(771)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa (771)
+11-05 01:23:49.082  2470  2470 I chatty  : uid=10167(com.alifvisa.app) identical 17 lines
+11-05 01:23:49.082  2470  2470 I chromium: [INFO:CONSOLE(771)] "[LiteSpeed] Load  [object HTMLScriptElement]", source: https://alifvisa.com/apply/?from=GB&to=FR&purpose=tourism&type=visit-visa (771)
+11-05 01:23:51.831  6001  6001 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-05 01:23:51.847  6001  6001 I AndroidRuntime: Using default boot image
+11-05 01:23:51.847  6001  6001 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:23:51.954  6001  6001 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-05 01:23:52.436  6001  6001 D AndroidRuntime: Shutting down VM
+11-05 01:23:55.572   497  1784 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:23:56.052  2470  2470 I chromium: [INFO:CONSOLE(71)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/login/?redirect=%2Fapply%2F%3Fto%3DFR (71)
+11-05 01:24:07.853   497  1132 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:24:08.293  2470  2470 I chromium: [INFO:CONSOLE(80)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/signup/ (80)
+11-05 01:24:20.455  2470  2470 I chromium: [INFO:CONSOLE(158)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/visa-services/ (158)
+11-05 01:24:32.796  2470  2470 I chromium: [INFO:CONSOLE(159)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/faq/ (159)
+11-05 01:24:45.073  6078  6078 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-05 01:24:45.074  6078  6078 I AndroidRuntime: Using default boot image
+11-05 01:24:45.074  6078  6078 I AndroidRuntime: Leaving lock profiling enabled
+11-05 01:24:45.131  6078  6078 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+11-05 01:24:32.419   497  1132 I ActivityTaskManager: START u0 {act=android.intent.action.VIEW dat=https://alifvisa.com/... flg=0x10000000 pkg=com.alifvisa.app cmp=com.alifvisa.app/.MainActivity} from uid 2000
+11-05 01:24:45.136  6078  6078 D AndroidRuntime: Shutting down VM
+11-05 01:24:45.304  2470  2470 I chromium: [INFO:CONSOLE(158)] "[LiteSpeed] Start Lazy Load", source: https://alifvisa.com/visa-services/ (158)
