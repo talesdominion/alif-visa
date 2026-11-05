@@ -323,6 +323,7 @@
   form.appendChild(holder);
   form.classList.add("gx-on");
   document.documentElement.classList.remove("gx-wait");
+  (function () { var t = document.createElement("div"); t.style.cssText = "display:flex;flex-direction:column;gap:1px;position:absolute;visibility:hidden"; t.appendChild(document.createElement("div")); t.appendChild(document.createElement("div")); document.body.appendChild(t); if (t.scrollHeight !== 1) document.documentElement.classList.add("no-fgap"); t.remove(); })();
   document.documentElement.classList.add("iv-page");
   var scanNode = form.querySelector(".alif-passport-scan");
   var extraNode = form.querySelector(".alif-extra-travellers");

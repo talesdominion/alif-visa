@@ -1,6 +1,6 @@
 
 
-/* ===== Alif guided application form (4 Nov 2026, v4.2). Old form stays underneath; add ?classic=1 to see it. ===== */
+/* ===== Alif guided application form (5 Nov 2026, v4.3). Old form stays underneath; add ?classic=1 to see it. ===== */
 function alif_gx_css() {
     return <<<'GXCSS'
 /* Alif application form v4: iVisa-style layout on top of #alif-apply-wizard */
@@ -148,7 +148,11 @@ function alif_gx_css() {
 }
 @media (prefers-reduced-motion:no-preference){.iv-card{animation:ivIn .25s ease}}
 @keyframes ivIn{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
-
+/* Older Android WebView (before Chrome 84) has no flex gap: same spacing with margins */
+.no-fgap .iv-prog>*+*,.no-fgap .iv-ps>*+*,.no-fgap .iv-row>*+*,.no-fgap .iv .iv-r>*+*,.no-fgap .iv-chk>*+*,.no-fgap .iv-note>*+*,.no-fgap .iv-or>*+*,.no-fgap .iv-trav>*+*,.no-fgap .iv-total>*+*,.no-fgap .iv-foot>*+*,.no-fgap .iv .gx-csb>*+*,.no-fgap .iv .gx-o>*+*,.no-fgap .gx-err>*+*{margin-left:10px!important}
+.no-fgap .iv-fields>*+*{margin-top:24px!important}
+.no-fgap .iv-f>*+*{margin-top:8px!important}
+@media (max-width:640px){.no-fgap .iv-foot>*+*{margin-left:0!important;margin-bottom:10px!important}.no-fgap .iv-fields>*+*{margin-top:20px!important}}
 GXCSS;
 }
 function alif_gx_js() {
@@ -478,6 +482,7 @@ function alif_gx_js() {
   form.appendChild(holder);
   form.classList.add("gx-on");
   document.documentElement.classList.remove("gx-wait");
+  (function () { var t = document.createElement("div"); t.style.cssText = "display:flex;flex-direction:column;gap:1px;position:absolute;visibility:hidden"; t.appendChild(document.createElement("div")); t.appendChild(document.createElement("div")); document.body.appendChild(t); if (t.scrollHeight !== 1) document.documentElement.classList.add("no-fgap"); t.remove(); })();
   document.documentElement.classList.add("iv-page");
   var scanNode = form.querySelector(".alif-passport-scan");
   var extraNode = form.querySelector(".alif-extra-travellers");
