@@ -16,4 +16,8 @@ add_action('template_redirect', function () {
         return $html;
     });
 }, 0);
+/* The theme's own "Cookies on Alif Visa" bar stays hidden too. */
+add_action('wp_head', function () {
+    echo '<style id="alif-no-cookie-bar">.alif-cookie-banner,#alif-cookie-banner{display:none!important}</style>';
+}, 1);
 /* ===== end Alif no tracking ===== */
