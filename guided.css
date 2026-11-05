@@ -145,6 +145,7 @@
 @keyframes ivIn{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
 /* Older Android WebView (before Chrome 84) has no flex gap: same spacing with margins */
 .no-fgap .iv-prog>*+*,.no-fgap .iv-ps>*+*,.no-fgap .iv-row>*+*,.no-fgap .iv .iv-r>*+*,.no-fgap .iv-chk>*+*,.no-fgap .iv-note>*+*,.no-fgap .iv-or>*+*,.no-fgap .iv-trav>*+*,.no-fgap .iv-total>*+*,.no-fgap .iv-foot>*+*,.no-fgap .iv .gx-csb>*+*,.no-fgap .iv .gx-o>*+*,.no-fgap .gx-err>*+*{margin-left:10px!important}
+.no-fgap .iv .gx-csb .gx-chev{margin-left:auto!important}
 .no-fgap .iv-fields>*+*{margin-top:24px!important}
 .no-fgap .iv-f>*+*{margin-top:8px!important}
 @media (max-width:640px){.no-fgap .iv-foot>*+*{margin-left:0!important;margin-bottom:10px!important}.no-fgap .iv-fields>*+*{margin-top:20px!important}}
