@@ -19,5 +19,7 @@ add_action('template_redirect', function () {
 /* The theme's own "Cookies on Alif Visa" bar stays hidden too. */
 add_action('wp_head', function () {
     echo '<style id="alif-no-cookie-bar">.alif-cookie-banner,#alif-cookie-banner{display:none!important}</style>';
+    /* Clear old tracking and banner cookies that visitors' browsers still hold from before. */
+    echo '<script data-no-optimize="1" data-no-defer="1" data-cfasync="false">(function(){try{var h=location.hostname.replace(/^www\\./,""),d=["",h,"."+h];document.cookie.split(";").forEach(function(c){var n=c.split("=")[0].trim();if(/^(_ga|_gid|_gat|_gcl_|_fbp|_fbc|cookieyes-consent|sbjs_|tk_ai)/.test(n)){d.forEach(function(x){document.cookie=n+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/"+(x?"; domain="+x:"")})}})}catch(e){}})();</script>';
 }, 1);
 /* ===== end Alif no tracking ===== */
