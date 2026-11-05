@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installs the debug build, opens each main section through a deep link and screenshots it.
+# Installs the debug build, opens each main section through a deep link and screenshots it (checks the live website inside the app).
 OUT=out/screens
 mkdir -p "$OUT"
 log() { echo "$(date +%T) $*" | tee -a out/test-steps.txt; }
