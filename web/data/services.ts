@@ -1,0 +1,12 @@
+export type Service = { slug: string; name: string; short: string; intro: string; includes: string[] };
+
+export const services: Service[] = [
+  { slug: 'flight-booking', name: 'Flight Booking', short: 'Confirmed or refundable itineraries for your file.', intro: 'Embassies usually want to see your travel plans without you buying a non-refundable ticket. We arrange genuine reservations that match your application dates.', includes: ['Genuine, verifiable reservation', 'Dates matched to your application', 'Return or onward travel shown'] },
+  { slug: 'hotel-booking', name: 'Hotel Booking', short: 'Accommodation proof accepted by embassies.', intro: 'Proof of where you will stay is part of most visit and business applications. We arrange refundable bookings that cover your whole stay.', includes: ['Refundable bookings', 'Covers every night of the trip', 'Booking confirmation for upload'] },
+  { slug: 'travel-insurance', name: 'Travel Insurance', short: 'Policies that meet destination cover limits.', intro: 'Some destinations require medical cover with specific limits. We help you obtain a policy that matches the stated requirements for your route.', includes: ['Cover matched to destination rules', 'Policy documents for upload', 'Support if cover needs extending'] },
+  { slug: 'visa-appointment', name: 'Visa Appointment', short: 'Biometric and submission slot booking.', intro: 'Appointment systems at VFS Global, TLScontact and BLS change often. We monitor availability and book the slot that fits your plans.', includes: ['Slot search and booking', 'Appointment letter and checklist', 'Rescheduling support'] },
+  { slug: 'invitation-letter', name: 'Invitation Letter', short: 'Host and business invitation drafting.', intro: 'A clear invitation letter answers the questions an officer will ask. We draft it for your host or company to review, sign and send.', includes: ['Drafted for the host to sign', 'Matches the destination format', 'Supporting documents list'] },
+  { slug: 'document-preparation', name: 'Document Preparation', short: 'Checklists, formatting and pre-submission review.', intro: 'Most refusals come down to supporting evidence rather than the form. We review every document before it is submitted.', includes: ['Personal document checklist', 'Review of every upload', 'Plain notes on what to fix'] },
+];
+
+export const serviceBySlug = (slug: string) => services.find((s) => s.slug === slug);
